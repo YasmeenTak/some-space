@@ -1,38 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Dropdown from "react-dropdown";
 import $ from "jquery";
 
 const SignedInLinks = () => {
   return (
     <div>
-      <ul id="dropdown1" class="dropdown-content">
+      <ul className="right">
         <li>
-          <a href="#!">add</a>
+          <NavLink to="/LogOut">Log Out</NavLink>
         </li>
-        <li class="divider"></li>
         <li>
-          <a href="#!">show</a>
+          <NavLink to="/Add" className="btn btn-floating pink lighten-1">
+            <i class="material-icons">add</i>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/Show" className="btn btn-floating pink lighten-1">
+            <i class="material-icons">remove_red_eye</i>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/Cart" className="btn btn-floating pink lighten-1">
+            <i class="material-icons">add_shopping_cart</i>
+          </NavLink>
         </li>
       </ul>
-
-      <div>
-        <ul className="right">
-          <li>
-            <NavLink to="/">Log Out</NavLink>
-          </li>
-          <li>
-            <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-              Advertisement<i class="material-icons right">arrow_drop_down</i>
-            </a>
-          </li>
-          <li>
-            <NavLink to="/" className="btn btn-floating pink lighten-1">
-              <i class="material-icons">add_shopping_cart</i>
-            </NavLink>
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
