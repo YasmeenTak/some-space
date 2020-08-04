@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
-      errors: {},
     };
 
     this.onChange = this.onChange.bind(this);
@@ -16,20 +16,28 @@ class Login extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
   onSubmit(e) {
     e.preventDefault();
     axios
-      .post('/login', {
+      .post('/register', {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
         email: this.state.email,
         password: this.state.password,
       })
       .then((response) => {
-        localStorage.setItem('useremail', response.data.email);
-        alert(response.data.message);
-        if (response.data.message === 'welcome to our website') {
+        var { message, user } = response.data;
+        console.log(response.data);
+        localStorage.setItem('useremail', user.email);
+        console.log(message);
+        alert(message);
+
+        if (message === 'Registered') {
           this.props.history.push('/homeLand');
         }
       })
@@ -45,18 +53,36 @@ class Login extends Component {
           <div className='col-md-6 mt-5 mx-auto'>
             <form noValidate onSubmit={this.onSubmit}>
               <div className='form-group'>
-                <br />
+                <input
+                  type='text'
+                  className='form-control'
+                  name='first_name'
+                  placeholder='First name'
+                  value={this.state.first_name}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className='form-group'>
+                <input
+                  type='text'
+                  className='form-control'
+                  name='last_name'
+                  placeholder='Last name'
+                  value={this.state.last_name}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className='form-group'>
                 <input
                   type='email'
                   className='form-control'
                   name='email'
-                  placeholder='Email Address'
+                  placeholder='Email'
                   value={this.state.email}
                   onChange={this.onChange}
                 />
               </div>
               <div className='form-group'>
-                <br />
                 <input
                   type='password'
                   className='form-control'
@@ -66,11 +92,8 @@ class Login extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <button
-                type='submit'
-                className='btn btn-lg btn-primary btn-block'
-              >
-                <a>Log In</a>
+              <button type='submit'>
+                <a>Register</a>
               </button>
             </form>
           </div>
@@ -80,4 +103,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;
