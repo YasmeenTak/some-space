@@ -3,6 +3,7 @@
   background-position: center;
   background-size: cover;
   overflow: hidden;
+  height: 30%;
   padding-bottom: 30px;
 }
 .contact .info {
@@ -10,10 +11,16 @@
   float: left;
   margin-right: 5%;
 }
+.foot1 {
+  height: 20%;
+}
 .contact h2 {
   color: #e2edeb;
   margin-left: 50px;
   margin-top: 20px;
+}
+.space1 {
+  margin: 15px;
 }
 .contact h3 {
   color: #e2edeb;
@@ -22,7 +29,7 @@
 }
 
 .contact {
-  margin-left: 50px;
+  /* margin-left: 50px; */
   color: #808080;
 }
 .info p,
