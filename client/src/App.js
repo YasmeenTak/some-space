@@ -13,6 +13,9 @@ import Register from './components/Register/Register';
 import Show from './components/ShowAdvertising/ٍShow';
 import Add from './components/AddAdvertising/Add';
 import Cart from './components/cart/cart';
+import Fashion from './components/Fashion/Fashion';
+import Furniture from './components/Furniture/Furnature';
+import Machine from './components/Machine/Machine';
 
 class App extends Component {
   render() {
@@ -20,10 +23,9 @@ class App extends Component {
       <Router>
         <div className='App'>
           <Navbar />
-          {/* <Route exact path="/Home" render={App} /> */}
-          {/* <Route path="/Login" component={Login} /> */}
         </div>
 
+        {/* navbar */}
         <Switch>
           <Route exact path='/Login'>
             <Login />
@@ -47,6 +49,23 @@ class App extends Component {
 
           <Route exact path='/Cart'>
             <Cart />
+          </Route>
+          {/* Catagories */}
+          <Route exact path='/Fashion'>
+            <Fashion />
+          </Route>
+
+          <Route exact path='/Furniture'>
+            <Furniture />
+          </Route>
+
+          <Route exact path='/Machine'>
+            <Machine />
+          </Route>
+
+          {/* ShopButtonNow */}
+          <Route exact path='/ShopNow'>
+            <Catagories />
           </Route>
 
           <Route exact path='/Home'>
