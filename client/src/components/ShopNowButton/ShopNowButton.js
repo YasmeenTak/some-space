@@ -1,6 +1,7 @@
 import React from "react";
 import shop from "./shop.jpg";
 import style from "./style.css";
+import { Link } from "react-router-dom";
 
 class ShopNow extends React.Component {
   render() {
@@ -14,9 +15,11 @@ class ShopNow extends React.Component {
               </h1>
               <br />
               <br />
-              <button>
-                <span>Shop Now</span>
-              </button>
+              <Link to="/ShopNow" className="button">
+                <button>
+                  <span>Shop Now</span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
