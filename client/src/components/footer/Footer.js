@@ -34,10 +34,10 @@ class Footer extends React.Component {
   };
   render() {
     return (
-      <div className="main">
-        <div className="contact">
-          <div className="cotainer">
-            <div className="info">
+      <div className=" col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
+        <div className=" foot1 contact col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
+          <div className="cotainer col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
+            <div className="info col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
               <h2>Some Space</h2>
               <p>
                 We are buying and selling our used products because of our
@@ -45,21 +45,19 @@ class Footer extends React.Component {
                 to renew our things without throwing the old things, our needs
                 to buy used things that are cheap and have good quality.
               </p>
-              <br />
-              <br />
 
               <p>
                 <strong>Email: </strong>SomeSpace@gmail.com
-                <br />
-                <strong>Phone: </strong>+97066690
-                <br />
-                <br />
+                <strong class=" space1 ">Phone: </strong>+97059966690
                 <ul>
                   <li>
-                    <img src={face} alt="face icon" />
+                    <img
+                      src={face}
+                      alt="face icon col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12"
+                    />
                   </li>
                   <li>
-                    <img src={insta} alt="instgram icon" />
+                    <img src={insta} alt="instgram icon " />
                   </li>
                   <li>
                     <img src={twitter} alt="twitter icon" />
@@ -71,7 +69,7 @@ class Footer extends React.Component {
               </p>
             </div>
 
-            <div className="form">
+            <div className="form col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
               <form onSubmit={this.handleSubmit}>
                 <h3>Contact us</h3>
                 <p>
@@ -80,23 +78,21 @@ class Footer extends React.Component {
                 </p>
                 <label>Name * </label>
                 <input
-                  name="senderName"
+                  name="senderName col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12"
                   type="text"
                   onChange={this.handleChange}
                 ></input>
                 <label>Email Adress </label>
                 <input
-                  name="senderEmail"
+                  name="senderEmail col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12"
                   type="email"
                   onChange={this.handleChange}
                 ></input>
                 <label>Message </label>
                 <textarea
-                  name="senderMessage"
+                  name="senderMessage col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12"
                   onChange={this.handleChange}
                 ></textarea>
-                <br />
-                <br />
 
                 <input id="submit" type="submit" value="Send The Message" />
               </form>

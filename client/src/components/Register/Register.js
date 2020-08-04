@@ -24,7 +24,7 @@ class Register extends Component {
   onSubmit(e) {
     e.preventDefault();
     axios
-      .post('/register', {
+      .post('http://localhost:4040/register', {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         email: this.state.email,
