@@ -14,7 +14,7 @@ import Show from "./components/ShowAdvertising/ٍShow";
 import Add from "./components/AddAdvertising/Add";
 import Cart from "./components/cart/cart";
 import Fashion from "./components/Fashion/Fashion";
-import Furniture from "./components/Furniture/Furnature";
+import Furniture from "./components/Furniture/Furniture";
 import Machine from "./components/Machine/Machine";
 
 class App extends Component {
