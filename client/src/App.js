@@ -8,7 +8,7 @@ import Footer from './components/footer/Footer';
 import { Link, NavLink, Switch } from 'react-router-dom';
 import SignedInLinks from './components/navBar/SignedInLinks';
 import SignedOutLinks from './components/navBar/SignedOutLinks';
-import Logout from './components/Logout/Logout';
+import LogOut from './components/Logout/Logout';
 import Register from './components/Register/Register';
 import Show from './components/ShowAdvertising/ٍShow';
 import Add from './components/AddAdvertising/Add';
@@ -27,20 +27,24 @@ class App extends Component {
 
         {/* navbar */}
         <Switch>
-          <Route exact path='/Login'>
-            <Login />
-          </Route>
+          <Route
+            exact
+            path='/Login'
+            render={(props) => <Login {...props} />}
+          ></Route>
 
-          <Route exact path='/Register'>
-            <Register />
-          </Route>
+          <Route
+            exact
+            path='/Register'
+            render={(props) => <Register {...props} />}
+          ></Route>
 
           <Route exact path='/Show'>
             <Show />
           </Route>
 
-          <Route exact path='/Logout'>
-            <Logout />
+          <Route exact path='/LogOut'>
+            <LogOut />
           </Route>
 
           <Route exact path='/Add'>
