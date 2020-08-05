@@ -21,54 +21,54 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='App'>
+        <div className="App">
           <Navbar />
         </div>
 
         {/* navbar */}
         <Switch>
-          <Route exact path='/Login'>
+          <Route exact path="/Login">
             <Login />
           </Route>
 
-          <Route exact path='/Register'>
+          <Route exact path="/Register">
             <Register />
           </Route>
 
-          <Route exact path='/Show'>
+          <Route exact path="/Show">
             <Show />
           </Route>
 
-          <Route exact path='/Logout'>
+          <Route exact path="/Logout">
             <Logout />
           </Route>
 
-          <Route exact path='/Add'>
+          <Route exact path="/Add">
             <Add />
           </Route>
 
-          <Route exact path='/Cart'>
+          <Route exact path="/Cart">
             <Cart />
           </Route>
           {/* Catagories */}
-          <Route exact path='/Fashion'>
+          <Route exact path="/Fashion">
             <Fashion />
           </Route>
 
-          <Route exact path='/Furniture'>
+          <Route exact path="/Furniture">
             <Furniture />
           </Route>
 
-          <Route exact path='/Machine'>
+          <Route exact path="/Machine">
             <Machine />
           </Route>
 
           {/* ShopButtonNow */}
-          <Route exact path='/ShopNow'>
+          <Route exact path="/ShopNow">
             <Catagories />
           </Route>
 
-          <Route exact path='/Home'>
+          <Route exact path="/Home">
             <ShopNowButton />
             <Catagories />
           </Route>
