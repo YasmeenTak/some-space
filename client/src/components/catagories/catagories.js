@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import machine from "./machine.png";
 import fashion from "./fashion.png";
 import chair from "./chair.png";
 import { Link } from "react-router-dom";
+import { Card, CardDeck, Button } from "react-bootstrap";
 
 import $ from "jquery";
 
@@ -13,45 +13,75 @@ import style from "./catagories.css";
 class Catagories extends React.Component {
   render() {
     return (
-      <div className="catagories">
-        <div className="slider">
-          <div className="intro">
-            <h1>Stay home and shop online</h1>
-
-            <Link to="/Machine" className="nav-link">
-              <img
-                className="machine"
-                src={require("./machine.png")}
-                alt="machine"
-                hight={350}
-                width={200}
-              />
+      <div style={{ width: "100%" }}>
+        <br />
+        <br />
+        <br />
+        <h
+          style={{
+            fontSize: "30px",
+            // background: "HotPink",
+            text: "center",
+            border: "3px solid HotPink",
+            marginLeft: "25%",
+            width: "100 %",
+          }}
+        >
+          YOU CAN ALWAYS FIND SOMRTHING YOU WANT
+        </h>
+        <br />
+        <br />
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src={require("./machine.png")} />
+          <Card.Body>
+            <Card.Title style={{ fontSize: "45px" }}>MACHINE</Card.Title>
+            <Card.Text>
+              Nothing lasts forever, not even the best machines. And everything
+              can be reused.
+            </Card.Text>
+            <Link to="/Machine">
+              <Button style={{ backgroundColor: "HotPink" }} variant="primary">
+                Go SHOP
+              </Button>
             </Link>
-
-            <Link to="/Fashion" className="nav-link">
-              <img
-                className="fashion"
-                src={require("./fashion.png")}
-                alt="fashion"
-                hight={350}
-                width={200}
-              />
+          </Card.Body>
+        </Card>
+        <br />
+        <br />
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src={require("./fashion.png")} />
+          <Card.Body>
+            <Card.Title style={{ fontSize: "45px" }}>FASHION</Card.Title>
+            <Card.Text>
+              Nothing lasts forever, not even the best clothes. And everything
+              can be reused.
+            </Card.Text>
+            <Link to="/Fashion">
+              <Button style={{ backgroundColor: "HotPink" }} variant="primary">
+                Go SHOP
+              </Button>
             </Link>
-            <Link to="/Furniture" className="nav-link">
-              <img
-                className="furniture"
-                src={require("./chair.png")}
-                alt="furniture"
-                hight={350}
-                width={200}
-              />
+          </Card.Body>
+        </Card>
+        <br />
+        <br />
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src={require("./chair.png")} />
+          <Card.Body>
+            <Card.Title style={{ fontSize: "45px" }}>FURNITURE</Card.Title>
+            <Card.Text>
+              Nothing lasts forever, not even the best furniture. And everything
+              can be reused.
+            </Card.Text>
+            <Link to="/Furniture">
+              <Button style={{ backgroundColor: "HotPink" }} variant="primary">
+                Go SHOP
+              </Button>
             </Link>
-
-            <br />
-            <br />
-          </div>
-        </div>
+          </Card.Body>
+        </Card>
       </div>
+      
     );
   }
 }

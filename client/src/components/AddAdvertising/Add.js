@@ -1,8 +1,8 @@
 import React, { useState, Component } from "react";
-import FileUpload from "./FileUpload";
 import { Icon } from "antd";
+import axios from "axios";
 
-const Continents = [
+const Catagory = [
   { key: "1", value: "Fashion" },
   { key: "2", value: "Furniture" },
   { key: "3", value: "Machines" },
@@ -12,8 +12,9 @@ function Add(props) {
   const [TitleValue, setTitleValue] = useState("");
   const [DescriptionValue, setDescriptionValue] = useState("");
   const [PriceValue, setPriceValue] = useState(0);
-  const [ContinentValue, setContinentValue] = useState("1");
+  const [CatagoryValue, setCatagoryValue] = useState("1");
   const [Images, setImages] = useState([]);
+  const [LocationValue, setLocationValue] = useState("");
 
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value);
@@ -27,12 +28,16 @@ function Add(props) {
     setPriceValue(event.currentTarget.value);
   };
 
-  const onContinentsSelectChange = (event) => {
-    setContinentValue(event.currentTarget.value);
+  const onCatagorySelectChange = (event) => {
+    setCatagoryValue(event.currentTarget.value);
   };
 
   const updateImages = (newImages) => {
     setImages(newImages);
+  };
+
+  const onLocationChange = (event) => {
+    setLocationValue(event.currentTarget.value);
   };
 
   const onSubmit = (event) => {
@@ -42,7 +47,7 @@ function Add(props) {
       !TitleValue ||
       !DescriptionValue ||
       !PriceValue ||
-      !ContinentValue ||
+      !CatagoryValue ||
       !Images
     ) {
       return alert("fill all the fields first!");
@@ -53,8 +58,20 @@ function Add(props) {
       description: DescriptionValue,
       price: PriceValue,
       images: Images,
-      continents: ContinentValue,
+      catagory: CatagoryValue,
+      location: LocationValue,
     };
+    axios.post("http://localhost:3000/product", variables).then((response) => {
+      console.log(variables);
+      if (response.data.success) {
+        alert("Product Successfully Uploaded");
+        console.log("Product Successfully Uploaded");
+        props.history.push("/");
+      } else {
+        alert("Failed to upload Product");
+        console.log("Failed to upload Product");
+      }
+    });
   };
 
   return (
@@ -70,7 +87,8 @@ function Add(props) {
 
       <form onSubmit={onSubmit}>
         {/* DropZone */}
-        <FileUpload refreshFunction={updateImages} />
+        <FileUpload />
+        {/* <FileUpload refreshFunction={updateImages} /> */}
         <br />
         <br />
         <label>Title</label>
@@ -85,12 +103,16 @@ function Add(props) {
         <input onChange={onPriceChange} value={PriceValue} type="number" />
         <br />
         <br />
+        <label>Location</label>
+        <input onChange={onLocationChange} value={LocationValue} />
+        <br />
+        <br />
         <select
-          onChange={onContinentsSelectChange}
-          value={ContinentValue}
+          onChange={onCatagorySelectChange}
+          value={CatagoryValue}
           style={{ display: "block" }}
         >
-          {Continents.map((item) => (
+          {Catagory.map((item) => (
             <option key={item.key} value={item.key}>
               {item.value}
             </option>
