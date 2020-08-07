@@ -8,13 +8,13 @@ import Footer from './components/footer/Footer';
 import { Link, NavLink, Switch } from 'react-router-dom';
 import SignedInLinks from './components/navBar/SignedInLinks';
 import SignedOutLinks from './components/navBar/SignedOutLinks';
-import LogOut from './components/Logout/Logout';
+import Logout from './components/Logout/Logout';
 import Register from './components/Register/Register';
 import Show from './components/ShowAdvertising/ٍShow';
 import Add from './components/AddAdvertising/Add';
 import Cart from './components/cart/cart';
 import Fashion from './components/Fashion/Fashion';
-import Furniture from './components/Furniture/Furnature';
+import Furniture from './components/Furniture/Furniture';
 import Machine from './components/Machine/Machine';
 
 class App extends Component {
@@ -27,24 +27,20 @@ class App extends Component {
 
         {/* navbar */}
         <Switch>
-          <Route
-            exact
-            path='/Login'
-            render={(props) => <Login {...props} />}
-          ></Route>
+          <Route exact path='/Login'>
+            <Login />
+          </Route>
 
-          <Route
-            exact
-            path='/Register'
-            render={(props) => <Register {...props} />}
-          ></Route>
+          <Route exact path='/Register'>
+            <Register />
+          </Route>
 
           <Route exact path='/Show'>
             <Show />
           </Route>
 
-          <Route exact path='/LogOut'>
-            <LogOut />
+          <Route exact path='/Logout'>
+            <Logout />
           </Route>
 
           <Route exact path='/Add'>
