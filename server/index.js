@@ -5,11 +5,12 @@ const { UserModel, ProductModel } = require('./resources/model');
 const db = require('./database/index');
 const router = require('./resources/router');
 
-
 app.use(express.json());
 
 // let UserModel= db.UserModel;
 app.post('/user', (req, res) => {
+  console.log('reatch**********************');
+  console.log(req.body);
   const {
     UserID,
     firstName,
@@ -25,14 +26,21 @@ app.post('/user', (req, res) => {
     carts,
     quantity,
   } = req.body;
-  let userDoc = new UserModel({ firstName: firstName, lastName: lastName });
+  let userDoc = new UserModel({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+  });
 
   userDoc.save((err) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.status(201).send('Saved');
+      res.status(201).json({
+        message: 'Saved',
+        user: { firstName: firstName, lastName: lastName },
+      });
     }
   });
 });
@@ -48,7 +56,6 @@ app.get('/user', (req, res) => {
     });
 });
 app.use('/', router);
-
 
 //-------------------------------------------------
 const PORT = process.env.PORT || 5000;
