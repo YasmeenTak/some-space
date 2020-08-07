@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      password: '',
-    };
+  // constructor() {
+  // super();
+  state = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+  };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  // this.onChange = this.onChange.bind(this);
+  // this.onSubmit = this.onSubmit.bind(this);
+  // }
 
   onChange(e) {
     this.setState({
@@ -24,7 +24,7 @@ class Register extends Component {
   onSubmit(e) {
     e.preventDefault();
     axios
-      .post('http://localhost:4040/register', {
+      .post('/register', {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         email: this.state.email,
@@ -51,7 +51,7 @@ class Register extends Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 mt-5 mx-auto'>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit.bind(this)}>
               <div className='form-group'>
                 <input
                   type='text'
@@ -59,7 +59,7 @@ class Register extends Component {
                   name='first_name'
                   placeholder='First name'
                   value={this.state.first_name}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <div className='form-group'>
@@ -69,7 +69,7 @@ class Register extends Component {
                   name='last_name'
                   placeholder='Last name'
                   value={this.state.last_name}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <div className='form-group'>
@@ -79,7 +79,7 @@ class Register extends Component {
                   name='email'
                   placeholder='Email'
                   value={this.state.email}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <div className='form-group'>
@@ -89,7 +89,7 @@ class Register extends Component {
                   name='password'
                   placeholder='Password'
                   value={this.state.password}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <button type='submit'>

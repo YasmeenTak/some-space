@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bf5c6fb6.chunk.css",
+    "main.js": "/static/js/main.4f986471.chunk.js",
+    "main.js.map": "/static/js/main.4f986471.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
+    "static/js/2.68173bb8.chunk.js": "/static/js/2.68173bb8.chunk.js",
+    "static/js/2.68173bb8.chunk.js.map": "/static/js/2.68173bb8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b78f0670b646542fa00a425578f0945c.js": "/precache-manifest.b78f0670b646542fa00a425578f0945c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.bf5c6fb6.chunk.css.map": "/static/css/main.bf5c6fb6.chunk.css.map",
+    "static/js/2.68173bb8.chunk.js.LICENSE.txt": "/static/js/2.68173bb8.chunk.js.LICENSE.txt",
+    "static/media/chair.png": "/static/media/chair.968387e9.png",
+    "static/media/face.png": "/static/media/face.16ec4047.png",
+    "static/media/fashion.png": "/static/media/fashion.dbc42d36.png",
+    "static/media/insta.png": "/static/media/insta.fd552de2.png",
+    "static/media/machine.png": "/static/media/machine.bca1076e.png",
+    "static/media/shop.jpg": "/static/media/shop.86561268.jpg",
+    "static/media/style.css": "/static/media/space.8e1a1e37.jpg",
+    "static/media/twitter.png": "/static/media/twitter.736c06ea.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.09b85ec0.js",
+    "static/js/2.68173bb8.chunk.js",
+    "static/css/main.bf5c6fb6.chunk.css",
+    "static/js/main.4f986471.chunk.js"
+  ]
+}
