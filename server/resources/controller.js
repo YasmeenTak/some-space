@@ -34,7 +34,6 @@ exports.login = function (req, res) {
     });
 };
 
-<<<<<<< HEAD
 // //Post product -- Add
 // exports.addProduct = function (req, res) {
 //   const { title, description, price, images, category, location } = req.body;
@@ -53,22 +52,3 @@ exports.login = function (req, res) {
 //       res.send(err);
 //     });
 // };
-=======
-exports.login = function (req, res) {
-  const { Email, Password } = req.body;
-  var email = req.body.Email;
-  var password = req.body.Password;
-  UserModel.find({ Email, Password })
-    .then((result) => {
-      if (result.length > 0) {
-        res.send(true);
-      } else {
-        res.send(false);
-      }
-      console.log(result);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-};
->>>>>>> f86808a73352ba7b4706506a78350436750f9e12

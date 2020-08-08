@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
-=======
-import React, { Component } from 'react';
-
->>>>>>> f86808a73352ba7b4706506a78350436750f9e12
 class Fashion extends Component {
   render() {
     return (
