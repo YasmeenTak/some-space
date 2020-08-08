@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-// import chair.png from "./chair.png"
+
+
 
 class Furniture extends Component {
   render() {
@@ -46,3 +47,5 @@ class Furniture extends Component {
 }
 
 export default Furniture;
+
+
