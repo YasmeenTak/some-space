@@ -6,6 +6,7 @@ import ShopNowButton from './components/ShopNowButton/ShopNowButton';
 import Catagories from './components/catagories/catagories';
 import Footer from './components/footer/Footer';
 import { Link, NavLink, Switch } from 'react-router-dom';
+
 import SignedInLinks from './components/navBar/SignedInLinks';
 import SignedOutLinks from './components/navBar/SignedOutLinks';
 import Logout from './components/Logout/Logout';

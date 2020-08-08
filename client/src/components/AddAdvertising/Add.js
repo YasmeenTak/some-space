@@ -74,30 +74,32 @@ function Add() {
       location: LocationValue,
     };
 
-    axios
-      .post("/addProduct", variables)
-      .then((response) => {
+    // axios
+    //   .post("/addProduct", variables)
+    //   console
+    //     .log(variables)
+    //     .then((response) => {
+    //       alert("Product Successfully Uploaded");
+    //       console.log("Product Successfully Uploaded");
+
+    //       //if CatagoryValue == 1 go to machine
+    //       //if CatagoryValue == 2
+    //     })
+    //     .catch((err) => {
+    //       alert("Failed to upload Product");
+    //       console.log("Failed to upload Product");
+    //       console.log(err);
+    //     });
+    axios.post("/addProduct", variables).then((response) => {
+      if (response.data) {
         alert("Product Successfully Uploaded");
         console.log("Product Successfully Uploaded");
-
-        //if CatagoryValue == 1 go to machine
-        //if CatagoryValue == 2
-      })
-      .catch((err) => {
+        // props.history.push("/");
+      } else {
         alert("Failed to upload Product");
         console.log("Failed to upload Product");
-        console.log(err);
-      });
-    // axios.post("/product", variables).then((response) => {
-    //   if (response.data) {
-    //     alert("Product Successfully Uploaded");
-    //     console.log("Product Successfully Uploaded");
-    //     // props.history.push("/");
-    //   } else {
-    //     alert("Failed to upload Product");
-    //     console.log("Failed to upload Product");
-    //   }
-    // });
+      }
+    });
   };
 
   return (
