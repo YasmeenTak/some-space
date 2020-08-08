@@ -1,5 +1,4 @@
-import React, { useState, Component } from "react";
-import { Icon } from "antd";
+import React, { useState, Component, useEffect } from "react";
 import axios from "axios";
 
 const Catagory = [
@@ -8,13 +7,17 @@ const Catagory = [
   { key: "3", value: "Machines" },
 ];
 
-function Add(props) {
+function Add() {
   const [TitleValue, setTitleValue] = useState("");
   const [DescriptionValue, setDescriptionValue] = useState("");
   const [PriceValue, setPriceValue] = useState(0);
   const [CatagoryValue, setCatagoryValue] = useState("1");
-  const [Images, setImages] = useState([]);
   const [LocationValue, setLocationValue] = useState("");
+  //const [ImgUrl, setImgUrl] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {}, []);
 
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value);
@@ -32,24 +35,33 @@ function Add(props) {
     setCatagoryValue(event.currentTarget.value);
   };
 
-  const updateImages = (newImages) => {
-    setImages(newImages);
-  };
-
   const onLocationChange = (event) => {
     setLocationValue(event.currentTarget.value);
   };
 
+  function uploadImage(e) {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "some-space");
+    setLoading(true);
+    axios
+      .post("https://api.cloudinary.com/v1_1/dvsayvxsy/image/upload", data)
+      .then((response) => {
+        console.log(response);
+        const imgUrl = response.data["secure_url"];
+        setImage(imgUrl);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (
-      !TitleValue ||
-      !DescriptionValue ||
-      !PriceValue ||
-      !CatagoryValue ||
-      !Images
-    ) {
+    if (!TitleValue || !DescriptionValue || !PriceValue || !CatagoryValue) {
       return alert("fill all the fields first!");
     }
 
@@ -57,38 +69,62 @@ function Add(props) {
       title: TitleValue,
       description: DescriptionValue,
       price: PriceValue,
-      images: Images,
-      catagory: CatagoryValue,
+      images: image,
+      category: CatagoryValue,
       location: LocationValue,
     };
-    axios.post("http://localhost:3000/product", variables).then((response) => {
-      console.log(variables);
-      if (response.data.success) {
+
+    axios
+      .post("/addProduct", variables)
+      .then((response) => {
         alert("Product Successfully Uploaded");
         console.log("Product Successfully Uploaded");
-        props.history.push("/");
-      } else {
+
+        //if CatagoryValue == 1 go to machine
+        //if CatagoryValue == 2
+      })
+      .catch((err) => {
         alert("Failed to upload Product");
         console.log("Failed to upload Product");
-      }
-    });
+        console.log(err);
+      });
+    // axios.post("/product", variables).then((response) => {
+    //   if (response.data) {
+    //     alert("Product Successfully Uploaded");
+    //     console.log("Product Successfully Uploaded");
+    //     // props.history.push("/");
+    //   } else {
+    //     alert("Failed to upload Product");
+    //     console.log("Failed to upload Product");
+    //   }
+    // });
   };
 
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
+      <div className="App">
+        <h2> Upload Product</h2>
+        {/* <p>Test: {image}</p> */}
+        <input
+          type="file"
+          name="file"
+          placeholder="Upload an image"
+          onChange={uploadImage}
+        />
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          <img src={image} style={{ width: "300px" }} />
+        )}
+      </div>
       <div
         style={{
           textAlign: "center",
           marginBottom: "2rem",
         }}
-      >
-        <h2> Upload Product</h2>
-      </div>
+      ></div>
 
       <form onSubmit={onSubmit}>
-        {/* DropZone */}
-        <FileUpload />
-        {/* <FileUpload refreshFunction={updateImages} /> */}
         <br />
         <br />
         <label>Title</label>

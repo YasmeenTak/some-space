@@ -20,11 +20,12 @@ let productSchema = mongoose.Schema({
   productID: { type: Number },
   title: { type: String },
   images: { type: String },
-  discription: { type: String },
+  description: { type: String },
   price: { type: Number },
-  category: { type: String, required: true },
+  category: { type: Number, default: 1, required: true },
   location: { type: String },
   dateOfAdd: { date: { type: Date, default: Date.now } },
+  ImgUrl: { type: String },
 });
 let ProductModel = mongoose.model("product", productSchema);
 module.exports = {

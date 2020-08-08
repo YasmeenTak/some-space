@@ -9,14 +9,14 @@ const { title } = require("process");
 
 app.use(express.json());
 
-app.post("/product", (req, res) => {
-  const { title, description, price, images, catagory, location } = req.body;
+app.post("/addProduct", (req, res) => {
+  const { title, description, price, images, category, location } = req.body;
   let productDocument = new ProductModel({
     title: title,
     description: description,
     price: price,
     images: images,
-    catagory: catagory,
+    category: category,
     location: location,
   });
   productDocument
@@ -24,7 +24,6 @@ app.post("/product", (req, res) => {
     .then(() => res.send("saved product!"))
     .catch((err) => {
       res.send(err);
-      console.log(err)
     });
 });
 

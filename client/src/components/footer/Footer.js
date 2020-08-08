@@ -34,7 +34,7 @@ class Footer extends React.Component {
   };
   render() {
     return (
-      <div className=" col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
+      <div className=" foo2 col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
         <div className=" foot1 contact col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
           <div className="cotainer col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">
             <div className="info col-sm-4 col-sm-3 col-sm-6 col-m-4 col-xs-6 col-md-12 col-s-6 col-s-12">

@@ -1,31 +1,14 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 mongoose
-  .connect('mongodb://localhost:27017/someSpace', { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/someSpace", { useNewUrlParser: true })
   .then(() => {
-    console.log('connected');
+    console.log("connected");
   })
   .catch((err) => {
-    console.log('Error while connecting to DB', err);
+    console.log("Error while connecting to DB", err);
   });
 
 module.exports = mongoose;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // //------------------------------------------
 // let ProductModel = mongoose.model('product', productSchema);
