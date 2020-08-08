@@ -32,9 +32,13 @@
     "jquery": "^3.5.1",
     "materialize-css": "^1.0.0-rc.2",
     "mongoose": "^5.9.25",
+<<<<<<< HEAD
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
+=======
+    "react-bootstrap": "^1.3.0",
+>>>>>>> f86808a73352ba7b4706506a78350436750f9e12
     "react-dropdown": "^1.7.0",
     "react-dropzone": "^11.0.2",
     "react-images-upload": "^1.2.8",
