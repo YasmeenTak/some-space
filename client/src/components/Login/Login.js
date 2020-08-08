@@ -3,17 +3,11 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-      errors: {},
-    };
-
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
+  state = {
+    email: '',
+    password: '',
+    errors: {},
+  };
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -29,9 +23,10 @@ class Login extends Component {
       .then((response) => {
         localStorage.setItem('useremail', response.data.email);
         alert(response.data.message);
-        if (response.data.message === 'welcome to our website') {
-          this.props.history.push('/homeLand');
-        }
+        // if (response.data.message === 'welcome to our website') {
+        // console.log(this.props);
+        this.props.history.push('/Home');
+        // }
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +38,7 @@ class Login extends Component {
       <div className='container'>
         <div className='row'>
           <div className='col-md-6 mt-5 mx-auto'>
-            <form noValidate onSubmit={this.onSubmit}>
+            <form noValidate onSubmit={this.onSubmit.bind(this)}>
               <div className='form-group'>
                 <br />
                 <input
@@ -52,7 +47,7 @@ class Login extends Component {
                   name='email'
                   placeholder='Email Address'
                   value={this.state.email}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <div className='form-group'>
@@ -63,7 +58,7 @@ class Login extends Component {
                   name='password'
                   placeholder='Password'
                   value={this.state.password}
-                  onChange={this.onChange}
+                  onChange={this.onChange.bind(this)}
                 />
               </div>
               <button

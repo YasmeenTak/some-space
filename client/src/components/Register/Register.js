@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 class Register extends Component {
-  // constructor() {
-  // super();
   state = {
     first_name: '',
     last_name: '',
     email: '',
     password: '',
   };
-
-  // this.onChange = this.onChange.bind(this);
-  // this.onSubmit = this.onSubmit.bind(this);
-  // }
 
   onChange(e) {
     this.setState({
@@ -24,22 +19,24 @@ class Register extends Component {
   onSubmit(e) {
     e.preventDefault();
     axios
-      .post('/register', {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
+      .post('/user', {
+        firstName: this.state.first_name,
+        lastName: this.state.last_name,
         email: this.state.email,
         password: this.state.password,
       })
       .then((response) => {
+        console.log(response);
         var { message, user } = response.data;
         console.log(response.data);
         localStorage.setItem('useremail', user.email);
         console.log(message);
         alert(message);
 
-        if (message === 'Registered') {
-          this.props.history.push('/homeLand');
-        }
+        // if (message === 'Registered') {
+        console.log(this.props);
+        this.props.history.push('/Login');
+        // }
       })
       .catch((err) => {
         console.log(err);

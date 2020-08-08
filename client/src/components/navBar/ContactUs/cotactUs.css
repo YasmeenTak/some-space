@@ -1,0 +1,86 @@
+/* .sentemail {
+    background-size: cover;
+  }
+  
+  .sentemail h1 {
+    text-align: center;
+    padding: 10px;
+    width: 500px;
+    margin: 10px auto;
+    border-radius: 25px;
+    transform: translatey(70px);
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(71, 71, 71, 0.507);
+    height: 70px;
+    font-weight: 850;
+    color: white;
+  }
+  
+  .border {
+    width: 100px;
+    height: 10px;
+    background: #07070700;
+    margin: 50px;
+  }
+  
+  .sentemail input {
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    font-weight: 800;
+    padding: 12px;
+    margin: 8px auto;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+  }
+  
+  .sentemail input:focus {
+    box-shadow: 1px -1px 5px rgb(5, 224, 5);
+    border: 2px solid rgb(5, 224, 5);
+  }
+  
+  .sentemail button {
+    background: rgb(0, 162, 255);
+    color: rgb(255, 255, 255);
+    border-radius: 44px;
+    cursor: pointer;
+    width: 20%;
+    padding: 5 16px;
+    height: 44px;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-family: "montserrat";
+    font-size: 1.5em;
+    margin: 8px auto;
+    font-weight: 700;
+    width: 270px;
+    height: 50px;
+    color: white;
+    transform: translateY(15px);
+  }
+  
+  textarea {
+    resize: none;
+    height: 180px;
+    width: 700px;
+    outline: none;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 25px;
+  }
+  ::-webkit-input-placeholder {
+    color: rgba(34, 34, 34, 0.705);
+  }
+  .sentemail button:hover {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    transition: all 0.5s linear;
+  } */

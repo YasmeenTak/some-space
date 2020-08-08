@@ -1,8 +1,17 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 class Logout extends Component {
+  componentDidMount() {
+    localStorage.removeItem('usertoken');
+  }
   render() {
-    return <div>I want to log out</div>;
+    return (
+      <Redirect
+        to={{
+          pathname: '/Home',
+        }}
+      />
+    );
   }
 }
 
