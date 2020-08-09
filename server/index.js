@@ -6,11 +6,11 @@ const { UserModel, ProductModel } = require('./resources/model');
 const db = require('./database/index');
 const router = require('./resources/router');
 const { title } = require('process');
-const cors = require('cors');
+// const cors = require('cors');
 const router0 = require('../routes/users');
 
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 
 app.post('/addProduct', (req, res) => {
   const { title, description, price, images, category, location } = req.body;
