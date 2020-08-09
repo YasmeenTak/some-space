@@ -19,6 +19,8 @@ import Machine from './components/Machine/Machine';
 
 class App extends Component {
   render() {
+    console.log('asdfasdfalsjhfasdkjfhasdkjhfkwejahfkewahfkjeah');
+    console.log(localStorage.getItem('token'));
     return (
       <Router>
         <div className='App'>
@@ -30,11 +32,9 @@ class App extends Component {
           <Route exact path='/Login'>
             <Login />
           </Route>
-
           <Route exact path='/Register'>
             <Register />
           </Route>
-
           <Route exact path='/Show'>
             <Show />
           </Route>

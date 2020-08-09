@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
-import "./style.css";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import './style.css';
 
 export default class Login extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     redirect: null,
-    isLoggedIn: false
+    token: null,
+    isLoggedIn: false,
   };
 
   handleChange(e) {
@@ -18,36 +19,36 @@ export default class Login extends Component {
   }
   handleClick() {
     axios
-    .post("/api/users/login", {
-      email: this.state.email,
-      password: this.state.password,
-    })
-    .then((result) => {
-      console.log(result.data);
-      if(result.data) {
-        console.log('redirect to Home');
-        console.log(result.data.token, 'tooooooooken');
-        this.setState({redirect: '/Home'})
-      }
-      console.log('Logged in');
-      this.setState({isLoggedIn: true})
-      //this.props.handleLogin();
-      alert('Logged in');
-    })
-    .catch((err) => {
-      console.log("err in logging in ", err);
-      alert('No such User !, create a new account');
-    });
-}
+      .post('/api/users/login', {
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then((result) => {
+        console.log(result.data);
+        if (result.data) {
+          console.log('redirect to Home');
+          console.log(result.data.token, 'tooooooooken');
+          this.setState({ token: result.data.token });
+          localStorage.setItem('token', this.state.token);
+          this.setState({ redirect: '/Home' });
+        }
+        console.log('Logged in');
+        this.setState({ isLoggedIn: true });
+        //this.props.handleLogin();
+        alert('Logged in');
+      })
+      .catch((err) => {
+        console.log('err in logging in ', err);
+        alert('No such User !, create a new account');
+      });
+  }
 
   render() {
-
     if (this.state.redirect) {
       console.log('redirected');
-      return <Redirect to='/Home' />
+      return <Redirect to='/Home' />;
     }
     return (
-
       <div className='Login-page__div'>
         <label htmlFor='email' className='Login-page__label'>
           Email

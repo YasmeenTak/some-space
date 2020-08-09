@@ -35,8 +35,8 @@ export default class Register extends Component {
         // console.log(result, "result");
         const errors = result.data;
         this.setState({ errors });
-        // this.setState({redirect: '/login'});
-        // this.props.handleLogin();
+        this.setState({ redirect: '/login' });
+        //this.props.handleLogin();
       })
       .catch((err) => {
         // console.log("err in sending data from axios to db: ", err);
@@ -48,7 +48,7 @@ export default class Register extends Component {
       console.log(this.state.errors);
     }
     if (this.state.redirect) {
-      return <Redirect to='/login' />;
+      return <Redirect to={this.state.redirect} />;
     }
     const { errors } = this.state;
     return (
@@ -63,6 +63,7 @@ export default class Register extends Component {
             className='SignUp-page__input'
             onChange={this.handleChange.bind(this)}
           />
+          <p>{errors['firstName'] ? errors.firstName : null}</p>
           <label htmlFor='email' className='SignUp-page__label'>
             Last Name
           </label>
@@ -72,6 +73,7 @@ export default class Register extends Component {
             className='SignUp-page__input'
             onChange={this.handleChange.bind(this)}
           />
+          <p>{errors['lastName'] ? errors.lastName : null}</p>
           <label htmlFor='email' className='SignUp-page__label'>
             Email
           </label>
@@ -83,6 +85,7 @@ export default class Register extends Component {
             onChange={this.handleChange.bind(this)}
           />
           <p>{errors['email'] ? errors.email : null}</p>
+
           <label htmlFor='password' className='SignUp-page__label'>
             Password
           </label>
@@ -94,6 +97,7 @@ export default class Register extends Component {
             className='SignUp-page__input'
             onChange={this.handleChange.bind(this)}
           />
+          <p>{errors['password'] ? errors.password : null}</p>
           <label htmlFor='password2' className='SignUp-page__label'>
             Confirm Password
           </label>
@@ -104,6 +108,8 @@ export default class Register extends Component {
             className='SignUp-page__input'
             onChange={this.handleChange.bind(this)}
           />
+          <p>{errors['password2'] ? errors.password2 : null}</p>
+
           <button
             className='SignUp-page__button'
             onClick={this.submit.bind(this)}
