@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 
 class Fashion extends Component {
   constructor(props) {
@@ -35,14 +38,23 @@ class Fashion extends Component {
         <ul>
           {products.map((element, index) => {
             return (
-              <li>
-                {element.title}
-                <br />
-                {element.description}
-                <br />
-                {element.price}
-                <br />
-              </li>
+              <div>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={element.images} />
+                  <Card.Body>
+                    <Card.Text>{element.price}</Card.Text>
+                    <Card.Title>{element.title}</Card.Title>
+                    <Card.Text>{element.description}</Card.Text>
+                    <Card.Text>{element.location}</Card.Text>
+                    <Link to="/Payment" className="brand-logo">
+                      <Button variant="primary">buy</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button variant="primary">To Cart</Button>
+                  </Card.Body>
+                </Card>
+              </div>
             );
           })}
         </ul>

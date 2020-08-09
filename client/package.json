@@ -20,6 +20,8 @@
     "react-dropzone": "^11.0.2",
     "react-moment": "^0.9.7",
     "react-scripts": "3.4.1",
+    "react-stripe-checkout": "^2.6.3",
+    "react-stripe-elements": "^6.1.2",
     "redux-axios-middleware": "^4.0.1"
   },
   "scripts": {

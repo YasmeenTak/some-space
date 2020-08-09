@@ -28,7 +28,18 @@ app.post("/addProduct", (req, res) => {
 });
 
 app.get("/addProduct", (req, res) => {
-  ProductModel.find({}) 
+  ProductModel.find({})
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+
+app.get("/addProduct/:category", (req, res) => {
+  ProductModel.find({})
     .then((result) => {
       res.send(result);
     })

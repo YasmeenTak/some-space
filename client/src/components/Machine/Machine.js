@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Machine extends Component {
   constructor(props) {
@@ -27,27 +29,31 @@ class Machine extends Component {
       });
   }
   render() {
-    console.log(this.state);
+    console.log(this.state.products);
 
     const products = this.state.products ? this.state.products : [];
     return (
       <div>
         <ul>
-          {products.map((element, index) => { 
-    
+          {products.map((element, index) => {
             return (
-              // <img  src={require({element.images})} />
-        
-              <li>
-               
-                {element.images}
-                {element.title}
-                <br />
-                {element.description}
-                <br />
-                {element.price}
-                <br />
-              </li>
+              <div>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={element.images} />
+                  <Card.Body>
+                    <Card.Text>{element.price}</Card.Text>
+                    <Card.Title>{element.title}</Card.Title>
+                    <Card.Text>{element.description}</Card.Text>
+                    <Card.Text>{element.location}</Card.Text>
+                    <Link to="/Payment" className="brand-logo">
+                      <Button variant="primary">buy</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button variant="primary">To Cart</Button>
+                  </Card.Body>
+                </Card>
+              </div>
             );
           })}
         </ul>
@@ -56,6 +62,3 @@ class Machine extends Component {
   }
 }
 export default Machine;
-
-
-    ;

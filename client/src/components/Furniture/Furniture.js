@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 class Furniture extends Component {
   constructor(props) {
@@ -10,9 +12,10 @@ class Furniture extends Component {
   state = {
     products: [],
   };
+  // to get all data
   async getProducts() {
     await axios
-      .get("/addProduct", { category: 2 })
+      .get("/addProduct/:category")
       .then((result) => {
         console.log(result);
         const finalData = result.data;
@@ -26,6 +29,7 @@ class Furniture extends Component {
         console.log("it is an error", err);
       });
   }
+
   render() {
     console.log(this.state);
 
@@ -35,14 +39,23 @@ class Furniture extends Component {
         <ul>
           {products.map((element, index) => {
             return (
-              <li>
-                {element.title}
-                <br />
-                {element.description}
-                <br />
-                {element.price}
-                <br />
-              </li>
+              <div>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={element.images} />
+                  <Card.Body>
+                    <Card.Text>{element.price}</Card.Text>
+                    <Card.Title>{element.title}</Card.Title>
+                    <Card.Text>{element.description}</Card.Text>
+                    <Card.Text>{element.location}</Card.Text>
+                    <Link to="/Payment" className="brand-logo">
+                      <Button variant="primary">buy</Button>
+                    </Link>
+                    <br />
+                    <br />
+                    <Button variant="primary">To Cart</Button>
+                  </Card.Body>
+                </Card>
+              </div>
             );
           })}
         </ul>
