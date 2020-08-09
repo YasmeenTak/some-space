@@ -14,6 +14,8 @@ let userSchema = mongoose.Schema({
     sell: [{ productID: Number, date: { type: Date, default: Date.now } }],
     carts: [{ productID: Number }],
     quantity: { type: Number },
+    //product : {type: profu}
+
   });
 
   let UserModel = mongoose.model('user', userSchema);
@@ -26,9 +28,10 @@ let userSchema = mongoose.Schema({
     image: { type: String },
     discription: { type: String },
     price: { type: Number },
-    category: { type: String, required: true },
+    category: { type: Number, default:1, required: true },
     location: { type: String },
     dateOfAdd: { date: { type: Date, default: Date.now } },
+    ImgUrl: {type: String}
   });
 
   let ProductModel = mongoose.model('product', productSchema);

@@ -4,9 +4,10 @@ const app = express();
 const { UserModel, ProductModel } = require('./resources/model');
 const db = require('./database/index');
 const router = require('./resources/router');
-
+const router0 = require('../routes/users');
+const cors = require('cors');
 app.use(express.json());
-
+app.use(cors());
 // let UserModel= db.UserModel;
 app.post('/user', (req, res) => {
   console.log('reatch**********************');
@@ -56,6 +57,7 @@ app.get('/user', (req, res) => {
     });
 });
 app.use('/', router);
+app.use('/api/users', router0);
 
 //-------------------------------------------------
 const PORT = process.env.PORT || 5000;

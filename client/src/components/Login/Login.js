@@ -1,78 +1,83 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import axios from "axios";
+import { Redirect } from "react-router-dom";
+import "./style.css";
 
-class Login extends Component {
+export default class Login extends Component {
   state = {
-    email: '',
-    password: '',
-    errors: {},
+    email: "",
+    password: "",
+    redirect: null,
+    isLoggedIn: false
   };
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
-
-  onSubmit(e) {
-    e.preventDefault();
+  handleClick() {
     axios
-      .post('/login', {
-        email: this.state.email,
-        password: this.state.password,
-      })
-      .then((response) => {
-        localStorage.setItem('useremail', response.data.email);
-        alert(response.data.message);
-        // if (response.data.message === 'welcome to our website') {
-        // console.log(this.props);
-        this.props.history.push('/Home');
-        // }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+    .post("/api/users/login", {
+      email: this.state.email,
+      password: this.state.password,
+    })
+    .then((result) => {
+      console.log(result.data);
+      if(result.data) {
+        console.log('redirect to Home');
+        console.log(result.data.token, 'tooooooooken');
+        this.setState({redirect: '/Home'})
+      }
+      console.log('Logged in');
+      this.setState({isLoggedIn: true})
+      //this.props.handleLogin();
+      alert('Logged in');
+    })
+    .catch((err) => {
+      console.log("err in logging in ", err);
+      alert('No such User !, create a new account');
+    });
+}
 
   render() {
+
+    if (this.state.redirect) {
+      console.log('redirected');
+      return <Redirect to='/Home' />
+    }
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-6 mt-5 mx-auto'>
-            <form noValidate onSubmit={this.onSubmit.bind(this)}>
-              <div className='form-group'>
-                <br />
-                <input
-                  type='email'
-                  className='form-control'
-                  name='email'
-                  placeholder='Email Address'
-                  value={this.state.email}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <div className='form-group'>
-                <br />
-                <input
-                  type='password'
-                  className='form-control'
-                  name='password'
-                  placeholder='Password'
-                  value={this.state.password}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <button
-                type='submit'
-                className='btn btn-lg btn-primary btn-block'
-              >
-                <a>Log In</a>
-              </button>
-            </form>
-          </div>
-        </div>
+
+      <div className='Login-page__div'>
+        <label htmlFor='email' className='Login-page__label'>
+          Email
+        </label>
+        <input
+          name='email'
+          type='email'
+          placeholder=''
+          className='Login-page__input'
+          onChange={this.handleChange.bind(this)}
+        />
+
+        <label htmlFor='password' className='Login-page__label'>
+          password
+        </label>
+        <input
+          name='password'
+          type='password'
+          placeholder=''
+          className='Login-page__input'
+          onChange={this.handleChange.bind(this)}
+        />
+
+        <button
+          className='Login-page__button'
+          onClick={this.handleClick.bind(this)}
+        >
+          login
+        </button>
       </div>
     );
   }
 }
-
-export default Login;
