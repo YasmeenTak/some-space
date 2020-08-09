@@ -1,5 +1,5 @@
 const { UserModel, ProductModel } = require('./model.js');
-exports.register = function (req, res) {
+exports.register = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   let userDoc = new UserModel({
     firstName: firstName,
@@ -16,28 +16,46 @@ exports.register = function (req, res) {
     }
   });
 };
-
-exports.login = function (req, res) {
-  const { Email, Password } = req.body;
-  var email = req.body.Email;
-  var password = req.body.Password;
-  UserModel.find({ Email, Password })
-    .then((result) => {
-      if (result.length > 0) {
-        res.send(true);
-      } else {
-        res.send(false);
-      }
-      console.log(result);
-    })
+// Post product -- Add
+exports.addProduct = function (req, res) {
+  const { title, description, price, images, category, location } = req.body;
+  let productDocument = new ProductModel({
+    title: title,
+    description: description,
+    price: price,
+    images: images,
+    category: category,
+    location: location,
+  });
+  productDocument
+    .save()
+    .then(() => res.send('saved product!'))
     .catch((err) => {
       res.send(err);
     });
 };
-
+//Show Product
+exports.showProduct = function (req, res) {
+  const { title, description, price, images, category, location } = req.body;
+  let productDocument = new ProductModel({
+    title: title,
+    description: description,
+    price: price,
+    images: images,
+    category: category,
+    location: location,
+  });
+  productDocument
+    .save()
+    .then(() => res.send('saved product!'))
+    .catch((err) => {
+      res.send(err);
+    });
+};
 exports.contact = function (req, res) {
   const { senderName, senderEmail, senderMessage } = req.body;
-  console.log("we are there")
+  console.log('we are there');
+  sendEmail(senderEmail, senderMessage);
   function sendEmail(email, number) {
     console.log('we area here');
     nodemailer.createTestAccount((err, account) => {
@@ -48,7 +66,6 @@ exports.contact = function (req, res) {
           pass: 'somespace@easy', // generated ethereal password
         },
       });
-
       // send mail with defined transport object
       transporter.sendMail(
         {
@@ -69,25 +86,22 @@ exports.contact = function (req, res) {
       );
     });
   }
-
-  sendEmail(senderEmail, senderMessage);
 };
-
-// //Post product -- Add
-// exports.addProduct = function (req, res) {
-//   const { title, description, price, images, category, location } = req.body;
-//   let productDocument = new ProductModel({
-//     title: title,
-//     description: description,
-//     price: price,
-//     images: images,
-//     category: category,
-//     location: location,
-//   });
-//   productDocument
-//     .save()
-//     .then(() => res.send("saved product!"))
-//     .catch((err) => {
-//       res.send(err);
-//     });
-// };
+//Post product -- Add
+exports.addProduct = function (req, res) {
+  const { title, description, price, images, category, location } = req.body;
+  let productDocument = new ProductModel({
+    title: title,
+    description: description,
+    price: price,
+    images: images,
+    category: category,
+    location: location,
+  });
+  productDocument
+    .save()
+    .then(() => res.send('saved product!'))
+    .catch((err) => {
+      res.send(err);
+    });
+};
