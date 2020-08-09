@@ -1,4 +1,4 @@
-const { UserModel, ProductModel } = require("./model.js");
+const { UserModel, ProductModel } = require('./model.js');
 exports.register = function (req, res) {
   const { firstName, lastName, email, password } = req.body;
   let userDoc = new UserModel({
@@ -12,10 +12,11 @@ exports.register = function (req, res) {
       console.log(err);
       res.status(500).send(err);
     } else {
-      res.status(201).send("Saved");
+      res.status(201).send('Saved');
     }
   });
 };
+
 exports.login = function (req, res) {
   const { Email, Password } = req.body;
   var email = req.body.Email;
@@ -32,6 +33,44 @@ exports.login = function (req, res) {
     .catch((err) => {
       res.send(err);
     });
+};
+
+exports.contact = function (req, res) {
+  const { senderName, senderEmail, senderMessage } = req.body;
+  console.log("we are there")
+  function sendEmail(email, number) {
+    console.log('we area here');
+    nodemailer.createTestAccount((err, account) => {
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'ssomespacee@gmail.com', // generated ethereal user
+          pass: 'somespace@easy', // generated ethereal password
+        },
+      });
+
+      // send mail with defined transport object
+      transporter.sendMail(
+        {
+          from: '"ExChange" <ssomespacee@gmail.com>', // sender address
+          to: 'ssomespacee@gmail.com', // list of receivers
+          subject: 'Credit card Number ✔', // Subject line
+          text: 'Hello world?', // plain text body
+          html: `<h2>Hello world? : ${email}</h2><p>This is your credit card number : </p> <p>${number}<p/>`, // html body
+        },
+        (err, info) => {
+          if (err) {
+            console.log(err);
+            return console.log(err);
+          }
+          console.log('Message sent: %s', info.messageId);
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        }
+      );
+    });
+  }
+
+  sendEmail(senderEmail, senderMessage);
 };
 
 // //Post product -- Add

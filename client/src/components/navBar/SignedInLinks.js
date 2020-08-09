@@ -12,17 +12,17 @@ const SignedInLinks = () => {
         </li>
         <li>
           <Link to='/Add' className='btn btn-floating pink lighten-1'>
-            <i class='material-icons'>add</i>
+            <i className='material-icons'>add</i>
           </Link>
         </li>
         <li>
           <Link to='/Show' className='btn btn-floating pink lighten-1'>
-            <i class='material-icons'>remove_red_eye</i>
+            <i className='material-icons'>remove_red_eye</i>
           </Link>
         </li>
         <li>
           <Link to='/Cart' className='btn btn-floating pink lighten-1'>
-            <i class='material-icons'>add_shopping_cart</i>
+            <i className='material-icons'>add_shopping_cart</i>
           </Link>
         </li>
       </ul>
