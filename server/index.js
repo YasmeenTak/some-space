@@ -27,6 +27,26 @@ app.post("/addProduct", (req, res) => {
     });
 });
 
+app.get("/addProduct", (req, res) => {
+  ProductModel.find({}) 
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+// app.post("/addProduct", (req, res) => {
+//   ProductModel.find({ category: req.body.category })
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       res.send(err);
+//     });
+// });
+
 if (process.env.NODE_ENV === "production") {
   // Set static folder
   app.use(express.static("client/build"));

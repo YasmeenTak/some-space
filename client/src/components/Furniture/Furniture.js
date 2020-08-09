@@ -1,51 +1,53 @@
 import React, { Component } from "react";
-
-
+import axios from "axios";
 
 class Furniture extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.getProducts();
+  }
+  state = {
+    products: [],
+  };
+  async getProducts() {
+    await axios
+      .get("/addProduct", { category: 2 })
+      .then((result) => {
+        console.log(result);
+        const finalData = result.data;
+
+        console.log("=====", finalData);
+        this.setState({ products: finalData });
+        // console.log("hi eman", finalData);
+      })
+      .catch((err) => {
+        console.log("hi");
+        console.log("it is an error", err);
+      });
+  }
   render() {
+    console.log(this.state);
+
+    const products = this.state.products ? this.state.products : [];
     return (
-      <div className="containerFurniture">
-        <div className="img">
-          <img
-            src="https://secure.img1-fg.wfcdn.com/im/21536670/resize-h700-w700%5Ecompr-r85/6092/60926851/Bedwell+Dining+Table.jpg"
-            alt="Table"
-          />
-          <div> Title: Table</div>
-          <price>Price: 100$</price>
-          <a className="addToCat" href="#">
-            Add to Cart
-          </a>
-        </div>
-
-        <div className="img">
-          <img
-            src="https://images.dfs.co.uk/i/dfs/belair_3a_cotswoldplain_ash_view1?$pdp-mobile$"
-            alt="Sofa"
-          />
-          <div> Title: Sofa</div>
-          <price>Price: 100$</price>
-          <a className="addToCat" href="#">
-            Add to Cart
-          </a>
-        </div>
-
-        <div className="img">
-          <img
-            src="https://www.boconcept.com/on/demandware.static/-/Sites-master-catalog/default/dw0b805ada/images/1220000/1223156.jpg"
-            alt="bed"
-          />
-          <div> Title: Bed</div>
-          <price>Price: 100$</price>
-          <a className="addToCat" href="#">
-            Add to Cart
-          </a>
-        </div>
+      <div>
+        <ul>
+          {products.map((element, index) => {
+            return (
+              <li>
+                {element.title}
+                <br />
+                {element.description}
+                <br />
+                {element.price}
+                <br />
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
 }
-
 export default Furniture;
-
-

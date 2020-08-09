@@ -1,26 +1,53 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
+import axios from "axios";
+
 class Fashion extends Component {
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.getProducts();
+  }
+  state = {
+    products: [],
+  };
+  async getProducts() {
+    await axios
+      .get("/addProduct", { category: 2 })
+      .then((result) => {
+        console.log(result);
+        const finalData = result.data;
+
+        console.log("=====", finalData);
+        this.setState({ products: finalData });
+        // console.log("hi eman", finalData);
+      })
+      .catch((err) => {
+        console.log("hi");
+        console.log("it is an error", err);
+      });
+  }
   render() {
+    console.log(this.state);
+
+    const products = this.state.products ? this.state.products : [];
     return (
       <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Img
-            variant="top"
-            src="https://media.missguided.com/s/missguided/Y9206288_set/1/tall-premium-black-bandage-organza-sleeve-mini-dress"
-          />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+        <ul>
+          {products.map((element, index) => {
+            return (
+              <li>
+                {element.title}
+                <br />
+                {element.description}
+                <br />
+                {element.price}
+                <br />
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
 }
-
 export default Fashion;

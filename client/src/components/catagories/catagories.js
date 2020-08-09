@@ -4,13 +4,36 @@ import machine from "./machine.png";
 import fashion from "./fashion.png";
 import chair from "./chair.png";
 import { Link } from "react-router-dom";
-import { Card, CardDeck, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
-import $ from "jquery";
+import Furniture from "../Furniture/Furniture";
+import Machine from "../Machine/Machine";
+import Fashion from "../Fashion/Fashion";
 
-import style from "./catagories.css";
+import catagoiries from "../catagories/catagories.css"
+import axios from "axios";
 
 class Catagories extends React.Component {
+  state = {
+    products: [],
+  };
+  handleSubmit(e) {
+    axios
+      .get("/addProduct")
+      .then((result) => {
+        console.log(result);
+        const finalData = result.data;
+
+        console.log("=====", finalData);
+        this.setState({ products: finalData });
+        // console.log("hi eman", finalData);
+      })
+      .catch((err) => {
+        console.log("hi");
+        console.log("it is an error", err);
+      });
+  }
+
   render() {
     return (
       <div style={{ width: "100%" }}>
@@ -37,12 +60,16 @@ class Catagories extends React.Component {
                   everything can be reused.
                 </Card.Text>
                 <Link to="/Machine">
-                  <Button
-                    style={{ backgroundColor: "HotPink" }}
-                    variant="primary"
-                  >
-                    Go SHOP
-                  </Button>
+                  <div>
+                    <Button
+                      onClick={this.handleSubmit.bind(this)}
+                      style={{ backgroundColor: "HotPink" }}
+                      variant="primary"
+                    >
+                      <Machine products={this.state.products} />
+                      Go SHOP
+                    </Button>
+                  </div>
                 </Link>
               </Card.Body>
             </Card>
@@ -57,12 +84,16 @@ class Catagories extends React.Component {
                   everything can be reused.
                 </Card.Text>
                 <Link to="/Fashion">
-                  <Button
-                    style={{ backgroundColor: "HotPink" }}
-                    variant="primary"
-                  >
-                    Go SHOP
-                  </Button>
+                  <div>
+                    <Button
+                      onClick={this.handleSubmit.bind(this)}
+                      style={{ backgroundColor: "HotPink" }}
+                      variant="primary"
+                    >
+                      <Fashion products={this.state.products} />
+                      Go SHOP
+                    </Button>
+                  </div>
                 </Link>
               </Card.Body>
             </Card>
@@ -77,12 +108,16 @@ class Catagories extends React.Component {
                   everything can be reused.
                 </Card.Text>
                 <Link to="/Furniture">
-                  <Button
-                    style={{ backgroundColor: "HotPink" }}
-                    variant="primary"
-                  >
-                    Go SHOP
-                  </Button>
+                  <div>
+                    <Button
+                      onClick={this.handleSubmit.bind(this)}
+                      style={{ backgroundColor: "HotPink" }}
+                      variant="primary"
+                    >
+                      <Furniture products={this.state.products} />
+                      Go SHOP
+                    </Button>
+                  </div>
                 </Link>
               </Card.Body>
             </Card>
