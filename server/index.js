@@ -8,6 +8,8 @@ const router = require("./resources/router");
 const { title } = require("process");
 
 app.use(express.json());
+app.use("/", router);
+//app.use("/api/users", router0);
 
 app.post("/addProduct", (req, res) => {
   const { title, description, price, images, category, location } = req.body;
@@ -37,7 +39,6 @@ app.get("/addProduct", (req, res) => {
     });
 });
 
-
 app.get("/addProduct/:category", (req, res) => {
   ProductModel.find({})
     .then((result) => {
@@ -65,5 +66,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
   });
 }
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

@@ -1,103 +1,117 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import $ from 'jquery';
-
-class Register extends Component {
+import React, { Component } from "react";
+import axios from "axios";
+import "./style.css";
+import { Redirect } from "react-router-dom";
+export default class Register extends Component {
   state = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    password2: "",
+    redirect: null,
+    errors: {},
   };
-
-  onChange(e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
-
-  onSubmit(e) {
+  submit(e) {
     e.preventDefault();
+    // console.log(this.state);
     axios
-      .post('/user', {
-        firstName: this.state.first_name,
-        lastName: this.state.last_name,
+      .post("/api/users/register", {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
         email: this.state.email,
         password: this.state.password,
+        password2: this.state.password2,
       })
-      .then((response) => {
-        console.log(response);
-        var { message, user } = response.data;
-        console.log(response.data);
-        localStorage.setItem('useremail', user.email);
-        console.log(message);
-        alert(message);
-
-        // if (message === 'Registered') {
-        console.log(this.props);
-        this.props.history.push('/Login');
-        // }
+      .then((result) => {
+        // console.log(result, "result");
+        const errors = result.data;
+        this.setState({ errors });
+        this.setState({ redirect: "/login" });
+        //this.props.handleLogin();
       })
       .catch((err) => {
+        // console.log("err in sending data from axios to db: ", err);
         console.log(err);
       });
   }
-
   render() {
+    {
+      console.log(this.state.errors);
+    }
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
+    const { errors } = this.state;
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-6 mt-5 mx-auto'>
-            <form noValidate onSubmit={this.onSubmit.bind(this)}>
-              <div className='form-group'>
-                <input
-                  type='text'
-                  className='form-control'
-                  name='first_name'
-                  placeholder='First name'
-                  value={this.state.first_name}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <div className='form-group'>
-                <input
-                  type='text'
-                  className='form-control'
-                  name='last_name'
-                  placeholder='Last name'
-                  value={this.state.last_name}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <div className='form-group'>
-                <input
-                  type='email'
-                  className='form-control'
-                  name='email'
-                  placeholder='Email'
-                  value={this.state.email}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <div className='form-group'>
-                <input
-                  type='password'
-                  className='form-control'
-                  name='password'
-                  placeholder='Password'
-                  value={this.state.password}
-                  onChange={this.onChange.bind(this)}
-                />
-              </div>
-              <button type='submit'>
-                <a>Register</a>
-              </button>
-            </form>
-          </div>
+      <div>
+        <div className="SignUp-page__div">
+          <label htmlFor="email" className="SignUp-page__label">
+            First Name
+          </label>
+          <input
+            name="firstName"
+            placeholder=""
+            className="SignUp-page__input"
+            onChange={this.handleChange.bind(this)}
+          />
+          <p>{errors["firstName"] ? errors.firstName : null}</p>
+          <label htmlFor="email" className="SignUp-page__label">
+            Last Name
+          </label>
+          <input
+            name="lastName"
+            placeholder=""
+            className="SignUp-page__input"
+            onChange={this.handleChange.bind(this)}
+          />
+          <p>{errors["lastName"] ? errors.lastName : null}</p>
+          <label htmlFor="email" className="SignUp-page__label">
+            Email
+          </label>
+          <input
+            name="email"
+            type="email"
+            placeholder=""
+            className="SignUp-page__input"
+            onChange={this.handleChange.bind(this)}
+          />
+          <p>{errors["email"] ? errors.email : null}</p>
+          <label htmlFor="password" className="SignUp-page__label">
+            Password
+          </label>
+          <input
+            name="password"
+            type="password"
+            placeholder=""
+            className="SignUp-page__input"
+            onChange={this.handleChange.bind(this)}
+          />
+          <p>{errors["password"] ? errors.password : null}</p>
+          <label htmlFor="password2" className="SignUp-page__label">
+            Confirm Password
+          </label>
+          <input
+            name="password2"
+            type="password"
+            placeholder=""
+            className="SignUp-page__input"
+            onChange={this.handleChange.bind(this)}
+          />
+          <p>{errors["password2"] ? errors.password2 : null}</p>
+          <button
+            className="SignUp-page__button"
+            onClick={this.submit.bind(this)}
+          >
+            Register
+          </button>
         </div>
       </div>
     );
   }
 }
-
-export default Register;
