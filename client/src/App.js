@@ -26,8 +26,6 @@ class App extends Component {
         <div className='App'>
           <Navbar />
         </div>
-
-        {/* navbar */}
         <Switch>
           <Route exact path='/Login'>
             <Login />
@@ -35,6 +33,7 @@ class App extends Component {
           <Route exact path='/Register'>
             <Register />
           </Route>
+          
           <Route exact path='/Show'>
             <Show />
           </Route>

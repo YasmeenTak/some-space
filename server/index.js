@@ -9,53 +9,7 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 // let UserModel= db.UserModel;
-app.post('/user', (req, res) => {
-  console.log('reatch**********************');
-  console.log(req.body);
-  const {
-    UserID,
-    firstName,
-    lastName,
-    email,
-    password,
-    phone,
-    stripe,
-    age,
-    gender,
-    buy,
-    sell,
-    carts,
-    quantity,
-  } = req.body;
-  let userDoc = new UserModel({
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-  });
 
-  userDoc.save((err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send(err);
-    } else {
-      res.status(201).json({
-        message: 'Saved',
-        user: { firstName: firstName, lastName: lastName },
-      });
-    }
-  });
-});
-
-//app.get('/', (req, res) => rces.send('API Running'));
-app.get('/user', (req, res) => {
-  UserModel.find({})
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
 app.use('/', router);
 app.use('/api/users', router0);
 
