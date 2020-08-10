@@ -14,7 +14,9 @@ let userSchema = mongoose.Schema({
   carts: [{ productID: Number }],
   quantity: { type: Number },
 });
+
 let UserModel = mongoose.model("user", userSchema);
+
 //---------------------------------------
 let productSchema = mongoose.Schema({
   productID: { type: Number },
@@ -27,7 +29,9 @@ let productSchema = mongoose.Schema({
   dateOfAdd: { date: { type: Date, default: Date.now } },
   ImgUrl: { type: String },
 });
+
 let ProductModel = mongoose.model("product", productSchema);
+
 module.exports = {
   UserModel,
   ProductModel,

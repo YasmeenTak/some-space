@@ -12,24 +12,20 @@ class Furniture extends Component {
   state = {
     products: [],
   };
-  // to get all data
   async getProducts() {
     await axios
-      .get("/addProduct/:category")
+      .post("/category", { category: 2 })
       .then((result) => {
         console.log(result);
         const finalData = result.data;
 
-        console.log("=====", finalData);
+        console.log("=====>>>>////???>>>", finalData);
         this.setState({ products: finalData });
-        // console.log("hi eman", finalData);
       })
       .catch((err) => {
-        console.log("hi");
-        console.log("it is an error", err);
+        console.log("it is an error in Furniture compoments", err);
       });
   }
-
   render() {
     console.log(this.state);
 

@@ -11,7 +11,7 @@ class ShopNow extends React.Component {
           <div className="shadow">
             <div className="intro">
               <h1>
-                MOST BRANDS WANT TO SEE THERIR PRODUCTS USED IN CREATIVE WAYS
+                MOST BRANDS WANT TO SEE THEIR PRODUCTS USED IN CREATIVE WAYS
               </h1>
               <br />
               <br />

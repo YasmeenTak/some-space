@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Catagory = [
@@ -116,7 +116,7 @@ function Add() {
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          <img src={image} style={{ width: "300px" }} />
+          <img alt="MyImage" src={image} style={{ width: "300px" }} />
         )}
       </div>
       <div

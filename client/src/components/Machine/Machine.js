@@ -14,22 +14,20 @@ class Machine extends Component {
   };
   async getProducts() {
     await axios
-      .get("/addProduct", { category: 2 })
+      .post("/category", { category: 3 })
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         const finalData = result.data;
 
-        // console.log("=====", finalData);
+        console.log("=====>>>>////???>>>", finalData);
         this.setState({ products: finalData });
-        // console.log("hi eman", finalData);
       })
       .catch((err) => {
-        console.log("hi");
-        console.log("it is an error", err);
+        console.log("it is an error in Machine compoments", err);
       });
   }
   render() {
-    console.log(this.state.products);
+    console.log(this.state);
 
     const products = this.state.products ? this.state.products : [];
     return (

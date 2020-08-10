@@ -3,7 +3,6 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 class Fashion extends Component {
   constructor(props) {
     super(props);
@@ -15,18 +14,16 @@ class Fashion extends Component {
   };
   async getProducts() {
     await axios
-      .get("/addProduct", { category: 2 })
+      .post("/category", { category: 1 })
       .then((result) => {
         console.log(result);
         const finalData = result.data;
 
-        console.log("=====", finalData);
+        console.log("=====>>>>////???>>>", finalData);
         this.setState({ products: finalData });
-        // console.log("hi eman", finalData);
       })
       .catch((err) => {
-        console.log("hi");
-        console.log("it is an error", err);
+        console.log("it is an error in fashion compoments", err);
       });
   }
   render() {

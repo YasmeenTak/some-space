@@ -21,7 +21,7 @@ export default class Register extends Component {
     e.preventDefault();
     // console.log(this.state);
     axios
-      .post("/api/users/register", {
+      .post("/register", {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
