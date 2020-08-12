@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Machine extends Component {
   constructor(props) {
@@ -14,16 +14,16 @@ class Machine extends Component {
   };
   async getProducts() {
     await axios
-      .post("/category", { category: 3 })
+      .post('/category', { category: 3 })
       .then((result) => {
         console.log(result);
         const finalData = result.data;
 
-        console.log("=====>>>>////???>>>", finalData);
+        console.log('=====>>>>////???>>>', finalData);
         this.setState({ products: finalData });
       })
       .catch((err) => {
-        console.log("it is an error in Machine compoments", err);
+        console.log('it is an error in Machine compoments', err);
       });
   }
   render() {
@@ -36,19 +36,20 @@ class Machine extends Component {
           {products.map((element, index) => {
             return (
               <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={element.images} />
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img variant='top' src={element.images} />
                   <Card.Body>
-                    <Card.Text>{element.price}</Card.Text>
-                    <Card.Title>{element.title}</Card.Title>
-                    <Card.Text>{element.description}</Card.Text>
-                    <Card.Text>{element.location}</Card.Text>
-                    <Link to="/Payment" className="brand-logo">
-                      <Button variant="primary">buy</Button>
+                    <Card.Title>Product:{element.title}</Card.Title>
+                    <Card.Text>Price: $ {element.price}</Card.Text>
+                    <Card.Text>Quality: {element.quality}</Card.Text>
+                    <Card.Text>Description: {element.description}</Card.Text>
+                    <Card.Text>Location: {element.location}</Card.Text>
+                    <Link to='/Payment' className='brand-logo'>
+                      <Button variant='primary'>buy</Button>
                     </Link>
                     <br />
                     <br />
-                    <Button variant="primary">To Cart</Button>
+                    <Button variant='primary'>To Cart</Button>
                   </Card.Body>
                 </Card>
               </div>
