@@ -5,12 +5,10 @@ import fashion from "./fashion.png";
 import chair from "./chair.png";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
-
 import Furniture from "../Furniture/Furniture";
 import Machine from "../Machine/Machine";
 import Fashion from "../Fashion/Fashion";
-
-import catagoiries from "../catagories/catagories.css"
+import catagoiries from "../catagories/catagories.css";
 import axios from "axios";
 
 class Catagories extends React.Component {
@@ -23,7 +21,6 @@ class Catagories extends React.Component {
       .then((result) => {
         console.log(result);
         const finalData = result.data;
-
         console.log("=====", finalData);
         this.setState({ products: finalData });
         // console.log("hi eman", finalData);
@@ -33,7 +30,6 @@ class Catagories extends React.Component {
         console.log("it is an error", err);
       });
   }
-
   render() {
     return (
       <div style={{ width: "100%" }}>
@@ -127,5 +123,4 @@ class Catagories extends React.Component {
     );
   }
 }
-
 export default Catagories;

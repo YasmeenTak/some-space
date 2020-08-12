@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import HomePage from "./HomePage";
 // import logo from "./logo.svg";
-import Checkout from "./Checkout";
+
 //import "./App.css";
 // Stripe
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
-  "pk_test_51H9W3uJoAFGhJTyjNwuW6AO20pgMXhr3DZbvEfWANxMEUkZzDqdOjAxtMwqrkcDlHkN73J7fQBCrnowJMBgiiTtT00jagHNJJC"
+  "pk_test_51H9W3uJoAFGhJTyjz95tejiSIOQVDTjkfgy0fsaHwWEiaPNvAtgAzhV4bLBHOUApfpqeskPk8UVB34J8n3qBh97p00FAjhnLeu"
 );
 
 class Payment extends Component {

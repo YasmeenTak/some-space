@@ -11,7 +11,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.5.1",
+    "bootstrap": "^4.5.2",
     "cloudinary": "^1.22.0",
     "cloudinary-react": "^1.6.6",
     "cors": "^2.8.5",
@@ -25,10 +25,12 @@
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.0.2",
     "react-moment": "^0.9.7",
+    "react-redux": "^7.2.1",
     "react-scripts": "3.4.1",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^6.1.2",
     "redux-axios-middleware": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "styled-components": "^5.1.1"
   },
   "scripts": {
@@ -52,5 +54,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "css-loader": "^4.2.1",
+    "style-loader": "^1.2.1"
+  }
 }

@@ -17,7 +17,7 @@ export default class Login extends Component {
   }
   handleClick() {
     axios
-      .post("/api/users/login", {
+      .post("/login", {
         email: this.state.email,
         password: this.state.password,
       })
