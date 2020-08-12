@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 const Catagory = [
-  { key: "1", value: "Fashion" },
-  { key: "2", value: "Furniture" },
-  { key: "3", value: "Machines" },
+  { key: '1', value: 'Fashion' },
+  { key: '2', value: 'Furniture' },
+  { key: '3', value: 'Machines' },
 ];
 
 function Add() {
-  const [TitleValue, setTitleValue] = useState("");
-  const [DescriptionValue, setDescriptionValue] = useState("");
+  const [TitleValue, setTitleValue] = useState('');
+  const [DescriptionValue, setDescriptionValue] = useState('');
   const [PriceValue, setPriceValue] = useState(0);
-  const [CatagoryValue, setCatagoryValue] = useState("1");
-  const [LocationValue, setLocationValue] = useState("");
+  const [CatagoryValue, setCatagoryValue] = useState('1');
+  const [LocationValue, setLocationValue] = useState('');
   //const [ImgUrl, setImgUrl] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {}, []);
@@ -42,14 +43,14 @@ function Add() {
   function uploadImage(e) {
     const files = e.target.files;
     const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "some-space");
+    data.append('file', files[0]);
+    data.append('upload_preset', 'some-space');
     setLoading(true);
     axios
-      .post("https://api.cloudinary.com/v1_1/dvsayvxsy/image/upload", data)
+      .post('https://api.cloudinary.com/v1_1/dvsayvxsy/image/upload', data)
       .then((response) => {
         console.log(response);
-        const imgUrl = response.data["secure_url"];
+        const imgUrl = response.data['secure_url'];
         setImage(imgUrl);
         setLoading(false);
       })
@@ -62,67 +63,72 @@ function Add() {
     event.preventDefault();
 
     if (!TitleValue || !DescriptionValue || !PriceValue || !CatagoryValue) {
-      return alert("fill all the fields first!");
+      return alert('fill all the fields first!');
+    }
+
+    //add product based on uesr token 
+    const token = localStorage.getItem('token');
+    var decoded = jwt_decode(token);
+    console.log(decoded, 'get token for add product');
+
+    function zerobug() {
+      return Math.floor(10000000 + Math.random() * 90000000);
     }
 
     const variables = {
+      productID: zerobug(),
       title: TitleValue,
       description: DescriptionValue,
       price: PriceValue,
       images: image,
       category: CatagoryValue,
       location: LocationValue,
+      token: token,
     };
 
-    // axios
-    //   .post("/addProduct", variables)
-    //   console
-    //     .log(variables)
-    //     .then((response) => {
-    //       alert("Product Successfully Uploaded");
-    //       console.log("Product Successfully Uploaded");
-
-    //       //if CatagoryValue == 1 go to machine
-    //       //if CatagoryValue == 2
-    //     })
-    //     .catch((err) => {
-    //       alert("Failed to upload Product");
-    //       console.log("Failed to upload Product");
-    //       console.log(err);
-    //     });
-    axios.post("/addProduct", variables).then((response) => {
-      if (response.data) {
-        alert("Product Successfully Uploaded");
-        console.log("Product Successfully Uploaded");
-        // props.history.push("/");
-      } else {
-        alert("Failed to upload Product");
-        console.log("Failed to upload Product");
-      }
-    });
+    axios
+      .post('/addProduct', variables)
+      .then((response) => {
+        if (response.data) {
+          alert('Product Successfully Uploaded');
+          console.log('Product Successfully Uploaded');
+          axios.post('/addToUserSell', variables).then(() => {
+            console.log(
+              'Product Successfully add to user sell array we are in add components'
+            );
+          });
+          // props.history.push("/");
+        } else {
+          alert('Failed to upload Product');
+          console.log('Failed to upload Product');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
-      <div className="App">
+    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
+      <div className='App'>
         <h2> Upload Product</h2>
         {/* <p>Test: {image}</p> */}
         <input
-          type="file"
-          name="file"
-          placeholder="Upload an image"
+          type='file'
+          name='file'
+          placeholder='Upload an image'
           onChange={uploadImage}
         />
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          <img alt="MyImage" src={image} style={{ width: "300px" }} />
+          <img alt='MyImage' src={image} style={{ width: '300px' }} />
         )}
       </div>
       <div
         style={{
-          textAlign: "center",
-          marginBottom: "2rem",
+          textAlign: 'center',
+          marginBottom: '2rem',
         }}
       ></div>
 
@@ -138,7 +144,7 @@ function Add() {
         <br />
         <br />
         <label>Price($)</label>
-        <input onChange={onPriceChange} value={PriceValue} type="number" />
+        <input onChange={onPriceChange} value={PriceValue} type='number' />
         <br />
         <br />
         <label>Location</label>
@@ -148,7 +154,7 @@ function Add() {
         <select
           onChange={onCatagorySelectChange}
           value={CatagoryValue}
-          style={{ display: "block" }}
+          style={{ display: 'block' }}
         >
           {Catagory.map((item) => (
             <option key={item.key} value={item.key}>

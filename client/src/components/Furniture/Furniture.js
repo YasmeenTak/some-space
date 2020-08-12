@@ -19,7 +19,7 @@ class Furniture extends Component {
         console.log(result);
         const finalData = result.data;
 
-        console.log("=====>>>>////???>>>", finalData);
+        //console.log("=====>>>>////???>>>", finalData);
         this.setState({ products: finalData });
       })
       .catch((err) => {
