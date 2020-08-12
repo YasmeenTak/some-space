@@ -53,7 +53,6 @@ class App extends Component {
             <Cart />
           </Route>
           {/* Catagories */}
-
           <Route exact path="/Fashion">
             <Fashion />
           </Route>

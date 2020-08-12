@@ -8,7 +8,6 @@ import {
 } from "./action";
 import cartItems from "./cart-items";
 
-
 const initialStore = {
   cart: cartItems,
   total: 0,
