@@ -1,36 +1,55 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Card, Button, Container } from 'react-bootstrap';
-import chairs from './chairs.jpg';
-//import axios from './axios';
-import './style.css';
-//import { Card } from '@material-ui/core';
+import axios from 'axios';
+import { Card, Button } from 'react-bootstrap';
+
 class Show extends Component {
-  state = {};
-  // handleSubmit(e) {
-  //   axios.get('/showMyAds').then((result) => {
-  //     console.log(result);
-  //   });
-  // }
+  constructor(props) {
+    super(props);
+    console.log(this.props);
+    this.getProducts();
+  }
+  state = {
+    products: [],
+  };
+  async getProducts() {
+    await axios
+      .post('http://localhost:5000//showMyAds', { category: 2 })
+      .then((result) => {
+        console.log(result);
+        const finalData = result.data;
+
+        console.log('=====>>>>////???>>>', finalData);
+        this.setState({ products: finalData });
+      })
+      .catch((err) => {
+        console.log('it is an error in Furniture compoments', err);
+      });
+  }
   render() {
+    console.log(this.state);
+
+    const products = this.state.products ? this.state.products : [];
     return (
-      <div className='ShowMyAds__div'>
-        <Container>
-          <Card className='ShowMyAds__Card'>
-            <img className='poduct_img' src={chairs} alt='product img' />
-            <div className='details__div'>
-              <p className='title'>Charis</p>
-              <p className='category'>Furniture</p>
-              <p className='price'>50$</p>
-              <p className='dateOfBuy'>11/8/2020</p>
-              <p className='location'>Gaza</p>
-            </div>
-            <div className='Btn'>
-              <Button className='Edit_Btn'>Edit</Button>
-              <Button className='Remove_Btn'>Remove</Button>
-            </div>
-          </Card>
-        </Container>
+      <div>
+        <ul>
+          {products.map((element, index) => {
+            return (
+              <div>
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img variant='top' src={element.images} />
+                  <Card.Body>
+                    <Card.Text>{element.price}</Card.Text>
+                    <Card.Title>{element.title}</Card.Title>
+                    <Card.Text>{element.description}</Card.Text>
+                    <Card.Text>{element.location}</Card.Text>
+                    <br />
+                    <br />
+                  </Card.Body>
+                </Card>
+              </div>
+            );
+          })}
+        </ul>
       </div>
     );
   }

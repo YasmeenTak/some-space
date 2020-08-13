@@ -1,21 +1,20 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const app = express();
-const axios = require("axios");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const stripe = require("stripe")(
-  "sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt"
+const axios = require('axios');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const stripe = require('stripe')(
+  'sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt'
 );
-const { UserModel, ProductModel } = require("./resources/model");
-const db = require("./database/index");
-const router = require("./resources/router");
-const { title } = require("process");
+const { UserModel, ProductModel } = require('./resources/model');
+const db = require('./database/index');
+const router = require('./resources/router');
+const { title } = require('process');
 
 app.use(express.json());
-app.use("/", router);
-
-
+app.use(cors());
+app.use('/', router);
 
 // app.post("/pay", async (req, res) => {
 //   const { email } = req.body;
@@ -31,13 +30,11 @@ app.use("/", router);
 //   res.json({ client_secret: paymentIntent["client_secret"] });
 // });
 
-
-
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "client", "build", "index.html"));
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
   });
 }
 const PORT = process.env.PORT || 5000;
