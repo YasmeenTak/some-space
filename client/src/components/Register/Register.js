@@ -20,24 +20,36 @@ export default class Register extends Component {
   submit(e) {
     e.preventDefault();
     // console.log(this.state);
+    const user = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2,
+    };
     axios
-      .post('/register', {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2,
-      })
+      .post('/register', user)
       .then((result) => {
-        console.log(result, 'result');
+        console.log(
+          user.firstName,
+          'resultttttttttttttttttttttttttttttttttttt'
+        );
         const errors = result.data;
         this.setState({ errors });
-        this.setState({ redirect: '/login' });
-        this.props.handleLogin();
+        if (
+          user.firstName &&
+          user.lastName &&
+          user.password &&
+          user.password2
+        ) {
+          this.setState({ redirect: '/login' });
+        }
+
+        //this.props.handleLogin();
       })
       .catch((err) => {
         // console.log("err in sending data from axios to db: ", err);
-        console.log(err);
+        console.log(err, 'errrrrrrrrrrrrrrrrrrrrr in axios');
       });
   }
   render() {

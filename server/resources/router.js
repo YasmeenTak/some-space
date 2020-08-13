@@ -16,5 +16,6 @@ router.post('/category', controller.category);
 
 // router.post('/addToUserSell', controller.addToUserSell);
 router.get('/showMyAds', controller.showMyAds);
+router.get('/showMyCarts', controller.showMyCarts);
 
 module.exports = router;

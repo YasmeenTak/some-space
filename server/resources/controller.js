@@ -261,3 +261,46 @@ exports.showMyAds = async (req, res) => {
       res.send(err);
     });
 };
+
+
+//-------------------------------- Show My Carts ----------------------------------------//
+exports.showMyCarts = async (req, res) => {
+  var decoded = jwt_decode(req.body.token);
+  id = decoded.UserID;
+  UserModel.find({ UserID: id })
+    .then((result) => {
+      const array = [];
+      result[0].carts.map((Element) => {
+        array.push(Element['productID']);
+      });
+      ProductModel.find({ productID: { $in: array } }).then((result) => {
+        res.send(result);
+      });
+
+      // res.send(result[0].carts);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//-------------------------------- Show My Carts ----------------------------------------//
+exports.showMyCarts = async (req, res) => {
+  var decoded = jwt_decode(req.body.token);
+  id = decoded.UserID;
+  UserModel.find({ UserID: id })
+    .then((result) => {
+      const array = [];
+      result[0].carts.map((Element) => {
+        array.push(Element['productID']);
+      });
+      ProductModel.find({ productID: { $in: array } }).then((result) => {
+        res.send(result);
+      });
+
+      // res.send(result[0].carts);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
