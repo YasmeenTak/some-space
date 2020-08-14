@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 class Logout extends Component {
   componentDidMount() {
     localStorage.removeItem('token');
+    //localStorage.clear();
   }
   render() {
     return (
@@ -14,5 +15,4 @@ class Logout extends Component {
     );
   }
 }
-
 export default Logout;

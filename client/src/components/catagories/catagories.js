@@ -66,7 +66,7 @@ class Catagories extends React.Component {
                       style={{ backgroundColor: "HotPink" }}
                       variant="primary"
                     >
-                      <Machine products={this.state.products} />
+                      {/* <Machine products={this.state.products} /> */}
                       Go SHOP
                     </Button>
                   </div>
@@ -90,7 +90,7 @@ class Catagories extends React.Component {
                       style={{ backgroundColor: "HotPink" }}
                       variant="primary"
                     >
-                      <Fashion products={this.state.products} />
+                      {/* <Fashion products={this.state.products} /> */}
                       Go SHOP
                     </Button>
                   </div>
@@ -114,7 +114,7 @@ class Catagories extends React.Component {
                       style={{ backgroundColor: "HotPink" }}
                       variant="primary"
                     >
-                      <Furniture products={this.state.products} />
+                      {/* <Furniture products={this.state.products} /> */}
                       Go SHOP
                     </Button>
                   </div>

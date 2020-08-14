@@ -5,9 +5,9 @@ import {
   REMOVE,
   GET_TOTALS,
   TOGGLE_AMOUNT,
-} from './action';
-import cartItems from './cart-items';
-import axios from 'axios';
+} from "./action";
+import cartItems from "./cart-items";
+import axios from "axios";
 
 const initialStore = {
   cart: cartItems,
@@ -67,10 +67,10 @@ function reducer(state = initialStore, action) {
       ...state,
       cart: state.cart.map((cartItem) => {
         if (cartItem.id === action.payload.id) {
-          if (action.payload.toggle === 'inc') {
+          if (action.payload.toggle === "inc") {
             return (cartItem = { ...cartItem, amount: cartItem.amount + 1 });
           }
-          if (action.payload.toggle === 'dec') {
+          if (action.payload.toggle === "dec") {
             return (cartItem = { ...cartItem, amount: cartItem.amount - 1 });
           }
         }
@@ -83,17 +83,37 @@ function reducer(state = initialStore, action) {
 
 // function data() {
 //   try {
-//     const result = axios.get('http://localhost:5000/showMyAds', {
+//     const result = axios.get("http://localhost:5000/showMyAds", {
 //       token:
-//         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjg1ODEyMDkyLCJmaXJzdE5hbWUiOiJZYXNtZWVuIiwibGFzdE5hbWUiOiJBYnUgS3dhaWsiLCJpYXQiOjE1OTcyNDc0ODUsImV4cCI6MTYyODgwNDQxMX0.2bi6mlssGgpxuAMVg7O4Q5PrAo2l4xJnsZkeN5xy3No',
+//         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjg1ODEyMDkyLCJmaXJzdE5hbWUiOiJZYXNtZWVuIiwibGFzdE5hbWUiOiJBYnUgS3dhaWsiLCJpYXQiOjE1OTcyNDc0ODUsImV4cCI6MTYyODgwNDQxMX0.2bi6mlssGgpxuAMVg7O4Q5PrAo2l4xJnsZkeN5xy3No",
 //     });
-
+//     console.log(result, "xxxxx");
 //     return result.data;
+//     // console.log(result.data, "cart-front");
 //   } catch (error) {
 //     console.log(error);
 //   }
 // }
-// console.log(data());
+// data();
+// function data() {
+//   axios
+//     .get("/http://localhost:5000/showMyAds", {
+//       token:
+//         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjg1ODEyMDkyLCJmaXJzdE5hbWUiOiJZYXNtZWVuIiwibGFzdE5hbWUiOiJBYnUgS3dhaWsiLCJpYXQiOjE1OTcyNDc0ODUsImV4cCI6MTYyODgwNDQxMX0.2bi6mlssGgpxuAMVg7O4Q5PrAo2l4xJnsZkeN5xy3No",
+//     })
+//     .then((result) => {
+//       console.log(result);
+//       const finalData = result.data;
+
+//       console.log("finalEamn", finalData);
+//       this.setState({ products: finalData });
+//       // console.log("hi eman", finalData);
+//     })
+//     .catch((err) => {
+
+//       console.log("it is an error in the front of carty", err);
+//     });
+// }
 
 export default reducer;
 
