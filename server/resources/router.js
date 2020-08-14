@@ -15,7 +15,10 @@ router
 router.post('/category', controller.category);
 
 // router.post('/addToUserSell', controller.addToUserSell);
-router.get('/showMyAds', controller.showMyAds);
+router.post('/showMyAds', controller.showMyAds);
 router.get('/showMyCarts', controller.showMyCarts);
+router.get('/finduser/:UserID', controller.findUser);
+router.delete('/remove-one', controller.removeOne);
+router.get('/findProduct/:UserID', controller.findProduct);
 
 module.exports = router;

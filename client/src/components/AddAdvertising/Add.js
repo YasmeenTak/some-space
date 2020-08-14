@@ -66,7 +66,7 @@ function Add() {
       return alert('fill all the fields first!');
     }
 
-    //add product based on uesr token 
+    //add product based on uesr token
     const token = localStorage.getItem('token');
     var decoded = jwt_decode(token);
     console.log(decoded, 'get token for add product');

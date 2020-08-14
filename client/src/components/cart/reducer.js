@@ -83,7 +83,7 @@ function reducer(state = initialStore, action) {
 
 // function data() {
 //   try {
-//     const result = axios.get('http://localhost:5000/showMyAds', {
+//     const result = axios.post('http://localhost:5000/showMyAds', {
 //       token:
 //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjg1ODEyMDkyLCJmaXJzdE5hbWUiOiJZYXNtZWVuIiwibGFzdE5hbWUiOiJBYnUgS3dhaWsiLCJpYXQiOjE1OTcyNDc0ODUsImV4cCI6MTYyODgwNDQxMX0.2bi6mlssGgpxuAMVg7O4Q5PrAo2l4xJnsZkeN5xy3No',
 //     });

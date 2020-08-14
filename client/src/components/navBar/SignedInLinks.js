@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown';
 import $ from 'jquery';
 
 const SignedInLinks = () => {
+  // axios;
   return (
     <div>
       <ul className='right'>
@@ -16,7 +17,8 @@ const SignedInLinks = () => {
           </Link>
         </li>
         <li>
-          <Link to='/Show' className='btn btn-floating pink lighten-1'>
+          <Link to='/showMyAds' className='btn btn-floating pink lighten-1'>
+            {/* props for all element in show my ads */}
             <i class='material-icons'>remove_red_eye</i>
           </Link>
         </li>

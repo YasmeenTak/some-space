@@ -28,7 +28,7 @@ let productSchema = mongoose.Schema({
   location: { type: String },
   dateOfAdd: { type: Date, default: Date.now },
   ImgUrl: { type: String },
-  UserID: { type: String },
+  UserID: { type: Number },
 });
 
 let ProductModel = mongoose.model('product', productSchema);

@@ -15,12 +15,14 @@ export default class Login extends Component {
       [e.target.name]: e.target.value,
     });
   }
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
+    const user = {
+      email: this.state.email,
+      password: this.state.password,
+    };
     axios
-      .post('/login', {
-        email: this.state.email,
-        password: this.state.password,
-      })
+      .post('/login', user)
       .then((result) => {
         if (result.data) {
           //console.log('redirect to Home');

@@ -30,10 +30,7 @@ export default class Register extends Component {
     axios
       .post('/register', user)
       .then((result) => {
-        console.log(
-          user.firstName,
-          'resultttttttttttttttttttttttttttttttttttt'
-        );
+        console.log(user.firstName, 'resulttttttttttttttttttttttttt');
         const errors = result.data;
         this.setState({ errors });
         if (

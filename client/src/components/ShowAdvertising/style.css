@@ -28,6 +28,7 @@
 }
 .Btn {
   float: left;
+  width: 50%;
 }
 .details__div {
   font-size: 15px;

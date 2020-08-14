@@ -37,7 +37,7 @@ class App extends Component {
             <Register />
           </Route>
 
-          <Route exact path='/Show'>
+          <Route exact path='/ShowMyAds'>
             <Show />
           </Route>
 

@@ -12,7 +12,7 @@ const jwt_decode = require('jwt-decode');
 const validateRegisterInput = require('./../../validation/register');
 const validateLoginInput = require('./../../validation/login');
 
-//-------------------------------Register-----------------------------------------//
+//-----------------------------------------Register------------------------------------------------//
 exports.register = function (req, res) {
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -59,7 +59,7 @@ exports.register = function (req, res) {
   }
 };
 
-//-------------------------------Login-----------------------------------------//
+//-----------------------------------------Login-----------------------------------------------------//
 exports.login = function (req, res) {
   console.log('we are in login');
   // Form validation
@@ -113,7 +113,7 @@ exports.login = function (req, res) {
   });
 };
 
-//-------------------------------Contact-----------------------------------------//
+//--------------------------------------------Contact us-----------------------------------------------------//
 exports.Contact = function (req, res) {
   console.log(
     req.body.senderEmail,
@@ -154,7 +154,7 @@ exports.Contact = function (req, res) {
   }
 };
 
-//-------------------------------Add Product-----------------------------------------//
+//--------------------------------------------Add Product-----------------------------------------------------//
 
 exports.addProduct = (req, res) => {
   const {
@@ -197,7 +197,7 @@ exports.addProduct = (req, res) => {
     });
 };
 
-//-----------------------Show All Product in Home Page---------------------------------//
+//-------------------------------Show All Product in Home Page----------------------------------------//
 
 exports.findProduct = (req, res) => {
   ProductModel.find({})
@@ -208,7 +208,7 @@ exports.findProduct = (req, res) => {
       res.send(err);
     });
 };
-//---------------------------Classify by Category----------------------------------------//
+//-------------------------------------Classify by Category-------------------------------------------------//
 exports.category = (req, res) => {
   ProductModel.find({ category: req.body.category })
     .then((result) => {
@@ -262,7 +262,6 @@ exports.showMyAds = async (req, res) => {
     });
 };
 
-
 //-------------------------------- Show My Carts ----------------------------------------//
 exports.showMyCarts = async (req, res) => {
   var decoded = jwt_decode(req.body.token);
@@ -283,22 +282,38 @@ exports.showMyCarts = async (req, res) => {
       res.send(err);
     });
 };
-
-//-------------------------------- Show My Carts ----------------------------------------//
-exports.showMyCarts = async (req, res) => {
-  var decoded = jwt_decode(req.body.token);
-  id = decoded.UserID;
-  UserModel.find({ UserID: id })
+//-------------------------------- find user ----------------------------------------//
+exports.findUser = function (req, res) {
+  const UserID = req.params.UserID;
+  UserModel.find({ UserID: UserID })
     .then((result) => {
-      const array = [];
-      result[0].carts.map((Element) => {
-        array.push(Element['productID']);
-      });
-      ProductModel.find({ productID: { $in: array } }).then((result) => {
-        res.send(result);
-      });
+      res.send(result);
+      //console.log(result, 'hiiiiiiiiiiiiiii');
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 
-      // res.send(result[0].carts);
+//-------------------------------- Remove Ads from user ads list ------------------------------------//
+exports.removeOne = function (req, res) {
+  const userID = req.body.id;
+  ProductModel.delete({ userID: userID })
+    .then((result) => {
+      res.status(204).send(`Ads Deleted`);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+//-------------------------------- Find Product ----------------------------------------//
+exports.findProduct = function (req, res) {
+  const UserID = req.params.UserID;
+  ProductModel.find({ UserID: UserID })
+    .then((result) => {
+      res.send(result);
+      //console.log(result, 'hiiiiiiiiiiiiii');
     })
     .catch((err) => {
       res.send(err);
