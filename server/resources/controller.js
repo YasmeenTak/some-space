@@ -6,15 +6,12 @@ const stripe = require("stripe")(
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("./../../config/key");
-
 const jwt_decode = require("jwt-decode");
 // Load input validation
 const validateRegisterInput = require("./../../validation/register");
 const validateLoginInput = require("./../../validation/login");
-
-//-------------------------------Register-----------------------------------------//
+//-----------------------------------------Register------------------------------------------------//
 exports.register = function (req, res) {
-  console.log("eman*************************");
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
@@ -25,43 +22,41 @@ exports.register = function (req, res) {
     const { firstName, lastName, email, password } = req.body;
     console.log(req.body);
     UserModel.find({ email: email }).then((user) => {
-      console.log(user);
-      // if (user[0]) {
-      //   return res.status(400).json({
-      //     email: "Email already exists",
-      //   });
-      // } else {
-      //Generate random id -- Yasmeen
-      function zerobug() {
-        return Math.floor(10000000 + Math.random() * 90000000);
-      }
-      const newUser = new UserModel({
-        UserID: zerobug(),
-        firstName,
-        lastName,
-        email,
-        password,
-      });
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => {
-              console.log("new user saved to database");
-              res.sendStatus(201);
-            })
-            .catch((err) => console.log(err));
+      if (user[0]) {
+        return res.status(400).json({
+          email: "Email already exists",
         });
-      });
-      // }
+      } else {
+        //Generate random id -- Yasmeen
+        function zerobug() {
+          return Math.floor(10000000 + Math.random() * 90000000);
+        }
+        const newUser = new UserModel({
+          UserID: zerobug(),
+          firstName,
+          lastName,
+          email,
+          password,
+        });
+        // Hash password before saving in database
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then((user) => {
+                console.log("new user saved to database");
+                res.sendStatus(201);
+              })
+              .catch((err) => console.log(err));
+          });
+        });
+      }
     });
   }
 };
-
-//-------------------------------Login-----------------------------------------//
+//-----------------------------------------Login-----------------------------------------------------//
 exports.login = function (req, res) {
   console.log("we are in login");
   // Form validation
@@ -114,8 +109,7 @@ exports.login = function (req, res) {
     });
   });
 };
-
-//-------------------------------Contact-----------------------------------------//
+//--------------------------------------------Contact us-----------------------------------------------------//
 exports.Contact = function (req, res) {
   console.log(
     req.body.senderEmail,
@@ -129,8 +123,8 @@ exports.Contact = function (req, res) {
       let transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "bankexchange4@gmail.com", // generated ethereal user
-          pass: "exchange1234", // generated ethereal password
+          user: "zerobugeasy@gmail.com", // generated ethereal user
+          pass: "zerobug666666", // generated ethereal password
         },
       });
       // send mail with defined transport object
@@ -155,9 +149,7 @@ exports.Contact = function (req, res) {
     });
   }
 };
-
-//-------------------------------Add Product-----------------------------------------//
-
+//--------------------------------------------Add Product-----------------------------------------------------//
 exports.addProduct = (req, res) => {
   const {
     productID,
@@ -172,7 +164,6 @@ exports.addProduct = (req, res) => {
   //connect the user token with the product he add to buy -- Yasmeen
   var decoded = jwt_decode(token);
   id = decoded.UserID;
-
   let productDocument = new ProductModel({
     productID: productID,
     UserID: id,
@@ -198,9 +189,7 @@ exports.addProduct = (req, res) => {
       res.send(err);
     });
 };
-
-//-----------------------Show All Product in Home Page---------------------------------//
-
+//-------------------------------Show All Product in Home Page----------------------------------------//
 exports.findProduct = (req, res) => {
   ProductModel.find({})
     .then((result) => {
@@ -210,7 +199,7 @@ exports.findProduct = (req, res) => {
       res.send(err);
     });
 };
-//---------------------------Classify by Category----------------------------------------//
+//-------------------------------------Classify by Category-------------------------------------------------//
 exports.category = (req, res) => {
   ProductModel.find({ category: req.body.category })
     .then((result) => {
@@ -220,11 +209,9 @@ exports.category = (req, res) => {
       res.send(err);
     });
 };
-
 //--------------------------------Payment System---------------------------------------//
 exports.pay = async (req, res) => {
   const { email } = req.body;
-
   const paymentIntent = await stripe.paymentIntents.create({
     amount: 5000,
     currency: "usd",
@@ -232,22 +219,18 @@ exports.pay = async (req, res) => {
     metadata: { integration_check: "accept_a_payment" },
     receipt_email: email,
   });
-
   res.json({ client_secret: paymentIntent["client_secret"] });
 };
-
 //---------------------------------------------------------------------------
 // exports.addToUserSell = (req, res) => {
 //   console.log(req.body);
 //   res.send(req.body);
 //   // save teh req.body in user sell by find the arrry in push requset in usermon=dule
 // };
-
 //-------------------------------- ShowMyAds ----------------------------------------//
 exports.showMyAds = async (req, res) => {
   var decoded = jwt_decode(req.body.token);
   id = decoded.UserID;
-  console.log(req.body);
   UserModel.find({ UserID: id })
     .then((result) => {
       const array = [];
@@ -257,22 +240,18 @@ exports.showMyAds = async (req, res) => {
       ProductModel.find({ productID: { $in: array } }).then((result) => {
         res.send(result);
       });
-
       // res.send(result[0].sell);
     })
     .catch((err) => {
       res.send(err);
     });
 };
-
 //-------------------------------- Show My Carts ----------------------------------------//
 exports.showMyCarts = async (req, res) => {
   var decoded = jwt_decode(req.body.token);
   id = decoded.UserID;
-  console.log(req.body);
   UserModel.find({ UserID: id })
     .then((result) => {
-      console.log(result, "cart-back");
       const array = [];
       result[0].carts.map((Element) => {
         array.push(Element["productID"]);
@@ -280,31 +259,71 @@ exports.showMyCarts = async (req, res) => {
       ProductModel.find({ productID: { $in: array } }).then((result) => {
         res.send(result);
       });
-
       // res.send(result[0].carts);
     })
     .catch((err) => {
       res.send(err);
     });
 };
-
-// //-------------------------------- Show My Carts ----------------------------------------//
-// exports.showMyCarts = async (req, res) => {
-//   var decoded = jwt_decode(req.body.token);
-//   id = decoded.UserID;
-//   UserModel.find({ UserID: id })
+//-------------------------------- find user ----------------------------------------//
+exports.findUser = function (req, res) {
+  const UserID = req.params.UserID;
+  UserModel.find({ UserID: UserID })
+    .then((result) => {
+      res.send(result);
+      //console.log(result, 'hiiiiiiiiiiiiiii');
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+//-------------------------------- Remove Ads from user ads list ------------------------------------//
+// exports.removeOne = function (req, res) {
+//   const userID = req.params.UserID;
+//   ProductModel.delete({ userID: userID })
 //     .then((result) => {
-//       const array = [];
-//       result[0].carts.map((Element) => {
-//         array.push(Element['productID']);
-//       });
-//       ProductModel.find({ productID: { $in: array } }).then((result) => {
-//         res.send(result);
-//       });
-
-//       // res.send(result[0].carts);
+//       res.status(204).send(`Ads Deleted`);
+//       console.log(result, 'removed');
 //     })
 //     .catch((err) => {
-//       res.send(err);
+//       res.status(500).send(err);
 //     });
 // };
+exports.removeOne = function (req, res) {
+  const { userID, productID } = req.body;
+  ProductModel.deleteOne({ userID, productID })
+    .then((result) => {
+      res.status(204).send(`${result.n} Product Deleted`);
+      console.log(result, "product deletedddddddddddddd");
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+//-------------------------------- Find Product ----------------------------------------//
+exports.findProduct = function (req, res) {
+  const UserID = req.params.UserID;
+  ProductModel.find({ UserID: UserID })
+    .then((result) => {
+      res.send(result);
+      //console.log(result, 'hiiiiiiiiiiiiii');
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//*/-----------------
+
+exports.addToCardUesr = (req, res) => {
+  UserModel.update(
+    { UserID: req.body.UserID },
+    { $push: { carts: { productID: req.body.productID } } }
+  )
+    .then((result) => {
+      res.send("we saved in database");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};

@@ -1,55 +1,73 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
-
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Card, Button, Container } from "react-bootstrap";
+import chairs from "./chairs.jpg";
+import axios from "axios";
+import "./style.css";
+import jwt_decode from "jwt-decode";
+//import { Card } from '@material-ui/core';
 class Show extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
-    this.getProducts();
   }
   state = {
-    products: [],
+    Products: [],
   };
-  async getProducts() {
-    await axios
-      .post('http://localhost:5000//showMyAds', { category: 2 })
-      .then((result) => {
-        console.log(result);
-        const finalData = result.data;
-
-        console.log('=====>>>>////???>>>', finalData);
-        this.setState({ products: finalData });
+  //-------------------------------Get all product user added for sell--------------------------
+  componentDidMount() {
+    const token = localStorage.token;
+    var decode = jwt_decode(token);
+    //console.log(decode, 'ggggggggggggggggggggggggs');
+    axios
+      .get(`/findProduct/${decode.UserID}`)
+      .then((response) => {
+        //console.log(response);
+        this.setState({ Products: response.data });
+        console.log(this.state, "product saved");
       })
-      .catch((err) => {
-        console.log('it is an error in Furniture compoments', err);
+      .catch(function (error) {
+        console.log(error);
       });
   }
+  //-----------------------------Remove product from list of Ads-----------------------------
+  handleRemove = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`/remove-one/${this.state.UserID}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  };
+  //----------------------------------------------------------------------------------------
   render() {
-    console.log(this.state);
-
-    const products = this.state.products ? this.state.products : [];
+    const { Products } = this.state;
     return (
-      <div>
-        <ul>
-          {products.map((element, index) => {
-            return (
-              <div>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={element.images} />
-                  <Card.Body>
-                    <Card.Text>{element.price}</Card.Text>
-                    <Card.Title>{element.title}</Card.Title>
-                    <Card.Text>{element.description}</Card.Text>
-                    <Card.Text>{element.location}</Card.Text>
-                    <br />
-                    <br />
-                  </Card.Body>
-                </Card>
+      <div className="ShowMyAds__div">
+        {Products.map((Products, index) => (
+          <Container>
+            <Card className="ShowMyAds__Card">
+              <img
+                alt="product img"
+                src={Products.images}
+                style={{ maxWidth: "150px", margin: "2rem auto" }}
+              ></img>
+              <p>{Products.title}</p>
+              <p>{Products.description}</p>
+              <p>{Products.price}</p>
+              <p>{Products.category}</p>
+              <p>{Products.location}</p>
+              <div className="Btn">
+                <Button className="Edit_Btn">Edit</Button>
+                <Button className="Remove_Btn" onClick={this.handleRemove}>
+                  Remove
+                </Button>
               </div>
-            );
-          })}
-        </ul>
+            </Card>
+          </Container>
+        ))}
       </div>
     );
   }

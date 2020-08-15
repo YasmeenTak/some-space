@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+import * as jwt_decode from "jwt-decode";
+import cartItems from "./cart-items";
 import {
   DECREASE,
   INCREASE,
@@ -6,7 +9,7 @@ import {
   GET_TOTALS,
   TOGGLE_AMOUNT,
 } from "./action";
-import cartItems from "./cart-items";
+
 import axios from "axios";
 
 const initialStore = {
@@ -122,4 +125,31 @@ export default reducer;
 //     return { ...state, cart: [] };
 //   default:
 //     return state;
+// }
+
+// class ShowCart extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
+//   state = {
+//     Products: [],
+//   };
+//   // get all product user added for sell
+//   componentDidMount() {
+//     const token = localStorage.token;
+//     var decode = jwt_decode(
+//       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjg1ODEyMDkyLCJmaXJzdE5hbWUiOiJZYXNtZWVuIiwibGFzdE5hbWUiOiJBYnUgS3dhaWsiLCJpYXQiOjE1OTcyNDc0ODUsImV4cCI6MTYyODgwNDQxMX0.2bi6mlssGgpxuAMVg7O4Q5PrAo2l4xJnsZkeN5xy3No"
+//     );
+//     //console.log(decode, 'ggggggggggggggggggggggggs');
+//     axios
+//       .get(`/buyProduct/${decode.UserID}`)
+//       .then((response) => {
+//         //console.log(response);
+//         this.setState({ Products: response.data });
+//         console.log(this.state, "product saved in Cart");
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 // }

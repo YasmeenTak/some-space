@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 class Furniture extends Component {
   constructor(props) {
@@ -12,6 +13,19 @@ class Furniture extends Component {
   state = {
     products: [],
   };
+  handleClick(id) {
+    const token = localStorage.token;
+    var decode = jwt_decode(token);
+
+    axios
+      .post("/addToCardUser", { productID: id, UserID: decode.UserID })
+      .then((result) => {
+        console.log("this is in card in ", result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   async getProducts() {
     await axios
       .post("/category", { category: 2 })
@@ -39,16 +53,25 @@ class Furniture extends Component {
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={element.images} />
                   <Card.Body>
-                    <Card.Text>{element.price}</Card.Text>
-                    <Card.Title>{element.title}</Card.Title>
-                    <Card.Text>{element.description}</Card.Text>
-                    <Card.Text>{element.location}</Card.Text>
+                    <Card.Title>Product:{element.title}</Card.Title>
+                    <Card.Text>Price: $ {element.price}</Card.Text>
+                    <Card.Text>Quality: {element.quality}</Card.Text>
+                    <Card.Text>Description: {element.description}</Card.Text>
+                    <Card.Text>Location: {element.location}</Card.Text>
                     <Link to="/Payment" className="brand-logo">
                       <Button variant="primary">buy</Button>
                     </Link>
                     <br />
                     <br />
-                    <Button variant="primary">To Cart</Button>
+                    <Button
+                      variant="primary"
+                      value={this.state.products}
+                      onClick={() => {
+                        this.handleClick(element._id);
+                      }}
+                    >
+                      To Cart
+                    </Button>
                   </Card.Body>
                 </Card>
               </div>

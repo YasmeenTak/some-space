@@ -6,7 +6,7 @@ import { Link, Redirect } from "react-router-dom";
 class Fashion extends Component {
   constructor(props) {
     super(props);
-    // this.handleClick = this.handleClick.bind(this);
+
     console.log(this.props);
     this.getProducts();
   }
@@ -15,9 +15,7 @@ class Fashion extends Component {
   };
 
   handleClick(id) {
-    // e.preventDefault();
-    console.log(id, "The link was clicked.");
-    // console.log(e, "The link was clicked222.");
+    console.log(id, "The button was clicked.");
   }
 
   async getProducts() {
@@ -43,16 +41,16 @@ class Fashion extends Component {
             console.log(element.id, "idEman");
             return (
               <div>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={element.images} />
+                <Card style={{ width: '18rem' }}>
+                  <Card.Img variant='top' src={element.images} />
                   <Card.Body>
-                    <Card.Text>{element.price}</Card.Text>
-                    <Card.Title>{element.title}</Card.Title>
-                    <Card.Text>{element.description}</Card.Text>
-                    <Card.Text>{element.location}</Card.Text>
-                    <Card.Text>id:{element._id}</Card.Text>
-                    <Link to="/Payment" className="brand-logo">
-                      <Button variant="primary">buy</Button>
+                    <Card.Title>Product:{element.title}</Card.Title>
+                    <Card.Text>Price: $ {element.price}</Card.Text>
+                    <Card.Text>Quality: {element.quality}</Card.Text>
+                    <Card.Text>Description: {element.description}</Card.Text>
+                    <Card.Text>Location: {element.location}</Card.Text>
+                    <Link to='/Payment' className='brand-logo'>
+                      <Button variant='primary'>buy</Button>
                     </Link>
                     <br />
                     <br />

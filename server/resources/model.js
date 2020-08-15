@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 let userSchema = mongoose.Schema({
   UserID: { type: Number },
   firstName: { type: String },
@@ -11,12 +11,10 @@ let userSchema = mongoose.Schema({
   gender: { type: String },
   buy: [{ productID: Number, date: { type: Date, default: Date.now } }],
   sell: [{ productID: Number, date: { type: Date, default: Date.now } }],
-  carts: [{ productID: Number }],
+  carts: [{ productID: String }],
   quantity: { type: Number },
 });
-
-let UserModel = mongoose.model('user', userSchema);
-
+let UserModel = mongoose.model("user", userSchema);
 //---------------------------------------
 let productSchema = mongoose.Schema({
   productID: { type: Number },
@@ -26,13 +24,11 @@ let productSchema = mongoose.Schema({
   price: { type: Number },
   category: { type: Number, default: 1, required: true },
   location: { type: String },
-  dateOfAdd: { type: Date, default: Date.now },
+  dateOfAdd: { date: { type: Date, default: Date.now } },
   ImgUrl: { type: String },
-  UserID: { type: String },
+  quality: { type: String, default: 1, required: true },
 });
-
-let ProductModel = mongoose.model('product', productSchema);
-
+let ProductModel = mongoose.model("product", productSchema);
 module.exports = {
   UserModel,
   ProductModel,

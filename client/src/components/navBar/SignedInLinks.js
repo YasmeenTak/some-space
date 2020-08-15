@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import $ from 'jquery';
 import { createBrowserHistory } from 'history';
+
 const SignedInLinks = () => {
   return (
     <div>
@@ -15,6 +16,7 @@ const SignedInLinks = () => {
               history.push('/Home');
               window.location.reload();
             }}
+            type="button" class="btn btn-danger"
           >
             Log Out
           </button>
@@ -26,7 +28,7 @@ const SignedInLinks = () => {
           </Link>
         </li>
         <li>
-          <Link to='/Show' className='btn btn-floating pink lighten-1'>
+          <Link to='/ShowMyAds' className='btn btn-floating pink lighten-1'>
             <i class='material-icons'>remove_red_eye</i>
           </Link>
         </li>
