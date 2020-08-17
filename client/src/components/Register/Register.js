@@ -37,12 +37,10 @@ export default class Register extends Component {
           user.firstName &&
           user.lastName &&
           user.password &&
-          user.password2 &&
-          user.passwordl
+          user.password2
         ) {
           this.setState({ redirect: '/login' });
         }
-
         //this.props.handleLogin();
       })
       .catch((err) => {
@@ -103,7 +101,6 @@ export default class Register extends Component {
             onChange={this.handleChange.bind(this)}
           />
           <p>{errors['password'] ? errors.password : null}</p>
-
           <label htmlFor='password2' className='SignUp-page__label'>
             Confirm Password
           </label>
@@ -115,7 +112,6 @@ export default class Register extends Component {
             onChange={this.handleChange.bind(this)}
           />
           <p>{errors['password2'] ? errors.password2 : null}</p>
-
           <button
             className='SignUp-page__button'
             onClick={this.submit.bind(this)}

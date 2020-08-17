@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import $ from 'jquery';
-import jwt_decode from 'jwt-decode';
+import { createBrowserHistory } from 'history';
 
 const SignedInLinks = () => {
   //hooks
@@ -19,7 +19,19 @@ const SignedInLinks = () => {
     <div>
       <ul className='right'>
         <li>
-          <Link to='/LogOut'>Log Out</Link>
+          <button
+            onClick={() => {
+              const history = createBrowserHistory();
+              localStorage.removeItem('token');
+              history.push('/Home');
+              window.location.reload();
+            }}
+            type='button'
+            class='btn btn-danger'
+          >
+            Log Out
+          </button>
+          {/* <Link to='/LogOut'>Log Out</Link> */}
         </li>
         <li>
           <Link to='/Add' className='btn btn-floating pink lighten-1'>
@@ -27,8 +39,7 @@ const SignedInLinks = () => {
           </Link>
         </li>
         <li>
-          <Link to='/showMyAds' className='btn btn-floating pink lighten-1'>
-            {/* props for all element in show my ads */}
+          <Link to='/ShowMyAds' className='btn btn-floating pink lighten-1'>
             <i class='material-icons'>remove_red_eye</i>
           </Link>
         </li>
@@ -41,5 +52,4 @@ const SignedInLinks = () => {
     </div>
   );
 };
-
 export default SignedInLinks;

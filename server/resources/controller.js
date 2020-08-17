@@ -1,13 +1,12 @@
-const { UserModel, ProductModel } = require('./model.js');
-const nodemailer = require('nodemailer');
-const stripe = require('stripe')(
-  'sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt'
+const { UserModel, ProductModel } = require("./model.js");
+const nodemailer = require("nodemailer");
+const stripe = require("stripe")(
+  "sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt"
 );
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const keys = require('./../../config/key');
-
-const jwt_decode = require('jwt-decode');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("./../../config/key");
+const jwt_decode = require("jwt-decode");
 // Load input validation
 const validateRegisterInput = require('./../../validation/register');
 const validateLoginInput = require('./../../validation/login');
@@ -26,7 +25,7 @@ exports.register = function (req, res) {
     UserModel.find({ email: email }).then((user) => {
       if (user[0]) {
         return res.status(400).json({
-          email: 'Email already exists',
+          email: "Email already exists",
         });
       } else {
         //Generate random id -- Yasmeen
@@ -48,7 +47,7 @@ exports.register = function (req, res) {
             newUser
               .save()
               .then((user) => {
-                console.log('new user saved to database');
+                console.log("new user saved to database");
                 res.sendStatus(201);
               })
               .catch((err) => console.log(err));
@@ -58,10 +57,9 @@ exports.register = function (req, res) {
     });
   }
 };
-
 //-----------------------------------------Login-----------------------------------------------------//
 exports.login = function (req, res) {
-  console.log('we are in login');
+  console.log("we are in login");
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation
@@ -75,7 +73,7 @@ exports.login = function (req, res) {
     // Check if user exists
     if (!user) {
       return res.status(404).json({
-        emailnotfound: 'Email not found',
+        emailnotfound: "Email not found",
       });
     }
     // Check password
@@ -97,48 +95,47 @@ exports.login = function (req, res) {
             expiresIn: 31556926, // 1 year in seconds
           },
           (err, token) => {
-            console.log(token, 'tokennnnnnnnnnn');
+            console.log(token, "tokennnnnnnnnnn");
             res.json({
               success: true,
-              token: 'Bearer ' + token,
+              token: "Bearer " + token,
             });
           }
         );
       } else {
         return res.status(400).json({
-          passwordincorrect: 'Password incorrect',
+          passwordincorrect: "Password incorrect",
         });
       }
     });
   });
 };
-
 //--------------------------------------------Contact us-----------------------------------------------------//
 exports.Contact = function (req, res) {
   console.log(
     req.body.senderEmail,
     req.body.senderMessage,
-    '   /*/*/*/**/*/*/*/*/*/**/*/'
+    "   /*/*/*/**/*/*/*/*/*/**/*/"
   );
   sendEmail(req.body.senderEmail, req.body.senderMessage);
   function sendEmail(email, Message) {
-    console.log('we area here');
+    console.log("we area here");
     nodemailer.createTestAccount((err, account) => {
       let transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: "gmail",
         auth: {
-          user: 'bankexchange4@gmail.com', // generated ethereal user
-          pass: 'exchange1234', // generated ethereal password
+          user: "zerobugeasy@gmail.com", // generated ethereal user
+          pass: "zerobug666666", // generated ethereal password
         },
       });
       // send mail with defined transport object
       transporter.sendMail(
         {
           from: '"ExChange" <ssomespacee@gmail.com>', // sender address
-          to: 'ssomespacee@gmail.com', // list of receivers
-          subject: 'customer has a problem :heavy_check_mark:', // Subject line
-          text: 'I need some help', // plain text body
-          html: (email, '       ', Message),
+          to: "ssomespacee@gmail.com", // list of receivers
+          subject: "customer has a problem :heavy_check_mark:", // Subject line
+          text: "I need some help", // plain text body
+          html: (email, "       ", Message),
           // html: `<h2>I need some help? : ${email}</h2><p>you got a message </p> <p>${Message}<p/>`, // html body
         },
         (err, info) => {
@@ -146,8 +143,8 @@ exports.Contact = function (req, res) {
             console.log(err);
             return console.log(err);
           }
-          console.log('Message sent: %s', info.messageId);
-          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+          console.log("Message sent: %s", info.messageId);
+          console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
         }
       );
     });
@@ -170,7 +167,6 @@ exports.addProduct = (req, res) => {
   //connect the user token with the product he add to buy -- Yasmeen
   var decoded = jwt_decode(token);
   id = decoded.UserID;
-
   let productDocument = new ProductModel({
     productID: productID,
     UserID: id,
@@ -188,14 +184,15 @@ exports.addProduct = (req, res) => {
         { UserID: id },
         { $push: { sell: { productID: productID } } }
       ).then((result) => {
-        res.send('data saved');
+        res.send("data saved");
       });
-      res.send('saved product!');
+      res.send("saved product!");
     })
     .catch((err) => {
       res.send(err);
     });
 };
+//-------------------------------Show All Product in Home Page----------------------------------------//
 
 //-------------------------------Show All Product in Home Page----------------------------------------//
 
@@ -218,29 +215,24 @@ exports.category = (req, res) => {
       res.send(err);
     });
 };
-
 //--------------------------------Payment System---------------------------------------//
 exports.pay = async (req, res) => {
   const { email } = req.body;
-
   const paymentIntent = await stripe.paymentIntents.create({
     amount: 5000,
-    currency: 'usd',
+    currency: "usd",
     // Verify your integration in this guide by including this parameter
-    metadata: { integration_check: 'accept_a_payment' },
+    metadata: { integration_check: "accept_a_payment" },
     receipt_email: email,
   });
-
-  res.json({ client_secret: paymentIntent['client_secret'] });
+  res.json({ client_secret: paymentIntent["client_secret"] });
 };
-
 //---------------------------------------------------------------------------
 // exports.addToUserSell = (req, res) => {
 //   console.log(req.body);
 //   res.send(req.body);
 //   // save teh req.body in user sell by find the arrry in push requset in usermon=dule
 // };
-
 //-------------------------------- ShowMyAds ----------------------------------------//
 exports.showMyAds = async (req, res) => {
   var decoded = jwt_decode(req.body.token);
@@ -249,7 +241,7 @@ exports.showMyAds = async (req, res) => {
     .then((result) => {
       const array = [];
       result[0].sell.map((Element) => {
-        array.push(Element['productID']);
+        array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
         res.send(result);
@@ -260,7 +252,6 @@ exports.showMyAds = async (req, res) => {
       res.send(err);
     });
 };
-
 //-------------------------------- Show My Carts ----------------------------------------//
 exports.showMyCarts = async (req, res) => {
   var decoded = jwt_decode(req.body.token);
@@ -269,12 +260,12 @@ exports.showMyCarts = async (req, res) => {
     .then((result) => {
       const array = [];
       result[0].carts.map((Element) => {
-        array.push(Element['productID']);
+        array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
+       // console.log(result);
         res.send(result);
       });
-
       // res.send(result[0].carts);
     })
     .catch((err) => {

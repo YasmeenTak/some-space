@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import './style.css';
+import { createBrowserHistory } from 'history';
 export default class Login extends Component {
   state = {
     email: '',
@@ -15,25 +16,25 @@ export default class Login extends Component {
       [e.target.name]: e.target.value,
     });
   }
-  handleClick(e) {
-    e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password,
-    };
+  handleClick() {
+    const history = createBrowserHistory();
     axios
-      .post('/login', user)
+      .post('/login', {
+        email: this.state.email,
+        password: this.state.password,
+      })
       .then((result) => {
-        if (result.data) {
-          //console.log('redirect to Home');
-          this.setState({ token: result.data.token });
-          localStorage.setItem('token', this.state.token);
-          this.setState({ redirect: '/Home' });
-        }
+        console.log(result.data);
+        console.log('redirect to Home');
+        console.log(result.data.token, 'tooooooooken');
+        this.setState({ token: result.data.token });
+        localStorage.setItem('token', this.state.token);
+        // this.setState({ redirect: '/Home' });
+        // }
         console.log('Logged in');
         this.setState({ isLoggedIn: true });
-        //this.props.handleLogin();
-        alert('Logged in');
+        history.push('/Home');
+        window.location.reload();
       })
       .catch((err) => {
         console.log('err in logging in ', err);
@@ -41,10 +42,10 @@ export default class Login extends Component {
       });
   }
   render() {
-    if (this.state.redirect) {
-      console.log('redirected');
-      return <Redirect to='/Home' />;
-    }
+    // if (this.state.redirect) {
+    //   console.log('redirected');
+    //   return <Redirect to='/Home' />;
+    // }
     return (
       <div className='Login-page__div'>
         <label htmlFor='email' className='Login-page__label'>
