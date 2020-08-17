@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import ReactSearchBox from "react-search-box";
 import ShopNow from "../ShopNowButton/ShopNowButton";
 // import searchByTitle from "../searchByTitle/searchByTitle";
@@ -15,8 +16,25 @@ class Machine extends Component {
   state = {
     products: [],
   };
+  // handleClick(id) {
+  //   console.log(id, "The button was clicked.");
+  // }
   handleClick(id) {
-    console.log(id, "The button was clicked.");
+    if (localStorage.token) {
+      const token = localStorage.token;
+      var decode = jwt_decode(token);
+      axios
+        .post("/addToCardUser", { productID: id, UserID: decode.UserID })
+        .then((result) => {
+          console.log("this is in card in ", result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      window.location.href = "/Register";
+      // this.props.history.push("/Login");
+    }
   }
   
   async getProducts() {

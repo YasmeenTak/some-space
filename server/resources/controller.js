@@ -190,7 +190,8 @@ exports.addProduct = (req, res) => {
     });
 };
 //-------------------------------Show All Product in Home Page----------------------------------------//
-exports.findProduct = (req, res) => {
+
+exports.findAllProducts = (req, res) => {
   ProductModel.find({})
     .then((result) => {
       res.send(result);
@@ -257,6 +258,7 @@ exports.showMyCarts = async (req, res) => {
         array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
+       // console.log(result);
         res.send(result);
       });
       // res.send(result[0].carts);
@@ -321,7 +323,27 @@ exports.addToCardUesr = (req, res) => {
     { $push: { carts: { productID: req.body.productID } } }
   )
     .then((result) => {
+      console.log(result, "we saved our product for cart");
       res.send("we saved in database");
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+exports.showcartsUser = (req, res) => {
+  var decoded = jwt_decode(req.params.token);
+  id = decoded.UserID;
+  UserModel.find({ UserID: id })
+    .then((result) => {
+      const array = [];
+      result[0].carts.map((Element) => {
+        array.push(Element["productID"]);
+      });
+      ProductModel.find({ productID: { $in: array } }).then((result) => {
+        console.log("resultt", result);
+        res.send(result);
+      });
     })
     .catch((err) => {
       res.send(err);

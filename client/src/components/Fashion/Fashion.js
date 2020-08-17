@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 class Fashion extends Component {
   constructor(props) {
@@ -15,9 +16,22 @@ class Fashion extends Component {
   };
 
   handleClick(id) {
-    console.log(id, "The button was clicked.");
+    if (localStorage.token) {
+      const token = localStorage.token;
+      var decode = jwt_decode(token);
+      axios
+        .post("/addToCardUser", { productID: id, UserID: decode.UserID })
+        .then((result) => {
+          console.log("this is in card in ", result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      window.location.href = "/Register";
+      // this.props.history.push("/Login");
+    }
   }
-
   async getProducts() {
     await axios
       .post("/category", { category: 1 })
@@ -41,16 +55,16 @@ class Fashion extends Component {
             console.log(element.id, "idEman");
             return (
               <div>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={element.images} />
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={element.images} />
                   <Card.Body>
                     <Card.Title>Product:{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
                     <Card.Text>Quality: {element.quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>
                     <Card.Text>Location: {element.location}</Card.Text>
-                    <Link to='/Payment' className='brand-logo'>
-                      <Button variant='primary'>buy</Button>
+                    <Link to="/Payment" className="brand-logo">
+                      <Button variant="primary">buy</Button>
                     </Link>
                     <br />
                     <br />

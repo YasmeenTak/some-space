@@ -5,7 +5,7 @@ import StripeCheckout from "react-stripe-checkout";
 // import STRIPE_PUBLISHABLE from "./constants/stripe";
 // import PAYMENT_SERVER_URL from "./constants/server";
 
-const CURRENCY = "USD";
+// const CURRENCY = "USD";
 
 const fromDollarToCent = (amount) => parseInt(amount * 100);
 
@@ -33,7 +33,7 @@ const Checkout = ({ name, description, amount }) => (
     name={name}
     description={description}
     amount={fromDollarToCent(amount)}
-    token={onToken(amount, description)}
+    // token={onToken(amount, description)}
     // currency={CURRENCY}
     stripeKey={
       "pk_test_51H9W3uJoAFGhJTyjNwuW6AO20pgMXhr3DZbvEfWANxMEUkZzDqdOjAxtMwqrkcDlHkN73J7fQBCrnowJMBgiiTtT00jagHNJJC"

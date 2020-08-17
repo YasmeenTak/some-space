@@ -5,19 +5,19 @@ import { CLEAR_CART, GET_TOTALS } from "./action";
 
 /////////////////////////////////////////
 import axios from "axios";
-const data = async () => {
-  const result = await axios
-    .get("http://localhost:5000/showMyAds", {
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjc1MzA5MDgzLCJmaXJzdE5hbWUiOiJFbWFuIiwibGFzdE5hbWUiOiJBYnUgV2FrZWQiLCJpYXQiOjE1OTczMTg2NDQsImV4cCI6MTYyODg3NTU3MH0.H2gvJRGlAKf5VfYtJHzU4rmFLg4cYdJybAacFQLz-Zk",
-    })
-    .then((resp) => {
-      return resp;
-    })
-    .catch((err) => {
-      return err;
-    });
-};
+// const data = async () => {
+//   const result = await axios
+//     .get("http://localhost:5000/showMyAds", {
+//       token:
+//         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOjc1MzA5MDgzLCJmaXJzdE5hbWUiOiJFbWFuIiwibGFzdE5hbWUiOiJBYnUgV2FrZWQiLCJpYXQiOjE1OTczMTg2NDQsImV4cCI6MTYyODg3NTU3MH0.H2gvJRGlAKf5VfYtJHzU4rmFLg4cYdJybAacFQLz-Zk",
+//     })
+//     .then((resp) => {
+//       return resp;
+//     })
+//     .catch((err) => {
+//       return err;
+//     });
+// };
 
 ///////////////////////////////////
 
@@ -25,7 +25,7 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
   React.useEffect(() => {
     dispatch({ type: GET_TOTALS });
   }, [cart, dispatch]);
-  console.log(data());
+ // console.log(data());
   if (cart.length === 0) {
     return (
       <section className="cart">

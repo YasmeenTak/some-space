@@ -8,10 +8,12 @@ router.post("/register", controller.register);
 router.post("/login", controller.login);
 router.post("/Contact", controller.Contact);
 router.post("/pay", controller.pay);
+
 router
   .route("/addProduct")
   .post(controller.addProduct)
   .get(controller.findProduct);
+
 router.post("/category", controller.category);
 
 // // router.post('/addToUserSell', controller.addToUserSell);
@@ -25,5 +27,7 @@ router.get("/finduser/:UserID", controller.findUser);
 router.delete("/remove-one", controller.removeOne);
 router.get("/findProduct/:UserID", controller.findProduct);
 router.post("/addToCardUser", controller.addToCardUesr);
+router.get("/findAllProducts/", controller.findAllProducts);
+router.get("/showMyCarts/:token", controller.showcartsUser);
 
 module.exports = router;

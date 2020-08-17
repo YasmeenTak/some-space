@@ -19,15 +19,17 @@ import Machine from "./components/Machine/Machine";
 import Payment from "./components/Payment/Payment";
 import ShopNow from "./components/ShopNowButton/ShopNowButton";
 // import Show from "./components/ShowAdvertising/ShowMyAds";
-import Show from "./components/ShowAdvertising/ShowMyAds"
+import Show from "./components/ShowAdvertising/ShowMyAds";
+import searchByTitle from "./components/searchByTitle/searchByTitle"
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
+          <searchByTitle />
           <Navbar />
-
+         
           {/* <ShopNow />
           <Catagories /> */}
         </div>

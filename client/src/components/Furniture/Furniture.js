@@ -13,18 +13,42 @@ class Furniture extends Component {
   state = {
     products: [],
   };
-  handleClick(id) {
-    const token = localStorage.token;
-    var decode = jwt_decode(token);
 
-    axios
-      .post("/addToCardUser", { productID: id, UserID: decode.UserID })
-      .then((result) => {
-        console.log("this is in card in ", result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  // handleSubmit(e) {
+  //   if (localStorage.token) {
+  //     const token = localStorage.token;
+  //     var decode = jwt_decode(token);
+  //     axios
+  //       .get("/Pay")
+  //       .then((result) => {
+  //         console.log("this is in payment ", result);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     window.location.href = "/Register";
+  //     // this.props.history.push("/Login");
+  //   }
+  //   console.log("The link was clicked.");
+  // }
+
+  handleClick(id) {
+    if (localStorage.token) {
+      const token = localStorage.token;
+      var decode = jwt_decode(token);
+      axios
+        .post("/addToCardUser", { productID: id, UserID: decode.UserID })
+        .then((result) => {
+          console.log("this is in card in ", result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      window.location.href = "/Register";
+      // this.props.history.push("/Login");
+    }
   }
   async getProducts() {
     await axios
@@ -61,6 +85,8 @@ class Furniture extends Component {
                     <Link to="/Payment" className="brand-logo">
                       <Button variant="primary">buy</Button>
                     </Link>
+
+
                     <br />
                     <br />
                     <Button
