@@ -2,14 +2,14 @@
   width: '18rem';
 } */
 
-.title_product {
+/* .title_product {
   margin-bottom: 150px;
   float: left;
-}
+} */
 
 /* ====== Bootstrap Overrideing ===== */
 
-.ShowMyAds__div {
+/* .ShowMyAds__div {
   overflow: hidden;
   margin-bottom: 50px;
 }
@@ -32,4 +32,27 @@
 }
 .details__div {
   font-size: 15px;
+} */
+
+.ShowMyAds__div {
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+/* .ShowMyAds__Card {
+  display: flex;
+  flex-wrap: nowrap;
+} */
+.ShowMyAds__Card {
+  display: flex;
+  width: 500px;
+}
+/* .imgProduct__div {
+  background-color: royalblue;
+} */
+.img-fluid {
+  width: 150px;
+  height: 230px;
+}
+.details__div {
+  width: 500px;
 }

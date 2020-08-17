@@ -2,8 +2,18 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Dropdown from 'react-dropdown';
 import $ from 'jquery';
+import jwt_decode from 'jwt-decode';
 
 const SignedInLinks = () => {
+  //hooks
+  // const token = localStorage.getItem('token');
+  // console.log(token);
+  // const decoded = jwt_decode(token);
+  // this.setState({
+  //   firstName: decoded.firstName,
+  //   lastName: decoded.lastName,
+  // });
+
   // axios;
   return (
     <div>

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+//import Alert from 'react-bootstrap/Alert';
+//import { Alert, AlertTitle } from '@material-ui/lab';
+import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 
 const Catagory = [
   { key: '1', value: 'Fashion' },
@@ -91,12 +95,8 @@ function Add() {
       .then((response) => {
         if (response.data) {
           alert('Product Successfully Uploaded');
-          console.log('Product Successfully Uploaded');
-          axios.post('/addToUserSell', variables).then(() => {
-            console.log(
-              'Product Successfully add to user sell array we are in add components'
-            );
-          });
+          //console.log('Product Successfully Uploaded');
+
           // props.history.push("/");
         } else {
           alert('Failed to upload Product');

@@ -22,7 +22,7 @@ exports.register = function (req, res) {
     res.end();
   } else {
     const { firstName, lastName, email, password } = req.body;
-    console.log(req.body);
+    //console.log(req.body);
     UserModel.find({ email: email }).then((user) => {
       if (user[0]) {
         return res.status(400).json({
@@ -199,7 +199,7 @@ exports.addProduct = (req, res) => {
 
 //-------------------------------Show All Product in Home Page----------------------------------------//
 
-exports.findProduct = (req, res) => {
+exports.findAllProducts = (req, res) => {
   ProductModel.find({})
     .then((result) => {
       res.send(result);
@@ -254,7 +254,6 @@ exports.showMyAds = async (req, res) => {
       ProductModel.find({ productID: { $in: array } }).then((result) => {
         res.send(result);
       });
-
       // res.send(result[0].sell);
     })
     .catch((err) => {
@@ -288,7 +287,7 @@ exports.findUser = function (req, res) {
   UserModel.find({ UserID: UserID })
     .then((result) => {
       res.send(result);
-      //console.log(result, 'hiiiiiiiiiiiiiii');
+      //console.log(result, 'Yasmeen');
     })
     .catch((err) => {
       res.send(err);
@@ -297,23 +296,53 @@ exports.findUser = function (req, res) {
 
 //-------------------------------- Remove Ads from user ads list ------------------------------------//
 exports.removeOne = function (req, res) {
-  const userID = req.body.id;
-  ProductModel.delete({ userID: userID })
+  // console.log(req.body);
+  const { UserID, productID } = req.body;
+  // const sellUpdated = 'sell.' + index;
+  UserModel.update(
+    { UserID: UserID },
+    { $pull: { sell: { productID: productID } } }
+  )
     .then((result) => {
-      res.status(204).send(`Ads Deleted`);
+      res.status(204).send(`${result.n} Product Deleted`);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+  ProductModel.remove({ productID: productID })
+    .then((result) => {
+      res.status(204).send(`${result.n} Product Deleted`);
     })
     .catch((err) => {
       res.status(500).send(err);
     });
 };
 
-//-------------------------------- Find Product ----------------------------------------//
+//-------------------------------- Find Product ----------------------------------------------//
 exports.findProduct = function (req, res) {
   const UserID = req.params.UserID;
   ProductModel.find({ UserID: UserID })
     .then((result) => {
       res.send(result);
-      //console.log(result, 'hiiiiiiiiiiiiii');
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+//-------------------------------- Edit Product ads ----------------------------------------//
+exports.updateOne = function (req, res) {
+  //console.log(req.body.title, req.body.description);
+  const { images, title, description, price, location, category } = req.body;
+  // console.log(images, title, description, price, location, category);
+  ProductModel.updateOne(
+    { productID: req.params.productID },
+    {
+      $set: { images, title, description, price, location, category },
+    }
+  )
+    .then((result) => {
+      res.send(result);
     })
     .catch((err) => {
       res.send(err);

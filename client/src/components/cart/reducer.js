@@ -95,6 +95,7 @@ function reducer(state = initialStore, action) {
 // }
 // console.log(data());
 
+
 export default reducer;
 
 // switch (action.type) {
