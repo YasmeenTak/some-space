@@ -1,7 +1,7 @@
 const { UserModel, ProductModel } = require("./model.js");
 const nodemailer = require("nodemailer");
 const stripe = require("stripe")(
-  "sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt"
+  "sk_test_51H9W3uJoAFGhJTyjdUZK6a1g7Ru7BrM41GtpX2xjmXUkUNVrdK0yCsL0Yu7nE5naU4SWtvBNGmm7NstwEiDkG2zE00DRNwjFPf"
 );
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -258,7 +258,7 @@ exports.showMyCarts = async (req, res) => {
         array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
-       // console.log(result);
+        console.log(result, "showmycartController");
         res.send(result);
       });
       // res.send(result[0].carts);
@@ -280,23 +280,24 @@ exports.findUser = function (req, res) {
     });
 };
 //-------------------------------- Remove Ads from user ads list ------------------------------------//
-// exports.removeOne = function (req, res) {
-//   const userID = req.params.UserID;
-//   ProductModel.delete({ userID: userID })
-//     .then((result) => {
-//       res.status(204).send(`Ads Deleted`);
-//       console.log(result, 'removed');
-//     })
-//     .catch((err) => {
-//       res.status(500).send(err);
-//     });
-// };
+
 exports.removeOne = function (req, res) {
-  const { userID, productID } = req.body;
-  ProductModel.deleteOne({ userID, productID })
+  // console.log(req.body);
+  const { UserID, productID } = req.body;
+  // const sellUpdated = 'sell.' + index;
+  UserModel.update(
+    { UserID: UserID },
+    { $pull: { sell: { productID: productID } } }
+  )
     .then((result) => {
       res.status(204).send(`${result.n} Product Deleted`);
-      console.log(result, "product deletedddddddddddddd");
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+  ProductModel.remove({ productID: productID })
+    .then((result) => {
+      res.status(204).send(`${result.n} Product Deleted`);
     })
     .catch((err) => {
       res.status(500).send(err);
@@ -308,13 +309,29 @@ exports.findProduct = function (req, res) {
   ProductModel.find({ UserID: UserID })
     .then((result) => {
       res.send(result);
-      //console.log(result, 'hiiiiiiiiiiiiii');
     })
     .catch((err) => {
       res.send(err);
     });
 };
-
+//-------------------------------- Edit Product ads ----------------------------------------//
+exports.updateOne = function (req, res) {
+  //console.log(req.body.title, req.body.description);
+  const { images, title, description, price, location, category } = req.body;
+  // console.log(images, title, description, price, location, category);
+  ProductModel.updateOne(
+    { productID: req.params.productID },
+    {
+      $set: { images, title, description, price, location, category },
+    }
+  )
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
 //*/-----------------
 
 exports.addToCardUesr = (req, res) => {
@@ -323,14 +340,14 @@ exports.addToCardUesr = (req, res) => {
     { $push: { carts: { productID: req.body.productID } } }
   )
     .then((result) => {
-      console.log(result, "we saved our product for cart");
+      console.log(result, "we saved our product for cart-controller");
       res.send("we saved in database");
     })
     .catch((err) => {
       res.send(err);
     });
 };
-
+//----------------------showcartsUser 
 exports.showcartsUser = (req, res) => {
   var decoded = jwt_decode(req.params.token);
   id = decoded.UserID;
@@ -341,7 +358,7 @@ exports.showcartsUser = (req, res) => {
         array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
-        console.log("resultt", result);
+        console.log("resultCartContoller", result);
         res.send(result);
       });
     })

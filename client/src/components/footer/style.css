@@ -1,26 +1,47 @@
-/* .contact {
+/*
+.info li {
+  display: inline-block;
+  margin-right: 3px;
+}
+.info p li img {
+  filter: brightness(100%);
+  margin: 2px;
+  padding: 5px;
+  width: 40px;
+}
+.info p li img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+} */
+.contact {
   background-color: #33313d;
   background-position: center;
-  background-size: cover;
+  /* background-size: cover; */
   overflow: hidden;
+  color: #808080;
   height: 30%;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
+}
+.spaceMrg {
+  margin-left: 50px;
+  margin-right: 3%;
 }
 .contact .info {
   width: 50%;
   float: left;
-  margin-right: 5%;
+  /* margin-right: 5%; */
+  /* margin-left: 50px; */
 }
 .foot1 {
   height: 20%;
 }
 .contact h2 {
   color: #e2edeb;
-  margin-left: 50px;
-  margin-top: 20px;
+  /* margin-top: 100px; */
+  /* margin-bottom: 60px; */
 }
 .space1 {
   margin: 15px;
+  margin-left: 50px;
 }
 .contact h3 {
   color: #e2edeb;
@@ -28,39 +49,48 @@
   margin-top: 0px;
 }
 .foo2 {
-  position: absolute;
-  display: inline-block;
+  position: relative;
+  /* display: inline-block; */
+  border: 1px;
 }
-.contact {
+.contact1 {
   color: #808080;
 }
 .info p,
 address {
-  margin-left: 50px;
+  /* margin-left: 50px; */
   color: #808080;
 }
-.info p strong {
+/* .info p strong {
   color: #999999;
+  margin-left: 5px;
+} */
+.mesgForm .label {
+  padding-bottom: 10px;
+  display: block;
+  color: #999999;
+  /* margin-bottom: 10px; */
+  margin-top: 3px;
 }
-
+.txtmsg {
+  float: left;
+  position: fixed;
+}
+/* .txtarea {
+} */
 .contact .form {
-  margin-top: 35px;
+  /* margin-top: 100px; */
   width: 45%;
   float: left;
   text-align: left;
 }
-label {
-  display: block;
-  color: #999999;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-
+/* label {
+} */
 .form input {
   background-color: #8c8c8c;
   border: 0;
   color: #e9e0e0;
-  padding: 10px;
+  padding: px;
   width: 70%;
   font-size: 20px;
 }
@@ -70,17 +100,17 @@ label {
   color: #e9e0e0;
   padding: 10px;
   width: 70%;
-  height: 150px;
+  height: 50px;
   font-size: 15px;
 }
 .form #submit {
-  background-color: #7150f5;
+  background-color: #ec407a;
   border: 0;
   color: #0a0a0a;
-  padding: 15px 15px;
+  padding: 10px 15px;
   font-size: 15px;
   font-weight: bold;
-  width: 30%;
+  width: 37%;
   border-radius: 5px;
   margin-right: 50px;
 }
@@ -109,133 +139,9 @@ label {
   padding: 5px;
   width: 40px;
 }
-
-.info p li img:hover {
-  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-} */
-
-.contact {
-  background-color: #33313D;
-  background-position: center;
-  background-size: cover;
-  overflow: hidden;
-  height: 30%;
-  padding-bottom: 30px;
-}
-.contact .info {
-  width: 50%;
-  float: left;
-  margin-right: 5%;
-}
-.foot1 {
-  height: 20%;
-}
-.contact h2 {
-  color: #E2EDEB;
-  margin-left: 50px;
-  margin-top: 100px;
-  margin-bottom: 60px;
-}
-.space1 {
-  margin: 15px;
-  margin-left: 50px;
-}
-.contact h3 {
-  color: #E2EDEB;
-  margin-left: 0px;
-  margin-top: 0px;
-}
-.foo2 {
-  position: relative;
-  /* display: inline-block; */
-  border: 1px;
-}
-.contact {
-  color: #808080;
-}
-.info p,
-address {
-  margin-left: 40px;
-  color: #808080;
-}
-/* .info p strong {
-  color: #999999;
-  margin-left: 5px;
-} */
-.contact .form {
-  margin-top: 100px;
-  width: 45%;
-  float: left;
-  text-align: left;
-}
-label {
-  display: block;
-  color: #999999;
-  margin-bottom: 10px;
-  margin-top: 3px;
-}
-.form input {
-  background-color: #8C8C8C;
-  border: 0;
-  color: #E9E0E0;
-  padding: px;
-  width: 70%;
-  font-size: 20px;
-}
-.form textarea {
-  background-color: #8C8C8C;
-  border: 0;
-  color: #E9E0E0;
-  padding: 10px;
-  width: 70%;
-  height: 50px;
-  font-size: 15px;
-}
-.form #submit {
-  background-color: #7150F5;
-  border: 0;
-  color: #0A0A0A;
-  padding: 15px 15px;
-  font-size: 15px;
-  font-weight: bold;
-  width: 30%;
-  border-radius: 5px;
-  margin-right: 50px;
-}
-.footer {
-  background-color: #23202E;
-  text-align: center;
-  color: #B2B2B2;
-  overflow: hidden;
-}
-.footer span {
-  margin-top: 6px;
-}
-.footer ul {
-  float: right;
-  list-style: none;
-  padding-left: 0;
-  margin: 5px 0 0;
-}
-.info li {
-  display: inline-block;
-  margin-right: 3px;
-}
-.info p li img {
-  filter: brightness(100%);
-  margin: 2px;
-  padding: 5px;
-  width: 40px;
-}
 .info p li img:hover {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 .social-icons li img {
   width: 50px !important;
-  margin-left: 50px;
-}
-
-
-
-
-
+  /* margin-left: 50px;*/ }

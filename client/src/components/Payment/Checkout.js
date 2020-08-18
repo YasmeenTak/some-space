@@ -36,7 +36,7 @@ const Checkout = ({ name, description, amount }) => (
     // token={onToken(amount, description)}
     // currency={CURRENCY}
     stripeKey={
-      "pk_test_51H9W3uJoAFGhJTyjNwuW6AO20pgMXhr3DZbvEfWANxMEUkZzDqdOjAxtMwqrkcDlHkN73J7fQBCrnowJMBgiiTtT00jagHNJJC"
+      "pk_test_51H9W3uJoAFGhJTyjeNruK4RjpJpMoA5DbpHzjRTS7N4OZpV4bdYD2GD3ofND63stAcXPzi3T0wQ3REL9uHu4MmX600wFucyu6Q"
     }
     zipCode
     email

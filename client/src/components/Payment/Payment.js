@@ -7,7 +7,7 @@ import Checkout from "./Checkout";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
-  "pk_test_51H9W3uJoAFGhJTyjNwuW6AO20pgMXhr3DZbvEfWANxMEUkZzDqdOjAxtMwqrkcDlHkN73J7fQBCrnowJMBgiiTtT00jagHNJJC"
+  "pk_test_51H9W3uJoAFGhJTyjeNruK4RjpJpMoA5DbpHzjRTS7N4OZpV4bdYD2GD3ofND63stAcXPzi3T0wQ3REL9uHu4MmX600wFucyu6Q"
 );
 
 class Payment extends Component {

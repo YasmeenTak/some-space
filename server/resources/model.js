@@ -11,7 +11,7 @@ let userSchema = mongoose.Schema({
   gender: { type: String },
   buy: [{ productID: Number, date: { type: Date, default: Date.now } }],
   sell: [{ productID: Number, date: { type: Date, default: Date.now } }],
-  carts: [{ productID: String }],
+  cart: [{ productID: String }],
   quantity: { type: Number },
 });
 let UserModel = mongoose.model("user", userSchema);

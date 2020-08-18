@@ -5,7 +5,7 @@ const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const stripe = require('stripe')(
-  'sk_test_51H9W3uJoAFGhJTyjnH0dr1tdnKdXJ5s2LWEyJ2pHcCNIwDE4sAxKiSium0boFyEpexAUAZ0xv3x7KmzSaYCT0fnB00jR5ndXwt'
+  'sk_test_51H9W3uJoAFGhJTyjdUZK6a1g7Ru7BrM41GtpX2xjmXUkUNVrdK0yCsL0Yu7nE5naU4SWtvBNGmm7NstwEiDkG2zE00DRNwjFPf'
 );
 const { UserModel, ProductModel } = require('./resources/model');
 const db = require('./database/index');

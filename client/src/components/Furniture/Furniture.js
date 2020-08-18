@@ -14,24 +14,14 @@ class Furniture extends Component {
     products: [],
   };
 
-  // handleSubmit(e) {
-  //   if (localStorage.token) {
-  //     const token = localStorage.token;
-  //     var decode = jwt_decode(token);
-  //     axios
-  //       .get("/Pay")
-  //       .then((result) => {
-  //         console.log("this is in payment ", result);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } else {
-  //     window.location.href = "/Register";
-  //     // this.props.history.push("/Login");
-  //   }
-  //   console.log("The link was clicked.");
-  // }
+  handleSubmit(e) {
+    if (localStorage.token) {
+      window.location.href = "/Payment";
+    } else {
+      window.location.href = "/Register";
+      // this.props.history.push("/Login");
+    }
+  }
 
   handleClick(id) {
     if (localStorage.token) {
@@ -73,23 +63,35 @@ class Furniture extends Component {
         <ul>
           {products.map((element, index) => {
             return (
-              <div>
+              <row>
                 <Card style={{ width: "18rem" }}>
                   <Card.Img variant="top" src={element.images} />
                   <Card.Body>
-                    <Card.Title>Product:{element.title}</Card.Title>
+                    <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
                     <Card.Text>Quality: {element.quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>
                     <Card.Text>Location: {element.location}</Card.Text>
-                    <Link to="/Payment" className="brand-logo">
-                      <Button variant="primary">buy</Button>
-                    </Link>
 
-
-                    <br />
-                    <br />
+                    {/* <Link to="/Payment" className="brand-logo"> */}
                     <Button
+                      variant="primary"
+                      style={{
+                        marginLeft: "40px",
+                        margin: "30px",
+                        backgroundColor: "#EC407A",
+                      }}
+                      value={this.state.products}
+                      onClick={() => {
+                        this.handleSubmit(element._id);
+                      }}
+                    >
+                      buy
+                    </Button>
+                    {/* </Link> */}
+
+                    <Button
+                      style={{ backgroundColor: "#EC407A" }}
                       variant="primary"
                       value={this.state.products}
                       onClick={() => {
@@ -100,7 +102,7 @@ class Furniture extends Component {
                     </Button>
                   </Card.Body>
                 </Card>
-              </div>
+              </row>
             );
           })}
         </ul>
@@ -108,4 +110,5 @@ class Furniture extends Component {
     );
   }
 }
+
 export default Furniture;

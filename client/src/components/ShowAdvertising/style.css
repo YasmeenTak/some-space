@@ -1,34 +1,22 @@
-/* .ShowMyAds___Card {
-  width: '18rem';
-} */
-
-.title_product {
-  margin-bottom: 150px;
-  float: left;
-}
-
-/* ====== Bootstrap Overrideing ===== */
-
 .ShowMyAds__div {
   overflow: hidden;
   margin-bottom: 50px;
 }
-.ShowMyAds___Card {
-  overflow: hidden;
+/* .ShowMyAds__Card {
+  display: flex;
+  flex-wrap: nowrap;
+} */
+.ShowMyAds__Card {
+  display: flex;
+  width: 500px;
 }
-
-.ShowMyAds__Card img {
-  float: left !important;
-  width: 25%;
-  margin-right: 5%;
-}
-.ShowMyAds__Card > div {
-  float: left !important;
-  width: 70%;
-}
-.Btn {
-  float: left;
+/* .imgProduct__div {
+  background-color: royalblue;
+} */
+.img-fluid {
+  width: 150px;
+  height: 230px;
 }
 .details__div {
-  font-size: 15px;
+  width: 500px;
 }

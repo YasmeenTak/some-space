@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./style.css";
 import { Redirect } from "react-router-dom";
 export default class Register extends Component {
@@ -118,6 +119,10 @@ export default class Register extends Component {
           >
             Register
           </button>
+          <Link to="/Login" className="brand-logo">
+            <p>If you have an account, you can click on this button </p>
+            <button>Log in</button>
+          </Link>
         </div>
       </div>
     );
