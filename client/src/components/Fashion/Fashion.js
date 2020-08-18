@@ -59,7 +59,12 @@ class Fashion extends Component {
       <div>
         <ul>
           {products.map((element, index) => {
-            console.log(element.id, "idEman");
+            var quality = 'very good';
+            if (element.quality === 3) {
+              quality = 'good';
+            } else if (element.quality === 1) {
+              quality = 'Exellent';
+            }
             return (
               <row>
                 <Card style={{ width: "18rem" }}>
@@ -67,7 +72,7 @@ class Fashion extends Component {
                   <Card.Body>
                     <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
-                    <Card.Text>Quality: {element.quality}</Card.Text>
+                    <Card.Text>Quality: {quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>
                     <Card.Text>Location: {element.location}</Card.Text>
                     {/* <Link to="/Payment" className="brand-logo"> */}

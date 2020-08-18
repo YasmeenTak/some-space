@@ -81,6 +81,12 @@ class Machine extends Component {
         /> */}
         <ul>
           {products.map((element, index) => {
+            var quality = 'very good';
+            if (element.quality === 3) {
+              quality = 'good';
+            } else if (element.quality === 1) {
+              quality = 'Exellent';
+            }
             return (
               <row>
                 {/* <ShopNow/>
@@ -90,7 +96,7 @@ class Machine extends Component {
                   <Card.Body>
                     <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
-                    <Card.Text>Quality: {element.quality}</Card.Text>
+                    <Card.Text>Quality: {quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>
                     <Card.Text>Location: {element.location}</Card.Text>
                     {/* <Link to="/Payment" className="brand-logo"> */}
