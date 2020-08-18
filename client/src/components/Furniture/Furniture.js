@@ -3,12 +3,14 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import SearchFeature from "../SearchFeature/SearchFeature";
 
 class Furniture extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
     this.getProducts();
+    // this.getProducts = this.getProducts.bind(this);
   }
   state = {
     products: [],
@@ -40,26 +42,40 @@ class Furniture extends Component {
       // this.props.history.push("/Login");
     }
   }
-  async getProducts() {
-    await axios
-      .post("/category", { category: 2 })
-      .then((result) => {
-        console.log(result);
-        const finalData = result.data;
-
-        //console.log("=====>>>>////???>>>", finalData);
-        this.setState({ products: finalData });
-      })
-      .catch((err) => {
-        console.log("it is an error in Furniture compoments", err);
-      });
+  async getProducts(value) {
+    console.log(value);
+    if (value !== undefined || value === "") {
+      var newProduct = [];
+      for (var i = 0; i < this.state.products.length; i++) {
+        if (this.state.products[i].title == value) {
+          newProduct.push(this.state.products[i]);
+        }
+      }
+      this.setState({ products: newProduct });
+      console.log(this.state.products, "qqqqqqqqq");
+    } else {
+      await axios
+        .post("/category", { category: 2 })
+        .then((result) => {
+          console.log(result);
+          const finalData = result.data;
+          //console.log("=====>>>>////???>>>", finalData);
+          this.setState({ products: finalData });
+          console.log(this.state.products, "cccccc");
+        })
+        .catch((err) => {
+          console.log("it is an error in Furniture compoments", err);
+        });
+    }
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     const products = this.state.products ? this.state.products : [];
     return (
       <div>
+        {/* <SearchFeature getProducts={this.getProducts} /> */}
+
         <ul>
           {products.map((element, index) => {
             return (

@@ -258,7 +258,7 @@ exports.showMyCarts = async (req, res) => {
         array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
-        console.log(result, "showmycartController");
+        // console.log(result);
         res.send(result);
       });
       // res.send(result[0].carts);
@@ -347,7 +347,7 @@ exports.addToCardUesr = (req, res) => {
       res.send(err);
     });
 };
-//----------------------showcartsUser 
+
 exports.showcartsUser = (req, res) => {
   var decoded = jwt_decode(req.params.token);
   id = decoded.UserID;
@@ -358,7 +358,7 @@ exports.showcartsUser = (req, res) => {
         array.push(Element["productID"]);
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
-        console.log("resultCartContoller", result);
+        console.log("resultt", result);
         res.send(result);
       });
     })

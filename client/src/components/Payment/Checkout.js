@@ -32,7 +32,7 @@ const Checkout = ({ name, description, amount }) => (
   <StripeCheckout
     name={name}
     description={description}
-    amount={fromDollarToCent(amount)}
+    amount={fromDollarToCent(amount)} 
     // token={onToken(amount, description)}
     // currency={CURRENCY}
     stripeKey={
