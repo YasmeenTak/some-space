@@ -304,11 +304,18 @@ exports.removeOne = function (req, res) {
     });
 };
 //-------------------------------- Find Product ----------------------------------------//
-exports.findProduct = function (req, res) {
+exports.findProduct = (req, res) => {
   const UserID = req.params.UserID;
-  ProductModel.find({ UserID: UserID })
+  UserModel.find({ UserID: UserID })
     .then((result) => {
-      res.send(result);
+      const array = [];
+      result[0].sell.map((Element) => {
+        array.push(Element["productID"]);
+      });
+      ProductModel.find({ productID: { $in: array } }).then((result) => {
+        console.log(result);
+        res.send(result);
+      });
     })
     .catch((err) => {
       res.send(err);

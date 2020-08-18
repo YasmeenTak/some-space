@@ -5,6 +5,7 @@ import chairs from "./chairs.jpg";
 import axios from "axios";
 import "./style.css";
 import jwt_decode from "jwt-decode";
+import moment from "moment";
 //import { Card } from '@material-ui/core';
 class Show extends Component {
   constructor(props) {
@@ -78,40 +79,50 @@ class Show extends Component {
     console.log(Products, "productssss");
     return (
       <div className="ShowMyAds__div">
-        {Products.map((Products, index) => (
-          <Container className="containerDiv">
-            <Card className="ShowMyAds__Card">
-              <div className="imgProduct__div">
-                <img
-                  className="img-fluid"
-                  alt="product img"
-                  src={Products.images}
-                ></img>
-              </div>
-              <div className="details__div">
-                <p>{Products.title}</p>
-                <p>{Products.description}</p>
-                <p>{Products.price}</p>
-                <p>{Products.category}</p>
-                <p>{Products.location}</p>
-                <p>{Products.dateOfAdd}</p>
-              </div>
-              <div className="Btn">
-                <Button className="Edit_Btn" onClick={this.updateItem}>
-                  Edit
+        {Products.map((ele, index) => {
+          var category = 'Furniture';
+          if (ele.category === 3) {
+            category = 'Machine';
+          } else if (ele.category === 1) {
+            category = 'Fashion';
+          }
+          return (
+            <Container className="containerDiv">
+              <Card className="ShowMyAds__Card">
+                <div className="imgProduct__div">
+                  <img
+                    className="img-fluid"
+                    alt="product img"
+                    src={ele.images}
+                  ></img>
+                </div>
+                <div className="details__div">
+                  <p>Title: {ele.title}</p>
+                  <p>Description: {ele.description}</p>
+                  <p>Price: {ele.price}</p>
+                  <p>Category: {category}</p>
+                  <p>Location: {ele.location}</p>
+                  <p>Date: {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}</p>
+                </div>
+                <div className="Btn">
+                  <Button className="Edit_Btn" onClick={this.updateItem}>
+                    Edit
                 </Button>
-                <Button
-                  className="Remove_Btn"
-                  onClick={(event) =>
-                    this.handleRemove(event, Products.productID)
-                  }
-                >
-                  Remove
+                  <Button
+                    className="Remove_Btn"
+                    onClick={(event) =>
+                      this.handleRemove(event, Products.productID)
+                    }
+                  >
+                    Remove
                 </Button>
-              </div>
-            </Card>
-          </Container>
-        ))}
+                </div>
+              </Card>
+            </Container>
+          )
+        })
+
+        }
       </div>
     );
   }
