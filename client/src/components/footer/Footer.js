@@ -200,8 +200,8 @@ class Footer extends React.Component {
                     onChange={this.handleChange}
                   ></input>
                   <label className="txtmsg">Message </label>
-                  <textarea
-                    className="txtarea"
+                  <textarea 
+                    className="txtarea" 
                     name="senderMessage"
                     onChange={this.handleChange}
                   ></textarea>

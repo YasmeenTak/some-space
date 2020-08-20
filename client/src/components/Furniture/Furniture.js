@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import jwt_decode from "jwt-decode";
 import SearchFeature from "../SearchFeature/SearchFeature";
 
@@ -74,14 +76,24 @@ class Furniture extends Component {
     const products = this.state.products ? this.state.products : [];
     return (
       <div>
+        <Link to="/Home">
+        <FontAwesomeIcon
+            icon={faAngleDoubleLeft}
+            style={{ color: 'hotPink', fontSize: '40' }}
+          />
+          <i class='fas fa-angle-double-left'></i>
+          
+        </Link>
         {/* <SearchFeature getProducts={this.getProducts} /> */}
 
         <ul>
           {products.map((element, index) => {
+                        console.log(element, 'elemeeeeeeeeeeeeent');
+
             var quality = 'very good';
-            if (element.quality === 3) {
+            if (element.quality == "3") {
               quality = 'good';
-            } else if (element.quality === 1) {
+            } else if (element.quality == "1") {
               quality = 'Exellent';
             }
             return (

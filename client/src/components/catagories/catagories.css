@@ -1,7 +1,8 @@
 .card {
   display: inline-block;
   width: 25%;
-  margin-left: 60px;
+  margin-left: 15px;
+  background-color: #f1f5f8;
 }
 .card .img {
   width: 200px;
@@ -24,4 +25,15 @@
 }
 .card-img-top {
   height: 300px;
+}
+
+.card {
+  position: relative; 
+  /* margin: .8rem 0 1rem 0; */
+  background-color: #f1f5f8; 
+  -webkit-transition: -webkit-box-shadow .25s;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: 2px; 
 }

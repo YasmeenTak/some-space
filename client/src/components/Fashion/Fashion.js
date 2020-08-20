@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Card, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
-import jwt_decode from "jwt-decode";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Card, Button } from 'react-bootstrap';
+import { Link, Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
+import jwt_decode from 'jwt-decode';
 
 class Fashion extends Component {
   constructor(props) {
@@ -16,9 +18,9 @@ class Fashion extends Component {
   };
   handleSubmit(e) {
     if (localStorage.token) {
-      window.location.href = "/Payment";
+      window.location.href = '/Payment';
     } else {
-      window.location.href = "/Register";
+      window.location.href = '/Register';
       // this.props.history.push("/Login");
     }
   }
@@ -27,48 +29,58 @@ class Fashion extends Component {
       const token = localStorage.token;
       var decode = jwt_decode(token);
       axios
-        .post("/addToCardUser", { productID: id, UserID: decode.UserID })
+        .post('/addToCardUser', { productID: id, UserID: decode.UserID })
         .then((result) => {
-          console.log("this is in card in ", result);
+          console.log('this is in card in ', result);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      window.location.href = "/Register";
+      window.location.href = '/Register';
       // this.props.history.push("/Login");
     }
   }
   async getProducts() {
     await axios
-      .post("/category", { category: 1 })
+      .post('/category', { category: 1 })
       .then((result) => {
-        console.log(result);
+        console.log(result.data,"yuguyguf");
         const finalData = result.data;
 
-        console.log("=====>>>>////???>>>", finalData);
+        console.log('=====>>>>////???>>>', finalData);
         this.setState({ products: finalData });
       })
       .catch((err) => {
-        console.log("it is an error in fashion compoments", err);
+        console.log('it is an error in fashion compoments', err);
       });
   }
   render() {
     const products = this.state.products ? this.state.products : [];
+    console.log(products, 'prod');
     return (
       <div>
+        <Link to='/Home'>
+        <FontAwesomeIcon
+            icon={faAngleDoubleLeft}
+            style={{ color: 'hotPink', fontSize: '40' }}
+          />
+          <i class='fas fa-angle-double-left'></i>
+          
+        </Link>
         <ul>
           {products.map((element, index) => {
+            console.log(element, 'elemeeeeeeeeeeeeent');
             var quality = 'very good';
-            if (element.quality === 3) {
+            if (element.quality == '3') {
               quality = 'good';
-            } else if (element.quality === 1) {
+            } else if (element.quality == '1') {
               quality = 'Exellent';
             }
             return (
               <row>
-                <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={element.images} />
+                <Card style={{ width: '20rem' }}>
+                  <Card.Img variant='top' src={element.images} />
                   <Card.Body>
                     <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
@@ -77,13 +89,13 @@ class Fashion extends Component {
                     <Card.Text>Location: {element.location}</Card.Text>
                     {/* <Link to="/Payment" className="brand-logo"> */}
                     <Button
-                      className="btn"
+                      className='btn'
                       style={{
-                        marginLeft: "40px",
-                        margin: "30px",
-                        backgroundColor: "#EC407A",
+                        marginLeft: '40px',
+                        margin: '30px',
+                        backgroundColor: '#EC407A',
                       }}
-                      variant="primary"
+                      variant='primary'
                       value={this.state.products}
                       onClick={() => {
                         this.handleSubmit(element._id);
@@ -94,8 +106,8 @@ class Fashion extends Component {
                     {/* </Link> */}
 
                     <Button
-                      style={{ backgroundColor: "#EC407A" }}
-                      variant="primary"
+                      style={{ backgroundColor: '#EC407A' }}
+                      variant='primary'
                       value={this.state.products}
                       onClick={() => {
                         this.handleClick(element._id);

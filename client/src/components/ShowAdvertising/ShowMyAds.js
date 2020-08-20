@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Card, Button, Container } from "react-bootstrap";
-import chairs from "./chairs.jpg";
-import axios from "axios";
-import "./style.css";
-import jwt_decode from "jwt-decode";
-import moment from "moment";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Card, Button, Container } from 'react-bootstrap';
+import chairs from './chairs.jpg';
+import axios from 'axios';
+import './style.css';
+import jwt_decode from 'jwt-decode';
+import moment from 'moment';
 //import { Card } from '@material-ui/core';
 class Show extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class Show extends Component {
   }
   state = {
     Products: [],
-    productID: "",
+    productID: '',
   };
   //-------------------------------Get all product user added for sell--------------------------
   componentDidMount() {
@@ -38,7 +38,7 @@ class Show extends Component {
     const token = localStorage.token;
     var decode = jwt_decode(token);
     axios
-      .delete("/remove-one", {
+      .delete('/remove-one', {
         data: {
           UserID: decode.UserID,
           productID: productID,
@@ -49,7 +49,7 @@ class Show extends Component {
         //console.log(res);
       })
       .catch((err) => {
-        console.log("Error", err);
+        console.log('Error', err);
       });
     window.location.reload();
   };
@@ -76,9 +76,9 @@ class Show extends Component {
   //----------------------------------------------------------------------------------------
   render() {
     const { Products } = this.state;
-    console.log(Products, "productssss");
+    console.log(Products, 'productssss');
     return (
-      <div className="ShowMyAds__div">
+      <div className='ShowMyAds__div'>
         {Products.map((ele, index) => {
           var category = 'Furniture';
           if (ele.category === 3) {
@@ -87,16 +87,17 @@ class Show extends Component {
             category = 'Fashion';
           }
           return (
-            <Container className="containerDiv">
-              <Card className="ShowMyAds__Card">
-                <div className="imgProduct__div">
+            <Container className='containerDiv'>
+              <Card className='ShowMyAds__Card'>
+                <div className='imgProduct__div'>
                   <img
-                    className="img-fluid"
-                    alt="product img"
+                    className='img-fluid'
+                    alt='product img'
                     src={ele.images}
                   ></img>
                 </div>
-                <div className="details__div">
+
+                <div className='details__div'>
                   <p>Title: {ele.title}</p>
                   <p>Description: {ele.description}</p>
                   <p>Price: {ele.price}</p>
@@ -104,25 +105,21 @@ class Show extends Component {
                   <p>Location: {ele.location}</p>
                   <p>Date: {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}</p>
                 </div>
-                <div className="Btn">
-                  <Button className="Edit_Btn" onClick={this.updateItem}>
+                <div className='Btn'>
+                  <Button className='Edit_Btn' onClick={this.updateItem}>
                     Edit
-                </Button>
+                  </Button>
                   <Button
-                    className="Remove_Btn"
-                    onClick={(event) =>
-                      this.handleRemove(event, Products.productID)
-                    }
+                    className='Remove_Btn'
+                    onClick={(event) => this.handleRemove(event, ele.productID)}
                   >
                     Remove
-                </Button>
+                  </Button>
                 </div>
               </Card>
             </Container>
-          )
-        })
-
-        }
+          );
+        })}
       </div>
     );
   }

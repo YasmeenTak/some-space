@@ -31,7 +31,7 @@ class Catagories extends React.Component {
   }
   render() {
     return (
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%',color:"#5a6578"}}>
         <h
           style={{
             fontSize: '30px',
@@ -42,7 +42,7 @@ class Catagories extends React.Component {
             width: '100 %',
           }}
         >
-          YOU CAN ALWAYS FIND SOMRTHING YOU WANT
+          YOU CAN ALWAYS FIND SOMETHING YOU WANT
         </h>
         <div className='page wrapper'>
           <div class='center'>
@@ -51,7 +51,7 @@ class Catagories extends React.Component {
                 <Card.Img variant='top' src={require('./machine.png')} />
                 <Card.Body>
                   <Card.Title style={{ fontSize: '45px' }}>MACHINE</Card.Title>
-                  <Card.Text>
+                  <Card.Text style={{position: "center"}}>
                     Nothing lasts forever, not even the best machines. And
                     everything can be reused.
                   </Card.Text>
