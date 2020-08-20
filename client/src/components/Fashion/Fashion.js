@@ -1,26 +1,129 @@
-import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Card, Button } from 'react-bootstrap';
+import { Link, Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
+import jwt_decode from 'jwt-decode';
+
 class Fashion extends Component {
+  constructor(props) {
+    super(props);
+
+    console.log(this.props);
+    this.getProducts();
+  }
+  state = {
+    products: [],
+  };
+  handleSubmit(e) {
+    if (localStorage.token) {
+      window.location.href = '/Payment';
+    } else {
+      window.location.href = '/Register';
+      // this.props.history.push("/Login");
+    }
+  }
+  handleClick(id) {
+    if (localStorage.token) {
+      const token = localStorage.token;
+      var decode = jwt_decode(token);
+      axios
+        .post('/addToCardUser', { productID: id, UserID: decode.UserID })
+        .then((result) => {
+          console.log('this is in card in ', result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      window.location.href = '/Register';
+      // this.props.history.push("/Login");
+    }
+  }
+  async getProducts() {
+    await axios
+      .post('/category', { category: 1 })
+      .then((result) => {
+        console.log(result.data,"yuguyguf");
+        const finalData = result.data;
+
+        console.log('=====>>>>////???>>>', finalData);
+        this.setState({ products: finalData });
+      })
+      .catch((err) => {
+        console.log('it is an error in fashion compoments', err);
+      });
+  }
   render() {
+    const products = this.state.products ? this.state.products : [];
+    console.log(products, 'prod');
     return (
       <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Img
-            variant="top"
-            src="https://media.missguided.com/s/missguided/Y9206288_set/1/tall-premium-black-bandage-organza-sleeve-mini-dress"
+
+        <Link to='/Home'>
+        <FontAwesomeIcon
+            icon={faAngleDoubleLeft}
+            style={{ color: 'hotPink', fontSize: '40' }}
           />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+          <i class='fas fa-angle-double-left'></i>
+          
+        </Link>
+        <ul>
+          {products.map((element, index) => {
+            console.log(element, 'elemeeeeeeeeeeeeent');
+            var quality = 'very good';
+            if (element.quality == '3') {
+              quality = 'good';
+            } else if (element.quality == '1') {
+              quality = 'Exellent';
+            }
+            return (
+              <row>
+                <Card style={{ width: '20rem' }}>
+                  <Card.Img variant='top' src={element.images} />
+                  <Card.Body>
+                    <Card.Title>{element.title}</Card.Title>
+                    <Card.Text>Price: $ {element.price}</Card.Text>
+                    <Card.Text>Quality: {quality}</Card.Text>
+                    <Card.Text>Description: {element.description}</Card.Text>
+                    <Card.Text>Location: {element.location}</Card.Text>
+                    {/* <Link to="/Payment" className="brand-logo"> */}
+                    <Button
+                      className='btn'
+                      style={{
+                        marginLeft: '40px',
+                        margin: '30px',
+                        backgroundColor: '#EC407A',
+                      }}
+                      variant='primary'
+                      value={this.state.products}
+                      onClick={() => {
+                        this.handleSubmit(element._id);
+                      }}
+                    >
+                      buy
+                    </Button>
+                    {/* </Link> */}
+
+                    <Button
+                      style={{ backgroundColor: '#EC407A' }}
+                      variant='primary'
+                      value={this.state.products}
+                      onClick={() => {
+                        this.handleClick(element._id);
+                      }}
+                    >
+                      To Cart
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </row>
+            );
+          })}
+        </ul>
       </div>
     );
   }
 }
-
 export default Fashion;

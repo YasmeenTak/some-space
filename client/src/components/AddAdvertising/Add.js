@@ -1,10 +1,18 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 const Catagory = [
   { key: "1", value: "Fashion" },
   { key: "2", value: "Furniture" },
   { key: "3", value: "Machines" },
+];
+
+const Quality = [
+  { key: "1", value: "Exellent" },
+  { key: "2", value: "very good" },
+  { key: "3", value: "good" },
 ];
 
 function Add() {
@@ -13,6 +21,7 @@ function Add() {
   const [PriceValue, setPriceValue] = useState(0);
   const [CatagoryValue, setCatagoryValue] = useState("1");
   const [LocationValue, setLocationValue] = useState("");
+  const [QualityValue, setQualityValue] = useState("1");
   //const [ImgUrl, setImgUrl] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,6 +42,12 @@ function Add() {
 
   const onCatagorySelectChange = (event) => {
     setCatagoryValue(event.currentTarget.value);
+  };
+
+  const onQualitySelectChange = (event) => {
+    console.log(event,"eveeeeent")
+    console.log(event.currentTarget.value)
+    setQualityValue(event.currentTarget.value);
   };
 
   const onLocationChange = (event) => {
@@ -61,45 +76,57 @@ function Add() {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (!TitleValue || !DescriptionValue || !PriceValue || !CatagoryValue) {
+    if (
+      !TitleValue ||
+      !DescriptionValue ||
+      !PriceValue ||
+      !CatagoryValue ||
+      !QualityValue
+    ) {
       return alert("fill all the fields first!");
     }
 
+    //add product based on uesr token
+    const token = localStorage.getItem("token");
+    var decoded = jwt_decode(token);
+    console.log(decoded, "get token for add product");
+
+    function zerobug() {
+      return Math.floor(10000000 + Math.random() * 90000000);
+    }
+
     const variables = {
+      productID: zerobug(),
       title: TitleValue,
       description: DescriptionValue,
       price: PriceValue,
       images: image,
       category: CatagoryValue,
+      quality: QualityValue,
       location: LocationValue,
+      token: token,
     };
-
-    // axios
-    //   .post("/addProduct", variables)
-    //   console
-    //     .log(variables)
-    //     .then((response) => {
-    //       alert("Product Successfully Uploaded");
-    //       console.log("Product Successfully Uploaded");
-
-    //       //if CatagoryValue == 1 go to machine
-    //       //if CatagoryValue == 2
-    //     })
-    //     .catch((err) => {
-    //       alert("Failed to upload Product");
-    //       console.log("Failed to upload Product");
-    //       console.log(err);
-    //     });
-    axios.post("/addProduct", variables).then((response) => {
-      if (response.data) {
-        alert("Product Successfully Uploaded");
-        console.log("Product Successfully Uploaded");
-        // props.history.push("/");
-      } else {
-        alert("Failed to upload Product");
-        console.log("Failed to upload Product");
-      }
-    });
+    console.log(variables, "vaaaaaar")
+    axios
+      .post("/addProduct", variables)
+      .then((response) => {
+        if (response.data) {
+          alert("Product Successfully Uploaded");
+          console.log("Product Successfully Uploaded");
+          axios.post("/addToUserSell", variables).then(() => {
+            console.log(
+              "Product Successfully add to user sell array we are in add components"
+            );
+          });
+          // props.history.push("/");
+        } else {
+          alert("Failed to upload Product");
+          console.log("Failed to upload Product");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -116,7 +143,7 @@ function Add() {
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          <img src={image} style={{ width: "300px" }} />
+          <img alt="MyImage" src={image} style={{ width: "300px" }} />
         )}
       </div>
       <div
@@ -146,6 +173,19 @@ function Add() {
         <br />
         <br />
         <select
+          onChange={onQualitySelectChange}
+          value={QualityValue}
+          style={{ display: "block" }}
+        >
+          {Quality.map((item) => (
+            <option key={item.key} value={item.key}>
+              {item.value}
+            </option>
+          ))}
+        </select>
+        <br />
+        <br />
+        <select
           onChange={onCatagorySelectChange}
           value={CatagoryValue}
           style={{ display: "block" }}
@@ -158,8 +198,9 @@ function Add() {
         </select>
         <br />
         <br />
-
-        <button onClick={onSubmit}>Submit</button>
+        {/* <Link to="/ShowMyAds"> */}
+          <button onClick={onSubmit}>Submit</button>
+        {/* </Link> */}
       </form>
     </div>
   );

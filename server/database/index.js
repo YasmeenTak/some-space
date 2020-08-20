@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost:27017/someSpace", { useNewUrlParser: true })
+  .connect(
+    "mongodb+srv://EmanAbuWaked:emanmoon93@cluster0.ez1k5.mongodb.net/someSpace?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
   .then(() => {
     console.log("connected");
   })
@@ -9,20 +12,3 @@ mongoose
   });
 
 module.exports = mongoose;
-
-// //------------------------------------------
-// let ProductModel = mongoose.model('product', productSchema);
-// // let productDoc = new ProductModel({
-// //   idProduct: '123',
-// //   title: 'table',
-// //   category: '123123',
-// // });
-// // productDoc.save((err) => {
-// //   if (err) {
-// //     console.log('error while saving to DB', err);
-// //   } else {
-// //     console.log('product Saved');
-// //   }
-// // });
-// module.exports.UserModel = this.UserModel;
-// module.exports.ProductModel = this.ProductModel;
