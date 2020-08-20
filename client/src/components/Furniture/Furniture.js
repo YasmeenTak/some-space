@@ -19,8 +19,17 @@ class Furniture extends Component {
   };
 
   handleSubmit(e) {
+    console.log(e);
     if (localStorage.token) {
-      window.location.href = "/Payment";
+      axios
+        .post("/removeOneFromCarts", { productID: e })
+        .then((result) => {
+          console.log("delete it from product");
+          window.location.href = "/Payment";
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       window.location.href = "/Register";
       // this.props.history.push("/Login");
@@ -31,6 +40,7 @@ class Furniture extends Component {
     if (localStorage.token) {
       const token = localStorage.token;
       var decode = jwt_decode(token);
+      console.log(decode.UserID, "Hi this is inside ");
       axios
         .post("/addToCardUser", { productID: id, UserID: decode.UserID })
         .then((result) => {
@@ -83,12 +93,12 @@ class Furniture extends Component {
           />
           <i class='fas fa-angle-double-left'></i>
           
+
         </Link>
         {/* <SearchFeature getProducts={this.getProducts} /> */}
 
         <ul>
           {products.map((element, index) => {
-                        console.log(element, 'elemeeeeeeeeeeeeent');
 
             var quality = 'very good';
             if (element.quality == "3") {

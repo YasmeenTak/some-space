@@ -1,28 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 const Catagory = [
-  { key: '1', value: 'Fashion' },
-  { key: '2', value: 'Furniture' },
-  { key: '3', value: 'Machines' },
+  { key: "1", value: "Fashion" },
+  { key: "2", value: "Furniture" },
+  { key: "3", value: "Machines" },
 ];
 
 const Quality = [
-  { key: '1', value: 'Exellent' },
-  { key: '2', value: 'very good' },
-  { key: '3', value: 'good' },
+  { key: "1", value: "Exellent" },
+  { key: "2", value: "very good" },
+  { key: "3", value: "good" },
 ];
 
 function Add() {
-  const [TitleValue, setTitleValue] = useState('');
-  const [DescriptionValue, setDescriptionValue] = useState('');
+  const [TitleValue, setTitleValue] = useState("");
+  const [DescriptionValue, setDescriptionValue] = useState("");
   const [PriceValue, setPriceValue] = useState(0);
-  const [CatagoryValue, setCatagoryValue] = useState('1');
-  const [LocationValue, setLocationValue] = useState('');
-  const[QualityValue, setQualityValue] = useState('1');
+  const [CatagoryValue, setCatagoryValue] = useState("1");
+  const [LocationValue, setLocationValue] = useState("");
+  const [QualityValue, setQualityValue] = useState("1");
   //const [ImgUrl, setImgUrl] = useState("");
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {}, []);
@@ -56,14 +57,14 @@ function Add() {
   function uploadImage(e) {
     const files = e.target.files;
     const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'some-space');
+    data.append("file", files[0]);
+    data.append("upload_preset", "some-space");
     setLoading(true);
     axios
-      .post('https://api.cloudinary.com/v1_1/dvsayvxsy/image/upload', data)
+      .post("https://api.cloudinary.com/v1_1/dvsayvxsy/image/upload", data)
       .then((response) => {
         console.log(response);
-        const imgUrl = response.data['secure_url'];
+        const imgUrl = response.data["secure_url"];
         setImage(imgUrl);
         setLoading(false);
       })
@@ -75,14 +76,20 @@ function Add() {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (!TitleValue || !DescriptionValue || !PriceValue || !CatagoryValue || !QualityValue) {
-      return alert('fill all the fields first!');
+    if (
+      !TitleValue ||
+      !DescriptionValue ||
+      !PriceValue ||
+      !CatagoryValue ||
+      !QualityValue
+    ) {
+      return alert("fill all the fields first!");
     }
 
-    //add product based on uesr token 
-    const token = localStorage.getItem('token');
+    //add product based on uesr token
+    const token = localStorage.getItem("token");
     var decoded = jwt_decode(token);
-    console.log(decoded, 'get token for add product');
+    console.log(decoded, "get token for add product");
 
     function zerobug() {
       return Math.floor(10000000 + Math.random() * 90000000);
@@ -101,20 +108,20 @@ function Add() {
     };
     console.log(variables, "vaaaaaar")
     axios
-      .post('/addProduct', variables)
+      .post("/addProduct", variables)
       .then((response) => {
         if (response.data) {
-          alert('Product Successfully Uploaded');
-          console.log('Product Successfully Uploaded');
-          axios.post('/addToUserSell', variables).then(() => {
+          alert("Product Successfully Uploaded");
+          console.log("Product Successfully Uploaded");
+          axios.post("/addToUserSell", variables).then(() => {
             console.log(
-              'Product Successfully add to user sell array we are in add components'
+              "Product Successfully add to user sell array we are in add components"
             );
           });
           // props.history.push("/");
         } else {
-          alert('Failed to upload Product');
-          console.log('Failed to upload Product');
+          alert("Failed to upload Product");
+          console.log("Failed to upload Product");
         }
       })
       .catch((err) => {
@@ -123,26 +130,26 @@ function Add() {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: '2rem auto' }}>
-      <div className='App'>
+    <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
+      <div className="App">
         <h2> Upload Product</h2>
         {/* <p>Test: {image}</p> */}
         <input
-          type='file'
-          name='file'
-          placeholder='Upload an image'
+          type="file"
+          name="file"
+          placeholder="Upload an image"
           onChange={uploadImage}
         />
         {loading ? (
           <h3>Loading...</h3>
         ) : (
-          <img alt='MyImage' src={image} style={{ width: '300px' }} />
+          <img alt="MyImage" src={image} style={{ width: "300px" }} />
         )}
       </div>
       <div
         style={{
-          textAlign: 'center',
-          marginBottom: '2rem',
+          textAlign: "center",
+          marginBottom: "2rem",
         }}
       ></div>
 
@@ -158,7 +165,7 @@ function Add() {
         <br />
         <br />
         <label>Price($)</label>
-        <input onChange={onPriceChange} value={PriceValue} type='number' />
+        <input onChange={onPriceChange} value={PriceValue} type="number" />
         <br />
         <br />
         <label>Location</label>
@@ -168,7 +175,7 @@ function Add() {
         <select
           onChange={onQualitySelectChange}
           value={QualityValue}
-          style={{ display: 'block' }}
+          style={{ display: "block" }}
         >
           {Quality.map((item) => (
             <option key={item.key} value={item.key}>
@@ -181,7 +188,7 @@ function Add() {
         <select
           onChange={onCatagorySelectChange}
           value={CatagoryValue}
-          style={{ display: 'block' }}
+          style={{ display: "block" }}
         >
           {Catagory.map((item) => (
             <option key={item.key} value={item.key}>
@@ -191,8 +198,9 @@ function Add() {
         </select>
         <br />
         <br />
-
-        <button onClick={onSubmit}>Submit</button>
+        {/* <Link to="/ShowMyAds"> */}
+          <button onClick={onSubmit}>Submit</button>
+        {/* </Link> */}
       </form>
     </div>
   );

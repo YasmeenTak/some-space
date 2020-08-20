@@ -1,8 +1,11 @@
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './style.css';
 import { Redirect } from 'react-router-dom';
+
+
 export default class Register extends Component {
   state = {
     firstName: '',
@@ -62,6 +65,7 @@ export default class Register extends Component {
     const { errors } = this.state;
     return (
       <div>
+
         <div className='SignUp-page__div'>
           <label htmlFor='email' className='SignUp-page__label'>
             First Name

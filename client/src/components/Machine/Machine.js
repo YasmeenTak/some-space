@@ -69,6 +69,7 @@ class Machine extends Component {
             style={{ color: 'hotPink', fontSize: '40' }}
           />
           <i class='fas fa-angle-double-left'></i>
+
         </Link>
         {/* <ReactSearchBox
           placeholder="Search for products"
@@ -85,11 +86,11 @@ class Machine extends Component {
         /> */}
         <ul>
           {products.map((element, index) => {
-            var quality = 'very good';
+            var quality = "very good";
             if (element.quality === 3) {
-              quality = 'good';
+              quality = "good";
             } else if (element.quality === 1) {
-              quality = 'Exellent';
+              quality = "Exellent";
             }
             return (
               <row>

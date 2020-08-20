@@ -60,6 +60,7 @@ class Fashion extends Component {
     console.log(products, 'prod');
     return (
       <div>
+
         <Link to='/Home'>
         <FontAwesomeIcon
             icon={faAngleDoubleLeft}

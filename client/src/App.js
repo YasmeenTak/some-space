@@ -27,8 +27,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='App'>
-          <searchByTitle />
+        <div className="App">
+          {/* <searchByTitle /> */}
+
           <Navbar />
 
           {/* <ShopNow />

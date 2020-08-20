@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Card, Button, Container } from 'react-bootstrap';
-import chairs from './chairs.jpg';
-import axios from 'axios';
-import './style.css';
-import jwt_decode from 'jwt-decode';
-import moment from 'moment';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Card, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import chairs from "./chairs.jpg";
+import axios from "axios";
+import "./style.css";
+import jwt_decode from "jwt-decode";
+import moment from "moment";
+
 //import { Card } from '@material-ui/core';
 import icon from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -81,13 +83,18 @@ class Show extends Component {
     const { Products } = this.state;
     console.log(Products, 'productssss');
     return (
-      <div className='ShowMyAds__div'>
+      <div className="ShowMyAds__div">
+        <h> click here to add your products</h>
+        <Link to="/Add">
+          <button>Add</button>
+        </Link>
+
         {Products.map((ele, index) => {
-          var category = 'Furniture';
+          var category = "Furniture";
           if (ele.category === 3) {
-            category = 'Machine';
+            category = "Machine";
           } else if (ele.category === 1) {
-            category = 'Fashion';
+            category = "Fashion";
           }
           var quality = 'Exellent';
           if (ele.quality === '3') {
@@ -111,15 +118,17 @@ class Show extends Component {
                   <p>Description: {ele.description}</p>
                   <p>Price: {ele.price}</p>
                   <p>Category: {category}</p>
+                  <p>Quality: {ele.quality}</p>
                   <p>Location: {ele.location}</p>
-                  <p>Date: {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}</p>
+                  <p>Date: {moment(ele.dateOfAdd.date).format("DD-MM-YYYY")}</p>
                 </div>
                 <div className='Btn'>
                   <Button className='Edit_Btn' onClick={this.updateItem}>
                     Edit
                   </Button>
                   <Button
-                    className='Remove_Btn'
+                    className="Remove_Btn"
+
                     onClick={(event) => this.handleRemove(event, ele.productID)}
                   >
                     Remove

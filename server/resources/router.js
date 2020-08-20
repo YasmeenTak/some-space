@@ -21,13 +21,20 @@ router.post('/category', controller.category);
 // router.get("/buyProduct", controller.buyProduct);
 // router.get("/showMyAds", controller.showMyAds);
 // router.get('/showMyCarts', controller.showMyCarts);
-router.post('/showMyAds', controller.showMyAds);
-router.get('/showMyCarts', controller.showMyCarts);
-router.get('/finduser/:UserID', controller.findUser);
-router.delete('/remove-one', controller.removeOne);
-router.get('/findProduct/:UserID', controller.findProduct);
-router.post('/addToCardUser', controller.addToCardUesr);
-router.get('/findAllProducts', controller.findAllProducts);
-router.get('/showMyCarts/:token', controller.showcartsUser);
-router.put('/updateOne/:productID', controller.updateOne);
+router.post("/showMyAds", controller.showMyAds);
+router.post("/showMyCarts", controller.showMyCarts);
+router.get("/finduser/:UserID", controller.findUser);
+router.delete("/remove-one", controller.removeOne);
+router.get("/findProduct/:UserID", controller.findProduct);
+
+router.post("/addToCardUser", controller.addToCardUesr);
+
+router.get("/addToCardUser/:UserID", controller.findProductInCarts);
+
+router.get("/findAllProducts", controller.findAllProducts);
+router.get("/showMyCarts/:token", controller.showcartsUser);
+router.put("/updateOne/:productID", controller.updateOne);
+router.post("/removeOneFromCarts", controller.removeOneFromCarts);
+
+
 module.exports = router;
