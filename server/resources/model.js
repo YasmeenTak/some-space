@@ -11,7 +11,7 @@ let userSchema = mongoose.Schema({
   gender: { type: String },
   buy: [{ productID: Number, date: { type: Date, default: Date.now } }],
   sell: [{ productID: Number, date: { type: Date, default: Date.now } }],
-  cart: [{ productID: String }],
+  carts: [{ productID: String, date: { type: Date, default: Date.now } }],
   quantity: { type: Number },
 });
 let UserModel = mongoose.model("user", userSchema);
@@ -33,3 +33,5 @@ module.exports = {
   UserModel,
   ProductModel,
 };
+
+//..............

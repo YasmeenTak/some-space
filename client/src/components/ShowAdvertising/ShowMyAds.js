@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import chairs from "./chairs.jpg";
 import axios from "axios";
 import "./style.css";
@@ -79,12 +80,16 @@ class Show extends Component {
     console.log(Products, "productssss");
     return (
       <div className="ShowMyAds__div">
+        <h> click here to add your products</h>
+        <Link to="/Add">
+          <button>Add</button>
+        </Link>
         {Products.map((ele, index) => {
-          var category = 'Furniture';
+          var category = "Furniture";
           if (ele.category === 3) {
-            category = 'Machine';
+            category = "Machine";
           } else if (ele.category === 1) {
-            category = 'Fashion';
+            category = "Fashion";
           }
           return (
             <Container className="containerDiv">
@@ -101,28 +106,25 @@ class Show extends Component {
                   <p>Description: {ele.description}</p>
                   <p>Price: {ele.price}</p>
                   <p>Category: {category}</p>
+                  <p>Quality: {ele.quality}</p>
                   <p>Location: {ele.location}</p>
-                  <p>Date: {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}</p>
+                  <p>Date: {moment(ele.dateOfAdd.date).format("DD-MM-YYYY")}</p>
                 </div>
                 <div className="Btn">
                   <Button className="Edit_Btn" onClick={this.updateItem}>
                     Edit
-                </Button>
+                  </Button>
                   <Button
                     className="Remove_Btn"
-                    onClick={(event) =>
-                      this.handleRemove(event, Products.productID)
-                    }
+                    onClick={(event) => this.handleRemove(event, ele.productID)}
                   >
                     Remove
-                </Button>
+                  </Button>
                 </div>
               </Card>
             </Container>
-          )
-        })
-
-        }
+          );
+        })}
       </div>
     );
   }

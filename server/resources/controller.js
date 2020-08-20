@@ -248,7 +248,7 @@ exports.showMyAds = async (req, res) => {
     });
 };
 //-------------------------------- Show My Carts ----------------------------------------//
-exports.showMyCarts = async (req, res) => {
+exports.showMyCarts = (req, res) => {
   var decoded = jwt_decode(req.body.token);
   id = decoded.UserID;
   UserModel.find({ UserID: id })
@@ -257,11 +257,10 @@ exports.showMyCarts = async (req, res) => {
       result[0].carts.map((Element) => {
         array.push(Element["productID"]);
       });
-      ProductModel.find({ productID: { $in: array } }).then((result) => {
-        // console.log(result);
+      ProductModel.find({ _id: { $in: array } }).then((result) => {
+        console.log(result);
         res.send(result);
       });
-      // res.send(result[0].carts);
     })
     .catch((err) => {
       res.send(err);
@@ -273,7 +272,6 @@ exports.findUser = function (req, res) {
   UserModel.find({ UserID: UserID })
     .then((result) => {
       res.send(result);
-      //console.log(result, 'hiiiiiiiiiiiiiii');
     })
     .catch((err) => {
       res.send(err);
@@ -303,6 +301,7 @@ exports.removeOne = function (req, res) {
       res.status(500).send(err);
     });
 };
+
 //-------------------------------- Find Product ----------------------------------------//
 exports.findProduct = (req, res) => {
   const UserID = req.params.UserID;
@@ -314,6 +313,25 @@ exports.findProduct = (req, res) => {
       });
       ProductModel.find({ productID: { $in: array } }).then((result) => {
         console.log(result);
+        res.send(result);
+      });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+// find product from carts in user
+//---------------------------- Find Product  In User Carts-------------------------------------//
+exports.findProductInCarts = (req, res) => {
+  const UserID = req.params.UserID;
+  UserModel.find({ UserID: UserID })
+    .then((result) => {
+      const array = [];
+      result[0].carts.map((Element) => {
+        array.push(Element["productID"]);
+      });
+      ProductModel.find({ productID: { $in: array } }).then((result) => {
         res.send(result);
       });
     })
@@ -342,6 +360,7 @@ exports.updateOne = function (req, res) {
 //*/-----------------
 
 exports.addToCardUesr = (req, res) => {
+  console.log(req.body.UserID, req.body.productID);
   UserModel.update(
     { UserID: req.body.UserID },
     { $push: { carts: { productID: req.body.productID } } }
@@ -351,6 +370,7 @@ exports.addToCardUesr = (req, res) => {
       res.send("we saved in database");
     })
     .catch((err) => {
+      console.log(err);
       res.send(err);
     });
 };
@@ -368,6 +388,17 @@ exports.showcartsUser = (req, res) => {
         console.log("resultt", result);
         res.send(result);
       });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+};
+
+exports.removeOneFromCarts = (req, res) => {
+  console.log(req.body.productID);
+  ProductModel.remove({ productID: req.body.productID })
+    .then((result) => {
+      res.send(result);
     })
     .catch((err) => {
       res.send(err);

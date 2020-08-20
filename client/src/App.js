@@ -27,7 +27,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <searchByTitle />
+          {/* <searchByTitle /> */}
           <Navbar />
          
           {/* <ShopNow />

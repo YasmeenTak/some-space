@@ -57,13 +57,16 @@ class Fashion extends Component {
     const products = this.state.products ? this.state.products : [];
     return (
       <div>
+        <Link to="/Home">
+          <button>go back</button>
+        </Link>
         <ul>
           {products.map((element, index) => {
-            var quality = 'very good';
+            var quality = "very good";
             if (element.quality === 3) {
-              quality = 'good';
+              quality = "good";
             } else if (element.quality === 1) {
-              quality = 'Exellent';
+              quality = "Exellent";
             }
             return (
               <row>

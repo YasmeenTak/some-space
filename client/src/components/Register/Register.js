@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { Redirect } from "react-router-dom";
+
 export default class Register extends Component {
   state = {
     firstName: "",
@@ -60,7 +61,7 @@ export default class Register extends Component {
     return (
       <div>
         <div className="SignUp-page__div">
-          <label htmlFor="email" className="SignUp-page__label">
+          <label htmlFor="email" className="SignUp-page__label ">
             First Name
           </label>
           <input
