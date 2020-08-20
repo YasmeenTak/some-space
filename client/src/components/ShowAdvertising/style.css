@@ -1,22 +1,75 @@
-.ShowMyAds__div {
+.fadedfx {
+  background-color: #fe5652;
+  visibility: hidden;
+}
+.fadeIn {
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* .container {
+  width: 1000px;
+}
+.cardHorizontal {
+  width: 500px;
+} */
+.card.horizontal {
+  width: 600px;
+  height: 300px;
+  margin-left: 170px;
   overflow: hidden;
-  margin-bottom: 50px;
 }
-/* .ShowMyAds__Card {
-  display: flex;
-  flex-wrap: nowrap;
-} */
-.ShowMyAds__Card {
-  display: flex;
-  width: 500px;
+.card-action {
+  margin-left: 100px;
 }
-/* .imgProduct__div {
-  background-color: royalblue;
-} */
 .img-fluid {
-  width: 150px;
-  height: 230px;
+  width: 100%;
+  height: 300px;
 }
-.details__div {
-  width: 500px;
+.fa-trash {
+  font-size: 35px;
+  color: rgb(236, 64, 122);
+  /* opacity: 0.6; */
+}
+.fa-edit {
+  font-size: 35px;
+  color: rgb(236, 64, 122);
+  margin-left: 40px;
+}
+/* .fa-trash:hover {
+  opacity: 1;
+  color: rgb(207, 89, 10);
+}
+.fa-trash:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+} */
+.card-action {
+  float: left;
+  display: block;
+}
+.details {
+  color: rgb(236, 64, 122);
+  font-weight: bold;
 }

@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import jwt_decode from 'jwt-decode';
 
-class Fashion extends Component {
+class DisplayAllProducts extends Component {
   constructor(props) {
     super(props);
 
@@ -43,44 +41,33 @@ class Fashion extends Component {
   }
   async getProducts() {
     await axios
-      .post('/category', { category: 1 })
+      .get('/findAllProducts')
       .then((result) => {
-        console.log(result.data,"yuguyguf");
+        console.log(result);
         const finalData = result.data;
 
         console.log('=====>>>>////???>>>', finalData);
         this.setState({ products: finalData });
       })
       .catch((err) => {
-        console.log('it is an error in fashion compoments', err);
+        console.log('it is an error in DisplayAllProducts compoments', err);
       });
   }
   render() {
     const products = this.state.products ? this.state.products : [];
-    console.log(products, 'prod');
     return (
       <div>
-
-        <Link to='/Home'>
-        <FontAwesomeIcon
-            icon={faAngleDoubleLeft}
-            style={{ color: 'hotPink', fontSize: '40' }}
-          />
-          <i class='fas fa-angle-double-left'></i>
-          
-        </Link>
         <ul>
           {products.map((element, index) => {
-            console.log(element, 'elemeeeeeeeeeeeeent');
             var quality = 'very good';
-            if (element.quality == '3') {
+            if (element.quality === 3) {
               quality = 'good';
-            } else if (element.quality == '1') {
+            } else if (element.quality === 1) {
               quality = 'Exellent';
             }
             return (
               <row>
-                <Card style={{ width: '20rem' }}>
+                <Card style={{ width: '18rem' }}>
                   <Card.Img variant='top' src={element.images} />
                   <Card.Body>
                     <Card.Title>{element.title}</Card.Title>
@@ -126,4 +113,4 @@ class Fashion extends Component {
     );
   }
 }
-export default Fashion;
+export default DisplayAllProducts;

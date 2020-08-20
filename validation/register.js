@@ -8,7 +8,6 @@ module.exports = function validateRegisterInput(data) {
   // data.email = !isEmpty(data.email) ? data.email : '';
   // data.password = !isEmpty(data.password) ? data.password : '';
   // data.password2 = !isEmpty(data.password2) ? data.password2 : '';
-
   //First/last Name checks
   if (Validator.isEmpty(data.firstName)) {
     errors.firstName = 'first name field is required';
@@ -23,17 +22,19 @@ module.exports = function validateRegisterInput(data) {
     errors.email = 'Email is invalid';
   }
   // Password checks
-  if (Validator.isEmpty(data.password)) {
+  if (Validator.isEmpty(data.password) && Validator.isEmpty(data.password2)) {
     errors.password = 'Password field is required';
-  }
-  if (Validator.isEmpty(data.password2)) {
-    errors.password2 = 'Confirm password field is required';
-  }
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = 'Password must be at least 6 characters';
-  }
-  if (!Validator.equals(data.password, data.password2)) {
+    errors.password2 = 'Confirm Password field is required';
+  } else if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
+    errors.passwordo = 'Password must be at least 6 characters';
+    errors.passwordo2 = 'Password must be at least 6 characters';
+  } else if (!Validator.equals(data.password, data.password2)) {
     errors.password2 = 'Passwords must match';
+    // console.log(
+    //   data.password,
+    //   data.password2,
+    //   'hereeeeeeeeeeeeeeeeeeeeeee in validation'
+    // );
   }
   return {
     errors,

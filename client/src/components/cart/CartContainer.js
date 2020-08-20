@@ -33,6 +33,8 @@ const CartContainer = ({ cart = [], total, dispatch }) => {
         <header>
           <h2>your bag</h2>
           <h4 className="empty-cart">is currently empty</h4>
+          
+          
         </header>
       </section>
     );
