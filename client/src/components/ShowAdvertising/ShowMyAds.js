@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Card, Button, Container } from "react-bootstrap";
-import chairs from "./chairs.jpg";
-import axios from "axios";
-import "./style.css";
-import jwt_decode from "jwt-decode";
-import moment from "moment";
-//import { Card } from '@material-ui/core';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Card, Button, Container } from 'react-bootstrap';
+import chairs from './chairs.jpg';
+import axios from 'axios';
+import './style.css';
+import jwt_decode from 'jwt-decode';
+import moment from 'moment';
+import icon from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 class Show extends Component {
   constructor(props) {
     super(props);
   }
   state = {
     Products: [],
-    productID: "",
+    productID: '',
   };
   //-------------------------------Get all product user added for sell--------------------------
   componentDidMount() {
@@ -38,7 +40,7 @@ class Show extends Component {
     const token = localStorage.token;
     var decode = jwt_decode(token);
     axios
-      .delete("/remove-one", {
+      .delete('/remove-one', {
         data: {
           UserID: decode.UserID,
           productID: productID,
@@ -49,7 +51,7 @@ class Show extends Component {
         //console.log(res);
       })
       .catch((err) => {
-        console.log("Error", err);
+        console.log('Error', err);
       });
     window.location.reload();
   };
@@ -76,9 +78,8 @@ class Show extends Component {
   //----------------------------------------------------------------------------------------
   render() {
     const { Products } = this.state;
-    console.log(Products, "productssss");
     return (
-      <div className="ShowMyAds__div">
+      <div className='ShowMyAds__div'>
         {Products.map((ele, index) => {
           var category = 'Furniture';
           if (ele.category === 3) {
@@ -86,45 +87,78 @@ class Show extends Component {
           } else if (ele.category === 1) {
             category = 'Fashion';
           }
+          var quality = 'Exellent';
+          if (ele.quality === '3') {
+            quality = 'Very good';
+          } else if (ele.quality === '1') {
+            quality = 'Good';
+          }
           return (
-            <Container className="containerDiv">
-              <Card className="ShowMyAds__Card">
-                <div className="imgProduct__div">
-                  <img
-                    className="img-fluid"
-                    alt="product img"
-                    src={ele.images}
-                  ></img>
+            <div class='container'>
+              <div id='card'>
+                <div class='card horizontal'>
+                  <div class='card-image'>
+                    <img
+                      className='img-fluid'
+                      alt='product img'
+                      src={ele.images}
+                    ></img>
+                  </div>
+                  <div class='card-stacked'>
+                    <div class='card-content'>
+                      <p>
+                        <span className='details'>Title: </span> {ele.title}
+                      </p>
+                      <p>
+                        <span className='details'>Description: </span>
+                        {ele.description}
+                      </p>
+                      <p>
+                        <span className='details'>Price: </span>
+                        {ele.price}
+                      </p>
+                      <p>
+                        <span className='details'>Category: </span>
+                        {category}
+                      </p>
+                      <p>
+                        <span className='details'>Location: </span>
+                        {ele.location}
+                      </p>
+                      <p>
+                        <span className='details'>Quality:</span>
+                        {ele.quality}
+                      </p>
+                      <p>
+                        <span className='details'>Date: </span>
+                        {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}
+                      </p>
+                    </div>
+                    <div class='card-action'>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        onClick={this.updateItem}
+                      />
+                      <i class='fas fa-edit'></i>
+                      <FontAwesomeIcon
+                        icon={faTrash}
+                        onClick={(event) =>
+                          this.handleRemove(event, ele.productID)
+                        }
+                      />
+                      <span className='Remove'>
+                        <i class='fas fa-trash'></i>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="details__div">
-                  <p>Title: {ele.title}</p>
-                  <p>Description: {ele.description}</p>
-                  <p>Price: {ele.price}</p>
-                  <p>Category: {category}</p>
-                  <p>Location: {ele.location}</p>
-                  <p>Date: {moment(ele.dateOfAdd.date).format('DD-MM-YYYY')}</p>
-                </div>
-                <div className="Btn">
-                  <Button className="Edit_Btn" onClick={this.updateItem}>
-                    Edit
-                </Button>
-                  <Button
-                    className="Remove_Btn"
-                    onClick={(event) =>
-                      this.handleRemove(event, Products.productID)
-                    }
-                  >
-                    Remove
-                </Button>
-                </div>
-              </Card>
-            </Container>
-          )
-        })
-
-        }
+              </div>
+            </div>
+          );
+        })}
       </div>
     );
   }
 }
 export default Show;
+//lasssssssssst edit
