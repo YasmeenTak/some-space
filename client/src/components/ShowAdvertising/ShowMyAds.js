@@ -7,6 +7,9 @@ import './style.css';
 import jwt_decode from 'jwt-decode';
 import moment from 'moment';
 //import { Card } from '@material-ui/core';
+import icon from '@material-ui/core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 class Show extends Component {
   constructor(props) {
     super(props);
@@ -86,8 +89,14 @@ class Show extends Component {
           } else if (ele.category === 1) {
             category = 'Fashion';
           }
+          var quality = 'Exellent';
+          if (ele.quality === '3') {
+            quality = 'Very good';
+          } else if (ele.quality === '1') {
+            quality = 'Good';
+          }
           return (
-            <Container className='containerDiv'>
+<Container className='containerDiv'>
               <Card className='ShowMyAds__Card'>
                 <div className='imgProduct__div'>
                   <img
@@ -125,3 +134,4 @@ class Show extends Component {
   }
 }
 export default Show;
+//lasssssssssst edit
