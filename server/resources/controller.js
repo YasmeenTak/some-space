@@ -396,7 +396,7 @@ exports.showcartsUser = (req, res) => {
 
 exports.removeOneFromCarts = (req, res) => {
   console.log(req.body.productID);
-  ProductModel.remove({ productID: req.body.productID })
+  ProductModel.remove({ _id: req.body.productID })
     .then((result) => {
       res.send(result);
     })
