@@ -44,6 +44,8 @@ function Add() {
   };
 
   const onQualitySelectChange = (event) => {
+    console.log(event,"eveeeeent")
+    console.log(event.currentTarget.value)
     setQualityValue(event.currentTarget.value);
   };
 
@@ -97,7 +99,7 @@ function Add() {
       location: LocationValue,
       token: token,
     };
-
+    console.log(variables, "vaaaaaar")
     axios
       .post('/addProduct', variables)
       .then((response) => {
@@ -169,7 +171,7 @@ function Add() {
           style={{ display: 'block' }}
         >
           {Quality.map((item) => (
-            <option key={item.key} value={item.value}>
+            <option key={item.key} value={item.key}>
               {item.value}
             </option>
           ))}

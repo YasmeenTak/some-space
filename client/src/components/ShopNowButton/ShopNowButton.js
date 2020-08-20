@@ -6,17 +6,19 @@ import { Link } from "react-router-dom";
 class ShopNow extends React.Component {
   render() {
     return (
-      <div className="ShopNow">
+      <div className="ShopNow" style={{border:0}}>
         <div className="slider">
           <div className="shadow">
             <div className="intro">
-              <h1>
+              <h1 style={{color:"#5a6578", fontStyle:"italic"}}>
                 MOST BRANDS WANT TO SEE THEIR PRODUCTS USED IN CREATIVE WAYS
               </h1>
               <br />
               <br />
               <Link to="/ShopNow" className="button">
-                <button>
+                <button style={{border:0,fontStyle:"italic"
+
+                 , fontfamily: "Gabriela" , fontSize: "35px", color:"#5a6578"}}>
                   <span>Shop Now</span>
                 </button>
               </Link>

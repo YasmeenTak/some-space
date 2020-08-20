@@ -23,7 +23,7 @@
 }
 .spaceMrg {
   margin-left: 50px;
-  margin-right: 3%;
+  margin-right: 8%;
 }
 .contact .info {
   width: 50%;
@@ -104,9 +104,9 @@ address {
   font-size: 15px;
 }
 .form #submit {
-  background-color: #ec407a;
+  background-color: hotpink;
   border: 0;
-  color: #0a0a0a;
+  color: rgb(71, 68, 68); 
   padding: 10px 15px;
   font-size: 15px;
   font-weight: bold;
@@ -143,5 +143,5 @@ address {
   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 .social-icons li img {
-  width: 50px !important;
+  width: 35px !important;
   /* margin-left: 50px;*/ }
