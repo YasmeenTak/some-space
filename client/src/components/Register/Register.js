@@ -56,9 +56,9 @@ export default class Register extends Component {
       });
   }
   render() {
-    {
-      console.log(this.state.errors);
-    }
+    // {
+    //   console.log(this.state.errors);
+    // }
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }

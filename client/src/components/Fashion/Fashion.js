@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import jwt_decode from "jwt-decode";
@@ -55,7 +55,7 @@ class Fashion extends Component {
   }
   async getProducts(value) {
     console.log(value);
-    if (value !== undefined || value === "") {
+    if (value !== undefined || value == "") {
       var newProduct = [];
       for (var i = 0; i < this.state.products.length; i++) {
         if (this.state.products[i].title == value) {

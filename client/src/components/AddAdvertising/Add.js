@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Catagory = [
   { key: "1", value: "Fashion" },

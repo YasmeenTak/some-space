@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import "./style.css";
 import { createBrowserHistory } from "history";
 export default class Login extends Component {

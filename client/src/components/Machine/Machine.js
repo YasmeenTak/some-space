@@ -3,10 +3,10 @@ import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import ReactSearchBox from "react-search-box";
+// import ReactSearchBox from "react-search-box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
-import ShopNow from "../ShopNowButton/ShopNowButton";
+// import ShopNow from "../ShopNowButton/ShopNowButton";
 // import searchByTitle from "../searchByTitle/searchByTitle";
 class Machine extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class Machine extends Component {
   }
   async getProducts(value) {
     console.log(value);
-    if (value !== undefined || value === "") {
+    if (value !== undefined || value == "") {
       var newProduct = [];
       for (var i = 0; i < this.state.products.length; i++) {
         if (this.state.products[i].title == value) {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+// import { Link, Redirect } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 class DisplayAllProducts extends Component {

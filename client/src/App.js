@@ -5,9 +5,9 @@ import Login from './components/Login/Login';
 import ShopNowButton from './components/ShopNowButton/ShopNowButton';
 import Catagories from './components/catagories/catagories';
 import Footer from './components/footer/Footer';
-import { Link, NavLink, Switch } from 'react-router-dom';
-import SignedInLinks from './components/navBar/SignedInLinks';
-import SignedOutLinks from './components/navBar/SignedOutLinks';
+import { Switch } from 'react-router-dom';
+//import SignedInLinks from './components/navBar/SignedInLinks';
+//import SignedOutLinks from './components/navBar/SignedOutLinks';
 import Logout from './components/Logout/Logout';
 import Register from './components/Register/Register';
 // import Show from './components/ShowAdvertising/ٍShow';
@@ -17,10 +17,10 @@ import Fashion from './components/Fashion/Fashion';
 import Furniture from './components/Furniture/Furniture';
 import Machine from './components/Machine/Machine';
 import Payment from './components/Payment/Payment';
-import ShopNow from './components/ShopNowButton/ShopNowButton';
+// import ShopNow from './components/ShopNowButton/ShopNowButton';
 // import Show from "./components/ShowAdvertising/ShowMyAds";
 import Show from './components/ShowAdvertising/ShowMyAds';
-import searchByTitle from './components/searchByTitle/searchByTitle';
+// import searchByTitle from './components/searchByTitle/searchByTitle';
 import DisplayAllProducts from './components/displayAllProducts/displayAllProducts';
 
 class App extends Component {

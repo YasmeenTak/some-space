@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
-import Furniture from '../Furniture/Furniture';
+// import axios from 'axios';
+// import Furniture from '../Furniture/Furniture';
 
 // const { Search } = Input;
 

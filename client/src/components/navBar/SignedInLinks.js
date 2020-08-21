@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import Dropdown from "react-dropdown";
-import $ from "jquery";
+import { Link} from "react-router-dom";
+// import Dropdown from "react-dropdown";
+// import $ from "jquery";
 import { createBrowserHistory } from "history";
 
 const SignedInLinks = () => {

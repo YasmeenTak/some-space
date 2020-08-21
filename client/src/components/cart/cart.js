@@ -23,7 +23,7 @@
 // export default Cart;
 
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Card, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // import chairs from "./chairs.jpg";
@@ -33,9 +33,9 @@ import jwt_decode from "jwt-decode";
 import moment from "moment";
 //import { Card } from '@material-ui/core';
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state = {
     Products: [],
     productID: "",
@@ -43,7 +43,7 @@ class Cart extends Component {
 
   componentDidMount() {
     const token = localStorage.token;
-    var decode = jwt_decode(token);
+    // var decode = jwt_decode(token);
     var object = { token: token };
     axios
       .post("/showMyCarts", object)
@@ -95,11 +95,11 @@ class Cart extends Component {
           <button>see our products</button>
         </Link>
         {Products.map((ele, index) => {
-          var category = "Furniture";
+          // var category = "Furniture";
           if (ele.category === 3) {
-            category = "Machine";
+            // category = "Machine";
           } else if (ele.category === 1) {
-            category = "Fashion";
+            // category = "Fashion";
           }
           return (
             <Container className="containerDiv">

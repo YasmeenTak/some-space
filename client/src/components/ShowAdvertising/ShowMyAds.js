@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Card, Button, Container } from 'react-bootstrap';
-import chairs from './chairs.jpg';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { Card, Button, Container } from 'react-bootstrap';
+// import chairs from './chairs.jpg';
 import axios from 'axios';
 import './style.css';
 import jwt_decode from 'jwt-decode';
 import moment from 'moment';
-import icon from '@material-ui/core';
+// import icon from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 class Show extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state = {
     Products: [],
     productID: '',
@@ -87,11 +87,11 @@ class Show extends Component {
           } else if (ele.category === 1) {
             category = 'Fashion';
           }
-          var quality = 'Exellent';
+          // var quality = 'Exellent';
           if (ele.quality === '3') {
-            quality = 'Very good';
+            // quality = 'Very good';
           } else if (ele.quality === '1') {
-            quality = 'Good';
+            // quality = 'Good';
           }
           return (
             

@@ -4,11 +4,11 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import logo from './249.png';
 // import HomePage from '../HomePage/HomePage';
-import { extend } from 'jquery';
+// import { extend } from 'jquery';
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state = {
     isloggedin: false,
   };
@@ -40,12 +40,9 @@ class Navbar extends React.Component {
               style={{ width: '140px', display: 'block', marginTop: '-15px' }}
             />
 
-            {/* <Img src={require('./249.png')}></Img> */}
-            {/* Some Space */}
+        
           </Link>
 
-          {/* <SignedInLinks />
-        <SignedOutLinks /> */}
           {!this.state.isloggedin ? <SignedOutLinks /> : <SignedInLinks />}
         </div>
       </nav>
@@ -53,8 +50,4 @@ class Navbar extends React.Component {
   }
 }
 export default Navbar;
-// <a href='#' class='navbar-brand'>
-{
-  /* <img src={logo} width='40' />
-</a> */
-}
+

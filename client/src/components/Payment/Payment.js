@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HomePage from "./HomePage";
 // import logo from "./logo.svg";
-import Checkout from "./Checkout";
+// import Checkout from "./Checkout";
 //import "./App.css";
 // Stripe
 import { Elements } from "@stripe/react-stripe-js";

@@ -1,17 +1,17 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import machine from "./machine.png";
-import fashion from "./fashion.png";
-import chair from "./chair.png";
+// import ReactDOM from "react-dom";
+// import machine from "./machine.png";
+// import fashion from "./fashion.png";
+// import chair from "./chair.png";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
-import Furniture from "../Furniture/Furniture";
-import Machine from "../Machine/Machine";
-import Fashion from "../Fashion/Fashion";
+// import Furniture from "../Furniture/Furniture";
+// import Machine from "../Machine/Machine";
+// import Fashion from "../Fashion/Fashion";
 import catagoiries from "../catagories/catagories.css";
 import axios from "axios";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import DisplayAllProducts from "../displayAllProducts/displayAllProducts";
+import { BrowserRouter as Router} from "react-router-dom";
+//import DisplayAllProducts from "../displayAllProducts/displayAllProducts";
 class Catagories extends React.Component {
   state = {
     products: [],
