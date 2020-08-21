@@ -69,9 +69,9 @@ class App extends Component {
           <Route exact path='/ShopNow'>
             <Catagories />
           </Route>
-          {/* <Route exact path='/DisplayAllProducts'>
+          <Route exact path='/DisplayAllProducts'>
             <DisplayAllProducts />
-          </Route> */}
+          </Route>
           <Route exact path='/Payment'>
             <Payment />
           </Route>

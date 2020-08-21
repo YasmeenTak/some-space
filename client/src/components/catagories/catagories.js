@@ -1,72 +1,72 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import machine from './machine.png';
-import fashion from './fashion.png';
-import chair from './chair.png';
-import { Link } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
-import Furniture from '../Furniture/Furniture';
-import Machine from '../Machine/Machine';
-import Fashion from '../Fashion/Fashion';
-import catagoiries from '../catagories/catagories.css';
-import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import DisplayAllProducts from '../displayAllProducts/displayAllProducts';
+import React from "react";
+import ReactDOM from "react-dom";
+import machine from "./machine.png";
+import fashion from "./fashion.png";
+import chair from "./chair.png";
+import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
+import Furniture from "../Furniture/Furniture";
+import Machine from "../Machine/Machine";
+import Fashion from "../Fashion/Fashion";
+import catagoiries from "../catagories/catagories.css";
+import axios from "axios";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import DisplayAllProducts from "../displayAllProducts/displayAllProducts";
 class Catagories extends React.Component {
   state = {
     products: [],
   };
   handleSubmit(e) {
     axios
-      .get('/addProduct')
+      .get("/addProduct")
       .then((result) => {
         console.log(result);
         const finalData = result.data;
-        console.log('=====', finalData);
+        console.log("=====", finalData);
         this.setState({ products: finalData });
         // console.log("hi eman", finalData);
         window.location.reload();
       })
       .catch((err) => {
-        console.log('hi');
-        console.log('it is an error', err);
+        console.log("hi");
+        console.log("it is an error", err);
       });
   }
   render() {
     return (
       <Router>
-        <div style={{ width: '100%', color: '#5a6578' }}>
+        <div style={{ width: "100%", color: "#5a6578" }}>
           <h
             style={{
-              fontSize: '30px',
+              fontSize: "30px",
               // "you can"background: "HotPink",
-              text: 'center',
+              text: "center",
 
-              marginLeft: '25%',
-              width: '100 %',
+              marginLeft: "25%",
+              width: "100 %",
             }}
           >
             YOU CAN ALWAYS FIND SOMETHING YOU WANT
           </h>
-          <div className='page wrapper'>
-            <div class='center'>
-              <div className='card'>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={require('./machine.png')} />
+          <div className="page wrapper">
+            <div class="center">
+              <div className="card">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={require("./machine.png")} />
                   <Card.Body>
-                    <Card.Title style={{ fontSize: '45px' }}>
+                    <Card.Title style={{ fontSize: "45px" }}>
                       MACHINE
                     </Card.Title>
-                    <Card.Text style={{ position: 'center' }}>
+                    <Card.Text style={{ position: "center" }}>
                       Nothing lasts forever, not even the best machines. And
                       everything can be reused.
                     </Card.Text>
-                    <Link to='/Machine'>
+                    <Link to="/Machine">
                       <div>
                         <Button
                           onClick={this.handleSubmit.bind(this)}
-                          style={{ backgroundColor: 'HotPink' }}
-                          variant='primary'
+                          style={{ backgroundColor: "HotPink" }}
+                          variant="primary"
                         >
                           {/* <Machine products={this.state.products} /> */}
                           Go SHOP
@@ -76,23 +76,23 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class='card'>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={require('./fashion.png')} />
+              <div class="card">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={require("./fashion.png")} />
                   <Card.Body>
-                    <Card.Title style={{ fontSize: '45px' }}>
+                    <Card.Title style={{ fontSize: "45px" }}>
                       FASHION
                     </Card.Title>
                     <Card.Text>
                       Nothing lasts forever, not even the best clothes. And
                       everything can be reused.
                     </Card.Text>
-                    <Link to='/Fashion'>
+                    <Link to="/Fashion">
                       <div>
                         <Button
                           onClick={this.handleSubmit.bind(this)}
-                          style={{ backgroundColor: 'HotPink' }}
-                          variant='primary'
+                          style={{ backgroundColor: "HotPink" }}
+                          variant="primary"
                         >
                           {/* <Fashion products={this.state.products} /> */}
                           Go SHOP
@@ -102,23 +102,23 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class='card'>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={require('./chair.png')} />
+              <div class="card">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={require("./chair.png")} />
                   <Card.Body>
-                    <Card.Title style={{ fontSize: '45px' }}>
+                    <Card.Title style={{ fontSize: "45px" }}>
                       FURNITURE
                     </Card.Title>
                     <Card.Text>
                       Nothing lasts forever, not even the best furniture. And
                       everything can be reused.
                     </Card.Text>
-                    <Link to='/Furniture'>
+                    <Link to="/Furniture">
                       <div>
                         <Button
                           onClick={this.handleSubmit.bind(this)}
-                          style={{ backgroundColor: 'HotPink' }}
-                          variant='primary'
+                          style={{ backgroundColor: "HotPink" }}
+                          variant="primary"
                         >
                           {/* <Furniture products={this.state.products} /> */}
                           Go SHOP
@@ -130,19 +130,22 @@ class Catagories extends React.Component {
               </div>
             </div>
           </div>
-          <Link to='/DisplayAllProducts'>
+          <Link to="/DisplayAllProducts">
             <Button
               onClick={this.handleSubmit.bind(this)}
-              style={{ backgroundColor: 'HotPink' }}
-              variant='primary'
+              style={{ backgroundColor: "HotPink" }}
+              variant="primary"
             >
               {/* <Furniture products={this.state.products} /> */}
               click here to see all our products
             </Button>
-          </Link>
-          <Route exact path='/DisplayAllProducts'>
             <DisplayAllProducts />
-          </Route>
+          </Link>
+            {/* <Route exact path="/DisplayAllProducts">
+            <DisplayAllProducts />
+            </Route> */}
+       
+          
         </div>
       </Router>
     );

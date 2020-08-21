@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
-import { Link, Redirect } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import React, { Component } from "react";
+import axios from "axios";
+import { Card, Button } from "react-bootstrap";
+import { Link, Redirect } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 class DisplayAllProducts extends Component {
   constructor(props) {
@@ -16,9 +16,9 @@ class DisplayAllProducts extends Component {
   };
   handleSubmit(e) {
     if (localStorage.token) {
-      window.location.href = '/Payment';
+      window.location.href = "/Payment";
     } else {
-      window.location.href = '/Register';
+      window.location.href = "/Register";
       // this.props.history.push("/Login");
     }
   }
@@ -27,30 +27,30 @@ class DisplayAllProducts extends Component {
       const token = localStorage.token;
       var decode = jwt_decode(token);
       axios
-        .post('/addToCardUser', { productID: id, UserID: decode.UserID })
+        .post("/addToCardUser", { productID: id, UserID: decode.UserID })
         .then((result) => {
-          console.log('this is in card in ', result);
+          console.log("this is in card in ", result);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      window.location.href = '/Register';
+      window.location.href = "/Register";
       // this.props.history.push("/Login");
     }
   }
   async getProducts() {
     await axios
-      .get('/findAllProducts')
+      .get("/findAllProducts")
       .then((result) => {
         console.log(result);
         const finalData = result.data;
 
-        console.log('=====>>>>////???>>>', finalData);
+        console.log("=====>>>>////???>>>", finalData);
         this.setState({ products: finalData });
       })
       .catch((err) => {
-        console.log('it is an error in DisplayAllProducts compoments', err);
+        console.log("it is an error in DisplayAllProducts compoments", err);
       });
   }
   render() {
@@ -59,16 +59,16 @@ class DisplayAllProducts extends Component {
       <div>
         <ul>
           {products.map((element, index) => {
-            var quality = 'very good';
+            var quality = "very good";
             if (element.quality === 3) {
-              quality = 'good';
+              quality = "good";
             } else if (element.quality === 1) {
-              quality = 'Exellent';
+              quality = "Exellent";
             }
             return (
               <row>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant='top' src={element.images} />
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={element.images} />
                   <Card.Body>
                     <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
@@ -77,31 +77,35 @@ class DisplayAllProducts extends Component {
                     <Card.Text>Location: {element.location}</Card.Text>
                     {/* <Link to="/Payment" className="brand-logo"> */}
                     <Button
-                      className='btn'
+                      class="ui small pink button"
+                      className="btn"
                       style={{
-                        marginLeft: '40px',
-                        margin: '30px',
-                        backgroundColor: '#EC407A',
+                        marginLeft: "40px",
+                        margin: "30px",
+                        backgroundColor: "#EC407A",
                       }}
-                      variant='primary'
+                      variant="primary"
                       value={this.state.products}
                       onClick={() => {
                         this.handleSubmit(element._id);
                       }}
                     >
-                      buy
+                      {/* buy */}
+                      <i class="payment icon"></i>
                     </Button>
                     {/* </Link> */}
 
                     <Button
-                      style={{ backgroundColor: '#EC407A' }}
-                      variant='primary'
+                      class="ui small pink button"
+                      style={{ backgroundColor: "#EC407A" }}
+                      variant="primary"
                       value={this.state.products}
                       onClick={() => {
                         this.handleClick(element._id);
                       }}
                     >
-                      To Cart
+                      {/* To Cart */}
+                      <i class="cart icon"></i>
                     </Button>
                   </Card.Body>
                 </Card>

@@ -157,10 +157,13 @@ class Footer extends React.Component {
                   increasing demand to be friendly with the environment, our
                   needs to renew our things without throwing the old things, our
                   needs to buy used things that are cheap and have good quality.
-                  <br></br>
+                  <br />
+                  <br />
                   <strong>Email: </strong>SomeSpace@gmail.com
                 </p>
                 <strong className=" space11 ">Phone: </strong>+97059966690
+                <br />
+                <br />
                 <div>
                   <ul className="social-icons">
                     <li>
@@ -200,13 +203,13 @@ class Footer extends React.Component {
                     onChange={this.handleChange}
                   ></input>
                   <label className="txtmsg">Message </label>
-                  <textarea 
-                    className="txtarea" 
+                  <textarea
+                    className="txtarea"
                     name="senderMessage"
                     onChange={this.handleChange}
                   ></textarea>
                   <input id="submit" type="submit" value="Send The Message" />
-                </div>{" "}
+                </div>
               </form>
             </div>
           </div>

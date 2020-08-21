@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons';
 import jwt_decode from "jwt-decode";
+import 'semantic-ui-css/semantic.min.css'
 import SearchFeature from "../SearchFeature/SearchFeature";
 
 class Furniture extends Component {
@@ -119,6 +120,7 @@ class Furniture extends Component {
 
                     {/* <Link to="/Payment" className="brand-logo"> */}
                     <Button
+                      class="ui small pink button"
                       variant="primary"
                       style={{
                         marginLeft: "40px",
@@ -130,11 +132,18 @@ class Furniture extends Component {
                         this.handleSubmit(element._id);
                       }}
                     >
-                      buy
+                      <i class="payment icon"></i>
+
+                      {/* buy */}
                     </Button>
+                    {/* <button class="ui small green button">
+                      <i class="download icon"></i>
+
+</button> */}
                     {/* </Link> */}
 
                     <Button
+                      class="ui small pink button"
                       style={{ backgroundColor: "#EC407A" }}
                       variant="primary"
                       value={this.state.products}
@@ -142,7 +151,8 @@ class Furniture extends Component {
                         this.handleClick(element._id);
                       }}
                     >
-                      To Cart
+                      <i class="cart icon"></i>
+                      {/* To Cart */}
                     </Button>
                   </Card.Body>
                 </Card>

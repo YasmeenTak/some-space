@@ -126,6 +126,7 @@ class Cart extends Component {
                   </Button> */}
 
                   <Button
+                    class="ui small pink button"
                     variant="primary"
                     style={{
                       marginLeft: "40px",
@@ -138,7 +139,8 @@ class Cart extends Component {
                       //this.handleSubmit(ele._id);
                     }}
                   >
-                    buy
+                    {/* buy */}
+                    <i class="payment icon"></i>
                   </Button>
 
                   <Button
