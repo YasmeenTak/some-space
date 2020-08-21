@@ -36,6 +36,9 @@ class Catagories extends React.Component {
     return (
       <Router>
         <div style={{ width: "100%", color: "#5a6578" }}>
+          <br />
+          <br />
+          <br />
           <h
             style={{
               fontSize: "30px",
@@ -48,21 +51,33 @@ class Catagories extends React.Component {
           >
             YOU CAN ALWAYS FIND SOMETHING YOU WANT
           </h>
+          <br />
+          <br />
           <div className="page wrapper">
             <div class="center">
-              <div className="card">
-                <Card style={{ width: "18rem" }}>
+              <div
+                className="card"
+                style={{ background: "white" }}
+              >
+                <Card style={{ width: "18rem", background: "white" }}>
                   <Card.Img variant="top" src={require("./machine.png")} />
                   <Card.Body>
+                    <br />
+                    <br />
+
                     <Card.Title style={{ fontSize: "45px" }}>
                       MACHINE
                     </Card.Title>
-                    <Card.Text style={{ position: "center" }}>
+                    {/* <Card.Text style={{ position: "center" }}>
                       Nothing lasts forever, not even the best machines. And
                       everything can be reused.
-                    </Card.Text>
+                    </Card.Text> */}
+
                     <Link to="/Machine">
                       <div>
+                        <br />
+                        <br />
+
                         <Button
                           onClick={this.handleSubmit.bind(this)}
                           style={{ backgroundColor: "HotPink" }}
@@ -76,19 +91,23 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class="card">
-                <Card style={{ width: "18rem" }}>
+              <div class="card" style={{  background: "white" }}>
+                <Card style={{ width: "18rem", background: "white" }}>
                   <Card.Img variant="top" src={require("./fashion.png")} />
                   <Card.Body>
+                    <br />
+                    <br />
                     <Card.Title style={{ fontSize: "45px" }}>
                       FASHION
                     </Card.Title>
-                    <Card.Text>
+                    {/* <Card.Text>
                       Nothing lasts forever, not even the best clothes. And
                       everything can be reused.
-                    </Card.Text>
+                    </Card.Text> */}
                     <Link to="/Fashion">
                       <div>
+                        <br />
+                        <br />
                         <Button
                           onClick={this.handleSubmit.bind(this)}
                           style={{ backgroundColor: "HotPink" }}
@@ -102,19 +121,23 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class="card">
-                <Card style={{ width: "18rem" }}>
+              <div class="card" style={{ background: "white" }}>
+                <Card style={{ width: "18rem", background: "white" }}>
                   <Card.Img variant="top" src={require("./chair.png")} />
                   <Card.Body>
+                    <br />
+                    <br />
                     <Card.Title style={{ fontSize: "45px" }}>
                       FURNITURE
                     </Card.Title>
-                    <Card.Text>
+                    {/* <Card.Text>
                       Nothing lasts forever, not even the best furniture. And
                       everything can be reused.
-                    </Card.Text>
+                    </Card.Text> */}
                     <Link to="/Furniture">
                       <div>
+                        <br />
+                        <br />
                         <Button
                           onClick={this.handleSubmit.bind(this)}
                           style={{ backgroundColor: "HotPink" }}
@@ -131,6 +154,8 @@ class Catagories extends React.Component {
             </div>
           </div>
           <Link to="/DisplayAllProducts">
+            <br />
+            <br />
             <Button
               onClick={this.handleSubmit.bind(this)}
               style={{ backgroundColor: "HotPink" }}
@@ -139,13 +164,13 @@ class Catagories extends React.Component {
               {/* <Furniture products={this.state.products} /> */}
               click here to see all our products
             </Button>
-            <DisplayAllProducts />
+            <br />
+            <br />
+            {/* <DisplayAllProducts /> */}
           </Link>
-            {/* <Route exact path="/DisplayAllProducts">
+          {/* <Route exact path="/DisplayAllProducts">
             <DisplayAllProducts />
             </Route> */}
-       
-          
         </div>
       </Router>
     );
