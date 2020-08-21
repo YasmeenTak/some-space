@@ -158,11 +158,11 @@ class Catagories extends React.Component {
             <br />
             <Button
               onClick={this.handleSubmit.bind(this)}
-              style={{ backgroundColor: "HotPink" }}
+              style={{ backgroundColor: "HotPink" ,textAlign: 'center', margin: '50px', marginLeft:'45%'}}
               variant="primary"
             >
               {/* <Furniture products={this.state.products} /> */}
-              click here to see all our products
+              Latest Products
             </Button>
             <br />
             <br />

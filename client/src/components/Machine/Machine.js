@@ -106,10 +106,10 @@ class Machine extends Component {
             }
             return (
               <row>
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "22rem" }}>
                   <Card.Img variant="top" src={element.images} />
-                  <Card.Body>
-                    <Card.Title>{element.title}</Card.Title>
+                  <Card.Body style={{color:'#333d82'}}>
+                    <Card.Title>{element.title}</Card.Title><br></br>
                     <Card.Text>Price: $ {element.price}</Card.Text>
                     <Card.Text>Quality: {quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>

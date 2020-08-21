@@ -109,9 +109,9 @@ class Furniture extends Component {
             }
             return (
               <row>
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "22rem" }}>
                   <Card.Img variant="top" src={element.images} />
-                  <Card.Body>
+                  <Card.Body style={{color:'#333d82'}}>
                     <Card.Title>{element.title}</Card.Title>
                     <Card.Text>Price: $ {element.price}</Card.Text>
                     <Card.Text>Quality: {quality}</Card.Text>

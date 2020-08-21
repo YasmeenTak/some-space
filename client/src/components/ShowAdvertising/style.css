@@ -50,11 +50,15 @@
   font-size: 35px;
   color: rgb(236, 64, 122);
   /* opacity: 0.6; */
+  float: right;
+  margin-right: 15px;
 }
 .fa-edit {
   font-size: 35px;
   color: rgb(236, 64, 122);
-  margin-left: 40px;
+  /* margin-left: 40px; */
+  float: right;
+  margin-right: 5px;
 }
 /* .fa-trash:hover {
   opacity: 1;
@@ -73,3 +77,6 @@
   color: rgb(236, 64, 122);
   font-weight: bold;
 }
+
+
+
