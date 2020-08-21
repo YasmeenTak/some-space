@@ -27,20 +27,19 @@ class Navbar extends React.Component {
   render() {
     console.log('state is it logged' + this.state.isloggedin);
     return (
-      <nav className='nav-wrapper grey darken-3'>
-        <div className='container'>
+      <nav className="nav-wrapper grey darken-3">
+        <div className="container">
           <Link
-            to='/Home'
-            className='brand-logo'
-            style={{ fontStyle: 'italic' }}
+            to="/Home"
+            className="brand-logo"
+            style={{ fontStyle: "italic" }}
           >
             <img
               src={logo}
-              className='logo-img'
-              style={{ width: '140px', display: 'block', marginTop: '-15px' }}
+              alt="MyImage"
+              className="logo-img"
+              style={{ width: "140px", display: "block", marginTop: "-15px" }}
             />
-
-        
           </Link>
 
           {!this.state.isloggedin ? <SignedOutLinks /> : <SignedInLinks />}

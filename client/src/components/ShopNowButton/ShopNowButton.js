@@ -1,6 +1,6 @@
 import React from "react";
 // import shop from "./shop.jpg";
-import style from "./style.css";
+import "./style.css";
 import { Link } from "react-router-dom";
 
 class ShopNow extends React.Component {

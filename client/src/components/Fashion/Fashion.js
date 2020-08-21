@@ -55,10 +55,10 @@ class Fashion extends Component {
   }
   async getProducts(value) {
     console.log(value);
-    if (value !== undefined || value == "") {
+    if (value !== undefined || value === "") {
       var newProduct = [];
       for (var i = 0; i < this.state.products.length; i++) {
-        if (this.state.products[i].title == value) {
+        if (this.state.products[i].title === value) {
           newProduct.push(this.state.products[i]);
         }
       }
@@ -97,9 +97,9 @@ class Fashion extends Component {
         <ul>
           {products.map((element, index) => {
             var quality = "very good";
-            if (element.quality == "3") {
+            if (element.quality === "3") {
               quality = "good";
-            } else if (element.quality == "1") {
+            } else if (element.quality === "1") {
               quality = "Exellent";
             }
             return (
