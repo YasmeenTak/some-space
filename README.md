@@ -35,4 +35,4 @@
 
 14- git push heroku master
 
-15- heroku open "it should open the landing page of react app"
+15- heroku open "it should open the landing page of reactapp"
