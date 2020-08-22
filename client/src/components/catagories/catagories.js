@@ -55,7 +55,7 @@ class Catagories extends React.Component {
           <br />
           <br />
           <div className="page wrapper">
-            <div class="center">
+            <div className="center">
               <div
                 className="card"
                 style={{ background: "white" }}
@@ -92,7 +92,7 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class="card" style={{  background: "white" }}>
+              <div className="card" style={{  background: "white" }}>
                 <Card style={{ width: "18rem", background: "white" }}>
                   <Card.Img variant="top" src={require("./fashion.png")} />
                   <Card.Body>
@@ -122,7 +122,7 @@ class Catagories extends React.Component {
                   </Card.Body>
                 </Card>
               </div>
-              <div class="card" style={{ background: "white" }}>
+              <div className="card" style={{ background: "white" }}>
                 <Card style={{ width: "18rem", background: "white" }}>
                   <Card.Img variant="top" src={require("./chair.png")} />
                   <Card.Body>
