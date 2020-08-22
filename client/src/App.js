@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <div>asdf</div>
+        <div></div>
         <Router>
           <div className='App'>
             {/* <searchByTitle /> */}
