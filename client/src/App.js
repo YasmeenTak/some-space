@@ -20,62 +20,65 @@ import DisplayAllProducts from './components/displayAllProducts/displayAllProduc
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div className='App'>
-          {/* <searchByTitle /> */}
+      <>
+        <div>asdf</div>
+        <Router>
+          <div className='App'>
+            {/* <searchByTitle /> */}
 
-          <Navbar />
+            <Navbar />
 
-          {/* <ShopNow />
+            {/* <ShopNow />
           <Catagories /> */}
-        </div>
-        {/* navbar */}
-        <Switch>
-          <Route exact path='/Login'>
-            <Login />
-          </Route>
-          <Route exact path='/Register'>
-            <Register />
-          </Route>
-          <Route exact path='/ShowMyAds'>
-            <Show />
-          </Route>
-          <Route exact path='/Logout'>
-            <Logout />
-          </Route>
-          <Route exact path='/Add'>
-            <Add />
-          </Route>
-          <Route exact path='/Cart'>
-            <Cart />
-          </Route>
-          {/* Catagories */}
-          <Route exact path='/Fashion'>
-            <Fashion />
-          </Route>
-          <Route exact path='/Furniture'>
-            <Furniture />
-          </Route>
-          <Route exact path='/Machine'>
-            <Machine />
-          </Route>
-          {/* ShopButtonNow */}
-          <Route exact path='/ShopNow'>
-            <Catagories />
-          </Route>
-          <Route exact path='/DisplayAllProducts'>
-            <DisplayAllProducts />
-          </Route>
-          <Route exact path='/Payment'>
-            <Payment />
-          </Route>
-          <Route exact path='/'>
-            <ShopNowButton />
-            <Catagories />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
+          </div>
+          {/* navbar */}
+          <Switch>
+            <Route exact path='/Login'>
+              <Login />
+            </Route>
+            <Route exact path='/Register'>
+              <Register />
+            </Route>
+            <Route exact path='/ShowMyAds'>
+              <Show />
+            </Route>
+            <Route exact path='/Logout'>
+              <Logout />
+            </Route>
+            <Route exact path='/Add'>
+              <Add />
+            </Route>
+            <Route exact path='/Cart'>
+              <Cart />
+            </Route>
+            {/* Catagories */}
+            <Route exact path='/Fashion'>
+              <Fashion />
+            </Route>
+            <Route exact path='/Furniture'>
+              <Furniture />
+            </Route>
+            <Route exact path='/Machine'>
+              <Machine />
+            </Route>
+            {/* ShopButtonNow */}
+            <Route exact path='/ShopNow'>
+              <Catagories />
+            </Route>
+            <Route exact path='/DisplayAllProducts'>
+              <DisplayAllProducts />
+            </Route>
+            <Route exact path='/Payment'>
+              <Payment />
+            </Route>
+            <Route exact path='/'>
+              <ShopNowButton />
+              <Catagories />
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
+      </>
     );
   }
 }
