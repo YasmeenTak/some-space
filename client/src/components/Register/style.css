@@ -19,6 +19,8 @@ label {
   font-family: Raleway-SemiBold;
 }
 .SignUp-page__input {
+  border-radius: 25px;
+  border: 2px solid #73ad21;
   border: 1px solid #ccc;
   box-align: center;
   margin: 8px 4px;
@@ -38,6 +40,12 @@ label {
   display: inline-block;
   font-size: 16px;
   margin-top: 15px;
+}
+.haveAccount {
+  margin-bottom: 15px;
+}
+.errorsMassages {
+  color: red;
 }
 @media only screen and (max-width: 768px) {
   .SignUp-page__div {

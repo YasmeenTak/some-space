@@ -90,9 +90,10 @@ class Cart extends Component {
     console.log(Products, "productssss");
     return (
       <div className="CartMyAds__div">
-        <p>to add more product click here</p>
+        <h1>This your Cart</h1>
+        {/* <p >to add more product click here</p> */}
         <Link to="/DisplayAllProducts">
-          <button>see our products</button>
+          <button class="ui small pink button">ADD PRODUCTS</button>
         </Link>
         {Products.map((ele, index) => {
           // var category = "Furniture";
@@ -144,10 +145,11 @@ class Cart extends Component {
                   </Button>
 
                   <Button
+                    class="ui small pink button"
                     className="Remove_Btn"
                     onClick={(event) => this.handleRemove(event, ele.productID)}
                   >
-                    Remove
+                    <i class="delete icon"></i>
                   </Button>
                 </div>
               </Card>

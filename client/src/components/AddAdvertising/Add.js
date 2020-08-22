@@ -132,18 +132,19 @@ function Add() {
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
       <div className="App">
-        <h2> Upload Product</h2>
+        <h1 style={{ marginLeft: "35%", color:"DeepPink"}}> Upload Product</h1>
         {/* <p>Test: {image}</p> */}
         <input
           type="file"
           name="file"
           placeholder="Upload an image"
           onChange={uploadImage}
+         
         />
         {loading ? (
-          <h3>Loading...</h3>
+          <h3 >Loading...</h3>
         ) : (
-          <img alt="MyImage" src={image} style={{ width: "300px" }} />
+          <img  src={image} style={{ width: "300px" }} />
         )}
       </div>
       <div
@@ -199,7 +200,7 @@ function Add() {
         <br />
         <br />
         {/* <Link to="/ShowMyAds"> */}
-          <button onClick={onSubmit}>Submit</button>
+        <button Class="ui small pink button" onClick={onSubmit}>Submit</button>
         {/* </Link> */}
       </form>
     </div>
