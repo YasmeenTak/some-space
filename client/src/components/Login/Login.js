@@ -3,6 +3,7 @@ import axios from "axios";
 // import { Redirect } from "react-router-dom";
 import "./style.css";
 import { createBrowserHistory } from "history";
+import swal from "sweetalert";
 export default class Login extends Component {
   state = {
     email: "",
@@ -38,7 +39,8 @@ export default class Login extends Component {
       })
       .catch((err) => {
         console.log("err in logging in ", err);
-        alert("No such User !, create a new account");
+
+        swal("No such User ! create a new account");
       });
   }
   render() {

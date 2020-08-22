@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import swal from "sweetalert";
 // import { Link } from "react-router-dom";
 
 const Catagory = [
@@ -45,8 +46,8 @@ function Add() {
   };
 
   const onQualitySelectChange = (event) => {
-    console.log(event,"eveeeeent")
-    console.log(event.currentTarget.value)
+    console.log(event, "eveeeeent");
+    console.log(event.currentTarget.value);
     setQualityValue(event.currentTarget.value);
   };
 
@@ -106,12 +107,12 @@ function Add() {
       location: LocationValue,
       token: token,
     };
-    console.log(variables, "vaaaaaar")
+    console.log(variables, "vaaaaaar");
     axios
       .post("/addProduct", variables)
       .then((response) => {
         if (response.data) {
-          alert("Product Successfully Uploaded");
+          swal("Product Successfully Uploaded");
           console.log("Product Successfully Uploaded");
           axios.post("/addToUserSell", variables).then(() => {
             console.log(
@@ -120,7 +121,7 @@ function Add() {
           });
           // props.history.push("/");
         } else {
-          alert("Failed to upload Product");
+          swal("Failed to upload Product");
           console.log("Failed to upload Product");
         }
       })
@@ -132,19 +133,21 @@ function Add() {
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
       <div className="App">
-        <h1 style={{ marginLeft: "35%", color:"DeepPink"}}> Upload Product</h1>
+        <h1 style={{ marginLeft: "35%", color: "DeepPink" }}>
+          {" "}
+          Upload Product
+        </h1>
         {/* <p>Test: {image}</p> */}
         <input
           type="file"
           name="file"
           placeholder="Upload an image"
           onChange={uploadImage}
-         
         />
         {loading ? (
-          <h3 >Loading...</h3>
+          <h3>Loading...</h3>
         ) : (
-          <img  src={image} style={{ width: "300px" }} />
+          <img src={image} style={{ width: "300px" }} />
         )}
       </div>
       <div
@@ -200,7 +203,9 @@ function Add() {
         <br />
         <br />
         {/* <Link to="/ShowMyAds"> */}
-        <button Class="ui small pink button" onClick={onSubmit}>Submit</button>
+        <button Class="ui small pink button" onClick={onSubmit}>
+          Submit
+        </button>
         {/* </Link> */}
       </form>
     </div>

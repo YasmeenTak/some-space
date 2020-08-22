@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import jwt_decode from "jwt-decode";
+import swal from "sweetalert";
 
 class Fashion extends Component {
   constructor(props) {
@@ -106,9 +107,10 @@ class Fashion extends Component {
               <row>
                 <Card style={{ width: "22rem" }}>
                   <Card.Img variant="top" src={element.images} />
-                  <Card.Body style={{color:'#333d82'}}>
-                    <Card.Title>{element.title}</Card.Title><br></br>
-                    <Card.Text >Price: $ {element.price}</Card.Text>
+                  <Card.Body style={{ color: "#333d82" }}>
+                    <Card.Title>{element.title}</Card.Title>
+                    <br></br>
+                    <Card.Text>Price: $ {element.price}</Card.Text>
                     <Card.Text>Quality: {quality}</Card.Text>
                     <Card.Text>Description: {element.description}</Card.Text>
                     <Card.Text>Location: {element.location}</Card.Text>
@@ -143,6 +145,7 @@ class Fashion extends Component {
                     >
                       {/* To Cart */}
                       <i class="cart icon"></i>
+                     
                     </Button>
                   </Card.Body>
                 </Card>
