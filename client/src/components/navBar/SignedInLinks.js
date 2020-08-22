@@ -28,7 +28,7 @@ const SignedInLinks = () => {
             onClick={() => {
               const history = createBrowserHistory();
               localStorage.removeItem("token");
-              history.push("/Home");
+              history.push("/");
               window.location.reload();
             }}
             type="button"

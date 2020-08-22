@@ -69,7 +69,7 @@ class App extends Component {
           <Route exact path='/Payment'>
             <Payment />
           </Route>
-          <Route exact path='/Home'>
+          <Route exact path='/'>
             <ShopNowButton />
             <Catagories />
           </Route>

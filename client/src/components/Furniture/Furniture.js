@@ -87,7 +87,7 @@ class Furniture extends Component {
     const products = this.state.products ? this.state.products : [];
     return (
       <div>
-        <Link to="/Home">
+        <Link to="/">
         <FontAwesomeIcon
             icon={faAngleDoubleLeft}
             style={{ color: 'hotPink', fontSize: '40' }}

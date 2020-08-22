@@ -29,11 +29,11 @@ export default class Login extends Component {
         console.log(result.data.token, "tooooooooken");
         this.setState({ token: result.data.token });
         localStorage.setItem("token", this.state.token);
-        // this.setState({ redirect: '/Home' });
+        // this.setState({ redirect: '/' });
         // }
         console.log("Logged in");
         this.setState({ isLoggedIn: true });
-        history.push("/Home");
+        history.push("/");
         window.location.reload();
       })
       .catch((err) => {
@@ -44,7 +44,7 @@ export default class Login extends Component {
   render() {
     // if (this.state.redirect) {
     //   console.log('redirected');
-    //   return <Redirect to='/Home' />;
+    //   return <Redirect to='/' />;
     // }
     return (
       <div className="Login-page__div">
